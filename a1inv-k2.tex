@@ -1,0 +1,470 @@
+\documentclass[oneside,12pt]{amsart}
+\usepackage{amssymb, amsxtra, amsmath, amstext, amsthm, amsfonts, amscd, hyperref, tikz, graphicx, thmtools}
+\usepackage[T2A]{fontenc}
+\usepackage[cp1251]{inputenc}
+\usepackage[all]{xy}
+\usepackage[notref,notcite]{showkeys}
+\usepackage[capitalize]{cleveref}
+\usetikzlibrary{matrix,arrows}
+
+\oddsidemargin 5mm
+\marginparwidth 5mm
+\topmargin 0mm
+\textheight 225mm
+\textwidth 165mm
+\headheight 0mm
+\headsep 10mm
+\footskip 5mm
+
+\newtheorem{thm}{Theorem}
+\Crefname{thm}{Theorem}{Theorems}
+\numberwithin{equation}{section}
+
+\newtheorem{lem}{Lemma}
+\numberwithin{lem}{section}
+\Crefname{lemma}{Lemma}{Lemmas}
+
+\newtheorem{cor}[lem]{Corollary}
+\Crefname{cor}{Corollary}{Corollaries}
+
+\newtheorem{prop}[lem]{Proposition}
+\Crefname{prop}{Proposition}{Propositions}
+
+\newtheorem*{thm*}{Theorem}
+\newtheorem*{lemma*}{Lemma}
+
+\theoremstyle{definition}
+
+\newtheorem{dfn}[lem]{Definition}
+\Crefname{dfn}{Definition}{Definitions}
+\newtheorem{example}[lem]{Example}
+\Crefname{example}{Example}{Examples}
+
+\theoremstyle{remark}
+
+\newtheorem{rem}[lem]{Remark}
+\Crefname{rem}{Remark}{Remarks}
+
+\DeclareMathOperator{\UU}{U}
+\DeclareMathOperator{\LL}{L}
+\DeclareMathOperator{\FU}{FU}
+\DeclareMathOperator{\GL}{GL}
+\DeclareMathOperator{\PGL}{PGL}
+\DeclareMathOperator{\Sp}{Sp}
+\DeclareMathOperator{\SL}{SL}
+\DeclareMathOperator{\St}{St}
+\DeclareMathOperator{\EE}{E}
+\DeclareMathOperator{\OO}{O}
+\DeclareMathOperator{\Ep}{\mathcal E}
+\DeclareMathOperator{\WW}{W}
+\DeclareMathOperator{\HH}{H}
+\DeclareMathOperator{\XX}{X}
+\DeclareMathOperator{\RR}{\mathcal R}
+\DeclareMathOperator{\Lie}{Lie}
+\DeclareMathOperator{\Cent}{Cent}
+\DeclareMathOperator{\rad}{rad}
+\DeclareMathOperator{\Norm}{Norm}
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\Spec}{Spec}
+\DeclareMathOperator{\Ga}{{\mathbf G}_a}
+\DeclareMathOperator{\Gm}{{\mathbf G}_m}
+\DeclareMathOperator{\Ker}{ker\,}
+\DeclareMathOperator{\coker}{coker\,}
+\DeclareMathOperator{\im}{im\,}
+\DeclareMathOperator{\Aut}{Aut}
+\DeclareMathOperator{\Out}{Out}
+\DeclareMathOperator{\End}{End}
+\DeclareMathOperator{\Map}{Map\,}
+\DeclareMathOperator{\Dyn}{Dyn}
+\DeclareMathOperator{\Sym}{Sym}
+\DeclareMathOperator{\Gal}{Gal}
+\DeclareMathOperator{\lev}{lev}
+\DeclareMathOperator{\der}{der}
+\DeclareMathOperator{\res}{res}
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\crank}{c-rank}
+\DeclareMathOperator{\rank}{rank}
+\DeclareMathOperator{\ZZ}{{\mathbb Z}}
+\DeclareMathOperator{\QQ}{{\mathbb Q}}
+\DeclareMathOperator{\NN}{{\mathbb N}}
+\DeclareMathOperator{\PP}{{\mathbb P}}
+\DeclareMathOperator{\et}{\text{\it \'et}}
+\DeclareMathOperator{\fppf}{\text{\it fppf}}
+\DeclareMathOperator{\FF}{{\mathbb F}}
+\DeclareMathOperator{\La}{{\mathcal L}}
+
+\newcommand{\id}{\text{\rm id}}
+\newcommand{\Aff}{\mathbb {A}}
+\newcommand{\Pro}{\mathbb {P}}
+\newcommand{\pprime}{\mathfrak{p}}
+\newcommand{\ad}{\mathrm{ad}}
+\newcommand{\scl}{{sc}}
+\newcommand{\ha}{{\widetilde{\alpha}}}
+\newcommand{\qs}{\mathrm{qs}}
+\newcommand{\eps}{\varepsilon}
+\newcommand{\st}{\scriptstyle}
+\newcommand{\ds}{\displaystyle}
+\newcommand{\xx}{\hbox{${\bf (XX^{-1})}$}\ }
+\newcommand{\ee}{\hbox{${\bf (E)}$}}
+\newcommand{\Nu}{{\mathrm N}}
+\newcommand{\Mu}{{\mathrm M}}
+\newcommand{\rA}{\mathsf{A}}
+\newcommand{\rB}{\mathsf{B}}
+\newcommand{\rC}{\mathsf{C}} 
+\newcommand{\rD}{\mathsf{D}} 
+\newcommand{\rE}{\mathsf{E}}
+\newcommand{\rF}{\mathsf{F}}
+\newcommand{\rG}{\mathsf{G}}
+
+\let\l\left
+\let\r\right
+\let\semir\ltimes
+\let\semil\rtimes
+
+\begin{document}
+
+\selectlanguage{english}
+
+\title{Homotopy invariance for nonstable $K_2$-functors}
+
+\author{S. Sinchuk}
+\address{Department of Mathematics and Mechanics, St. Petersburg State University,
+St. Petersburg, Russia}
+\email{sinchukss@gmail.com}
+
+\author{A. Stavrova}
+\address{Department of Mathematics and Mechanics, St. Petersburg State University,
+St. Petersburg, Russia}
+\email{anastasia.stavrova@gmail.com}
+
+\author{A. Lavrenov}
+\address{Mathematisches Institut der Universit\"at M\"unchen, Theresienstr. 39, D-80333 M\"unchen}
+\email{avlavrenov@gmail.com}
+
+\subjclass[2010]{19C09, 19C20, 14L15, 20G35}
+\keywords{Chevalley group, non-stable $K_2$-functor, Steinberg group}
+
+\maketitle
+
+%\begin{abstract}
+%To be written
+%\end{abstract}
+
+\section{Aim of the paper}
+
+The aim of this text is to prove that the non-stable $K_2$-functors $K_2^G$, where $G$ is a simply
+connected Chevalley group
+of suitable type, satisfy $\Aff^1$-invariance on regular rings $R$ containing a field $k$, that is,
+\begin{equation}\label{eq:A1-main}
+K_2^G(R[t])=K_2^G(R).
+\end{equation} As a corollary, we should easily deduce that
+$$K_2^G(R)=KV_2^G(R),$$
+where $KV_2^G(R)$ is the Karoubi--Villamayor $K$-functor associated to $G$. This functor originates from~\cite{J}.
+The above equality by e.g.~\cite[Corollary 4.3.3]{AHW15} implies that $\pi_1^{\Aff^1}(G)(R)=K_2^G(R)$, i.e. we obtain an explicit presentation
+for the $\Aff^1$-fundamental group of $G$ in the sense of Morel--Voevodsky.
+
+"Suitable type"{} here means that we consider only the cases where we know the centrality of $K_2$,
+or at least the Quillen-Suslin lgp. Some intermediate steps can be proved in larger generality.
+
+Essentially, we need to prove that $K_2^G(k[x_1,\ldots,x_n])=K_2^G(k)$. (Then~\eqref{eq:A1-main} follows by standard geometric methods.)
+There are two models: Tulenbaev's proof for the $\SL_n$ case~\cite{Tu} and Stavrova's proof for $K_1^G$~\cite{St-poly}.
+Tulenbaev~\cite{Tu} uses stabilization of the $K_2$-functor,
+and the good properties of the limit=algebraic $K$-theory.
+In~\cite{St-poly} stabilization is not used. However, the key steps
+of both proofs are the same: the case of $R=k$ (hidden somewhere around~\cite[p. 140]{Tu}, or, respectively,
+~\cite[Theorem 3.1]{St-poly}); Quillen-Suslin lgp; $\Pro^1$-gluing (see~\cite[Theorem 5.1]{Tu} or~\cite[Theorem 1.1]{St-poly}).
+
+\subsection{The case $R=k$}
+We consider the case of $K_2^G(k[t])$ vs. $K_2^G(k)$.
+(As in the $\Aff^1$-invariance of $K_1^G$, this case should be used to deduce that $K_2^G(k[t_1,\ldots,t_n])=K_2^G(k)$.)
+
+In Tulenbaev's framework, it follows from stabilization.
+However, the equality $K_2^G(k[t])=K_2^G(k)$ is sort of known for all groups.
+Namely, in~\cite[Theorem 5.1]{W-k[t]}: let $k$ be an infinite field and let $G$ be a connected reductive
+group over $k$. Then the inclusion $k\hookrightarrow k[t]$ induces an
+isomorphism
+$$H_\bullet(G(k),\mathbb{Z})\stackrel{\cong}{\longrightarrow} H_\bullet(G(k[t]),\mathbb{Z}),$$
+if the order of the fundamental group of $G$ is invertible in $k$.
+Once we know that the homology $H_2$ coincides with $K_2^G$ (on both sides), this gives the result.
+It would be nice to check Wendt's proof; maybe, discuss it in a seminar?
+
+Is it necessary to know the centrality in order to show that $K_2^G$ coincides with $H_2$?
+If yes, then we probably know it for $K_2^G(k)$ even for isotropic groups~\cite{Deo}, but only for the good
+Chevalley groups for $K_2^G(k[t])$.
+We should try to understand what is proved in~\cite[Proposition 5.3]{VW} using only the universality of
+the Steinberg group. This may be useful. The paper is unpublished, so again everything should be double-checked
+if you want to refer to it.
+
+\subsection{Plan of the proof}
+\begin{enumerate}
+\item\label{plan:3t} {\bf (done)} Let $R$ be a local ring. Show that
+$$\St(R[t^{\pm 1}])=i_+(\St(R[t]))i_-(\St(R[t^{-1}]))i_+(\St(R[t]))$$
+Here $i_\pm$ denote the natural homomorphisms into $\St(R[t^{\pm 1}])$.
+
+\item\label{plan:k[t]} Show that $K_2^G(k[t])=K_2^G(k)$.
+
+\item\label{plan:k-intersect}
+Consequently, $\St(k[t])\to\St(k[t^{\pm 1}])$ is injective and $\St(k[t])\cap\St(k[t^{-1}])=\St(k)$ inside
+$\St(k[t^{\pm 1}])$. Also, $K_2^G(k)=K_2^G(k[t^{\pm 1}])$.
+
+The first claim uses~\eqref{plan:k[t]}. The second claim follows from~\eqref{plan:k[t]} and~\eqref{plan:3t}.
+
+\item\label{plan:QSlgp} {\bf (done)} Prove the Quillen-Suslin lgp for $K_2^G$. See~\cref{thm:lg-k2}.
+
+\item\label{plan:Zglu} (Zariski gluing) for any commutative ring $A$ and any non-nilpotent $f,g\in A$ such that
+$A=fA+gA$, the sequence of pointed sets
+$$1\longrightarrow K_2^G(A)\xrightarrow{\st g\mapsto (g,g)} K_2^G(A_f)\times K_2^G(A_g)
+\xrightarrow{\st (g_1,g_2)\mapsto g_1{g_2}^{-1}} K_2^G(A_{fg})$$
+is exact. The proof is usually almost the same as for~\eqref{plan:QSlgp}.
+
+(Remark. It seems that we need this property only for $A=R[t]$ and $f,g$ non-constant polynomials.)
+
+\item\label{plan:S-lemma} ($S$-lemma)
+Let $A$ be a commutative ring, $S$ a multiplicative subset of $A$.
+If $$K_2^G(A[X_1,\ldots,X_n])=K_2^G(A)$$ for some $n\ge 1$, then
+$K_2^G(A_S[X_1,\ldots,X_n])=K_2^G(A_S)$ as well.
+
+This should be easy; see~\cite[Lemma 3.6]{Abe}.
+
+\item\label{plan:Nglu} (Nisnevich gluing) Assume that $B$ is a subring of a commutative ring $A$, and let
+$h\in B$ be a non-nilpotent element. Denote by $F_h:A\to A_h$ the localization homomorphism.
+
+(i) If $Ah+B=A$, i.e. the natural map $B\to A/Ah$ is surjective, then for any $x\in \St(A_h)$ there exist
+$y\in \St(A)$ and $z\in \St(B_h)$ such that
+$x=F_h(y)z$.
+
+(ii) If moreover $Ah\cap B=Bh$, i.e. $B/Bh\to A/Ah$ is an isomorphism, and $h$ is not a zero divisor in $A$, then
+the sequence of pointed sets
+$$
+K_2^G(B)\xrightarrow{\st g\mapsto (F_h(g),g)} K_2^G(B_h)\times K_2^G(A)\xrightarrow{\st (g_1,g_2)\mapsto g_1F_h(g_2)^{-1}}
+K_2^G(A_h)
+$$
+is exact.
+
+This should use something from the proof of~\eqref{plan:QSlgp} or~\eqref{plan:Zglu}; see~\cite[Lemma 3.4]{St-poly}.
+
+\item\label{plan:P1} ($\Pro^1$-gluing) Let $A$ be any commutative ring. Show that the sequence of pointed sets
+$$
+1\longrightarrow K_2^G(A)\xrightarrow{\st g\mapsto (g,g)} K_2^G(A[t])\times K_2^G(A[t^{-1}])
+\xrightarrow{\st (g_1,g_2)\mapsto g_1{g_2}^{-1}} K_2^G(A[t,t^{-1}])
+$$
+is exact.
+
+This should use~\eqref{plan:k[t]},~\eqref{plan:QSlgp},~\eqref{plan:3t},~\eqref{plan:k-intersect}.
+
+\item\label{plan:[]f} (Main corollary of $\Pro^1$-gluing) Let $A$ be any commutative ring, and let $f\in A[t]$ be a monic polynomial. Show that
+$K_2^G(A[t])\to K_2^G(A[t]_f)$ is injective.
+
+The proof uses~\eqref{plan:Zglu} and~\eqref{plan:P1}.
+
+\item\label{plan:k(t)} Prove that $K_2^G(k(t))=K_2^G(k)$.
+
+This may be a bit tricky; I will think if we can get rid of it. I don't think Tulenbaev uses it.
+
+\item\label{plan:k[tn]} Prove that
+$$K_2^G(k[t_1,\ldots,t_n])=K_2^G(k).$$
+
+If we strictly follow the pattern of $K_1^G$, this uses~\eqref{plan:[]f},~\eqref{plan:k[t]}, and
+~\eqref{plan:k(t)}. There may be other ways.
+
+\item \label{plan:final} Final result: let $R$ be a regular ring containing a field $k$. Then $K_2^G(R[t])=K_2^G(R)$.
+
+This uses~\eqref{plan:QSlgp},~\eqref{plan:k[tn]} and~\eqref{plan:Nglu}.
+\end{enumerate}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Steinberg groups of Chevalley groups: preliminaries}
+
+Definition, functoriality, "congruence subgroups"{} $\St(\Phi,R,I)$ versus $\ker(\St(\Phi,R)\to\St(\Phi,R/I))$.
+
+%The map $\St(R)\to E(R)$ is bijective on subgroups of the form $U_\Psi(R)$, where $\Psi$ is a
+%unipotent set of roots.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Decomposition theorems for $\St(A[t^{\pm 1}])$ and $\St\bigl(A((t))\bigr)$.}
+
+\begin{lem}
+ Let $(R,m)$ be a local ring, and let $G$ be a simply connected simple group over $R$
+of isotropic rank $\ge 2$. Let $i_+:\St(R[t])\to\St(R[t^{\pm 1}])$ and $i_-:\St(R[t^{-1}]\to
+\St(R[t^{\pm 1}])$ be the natural homomorphisms.
+Then
+$$
+i_+\bigl(\St(m\cdot R[t])^{\St(R[t])}\bigr)i_-\bigl(\St(R[t^{-1}]\bigr)=i_-\bigl(\St(R[t^{-1}]\bigr)
+i_+\bigl(\St(m\cdot R[t])^{\St(R[t])}\bigr)
+$$
+inside $\St(R[t^{\pm 1}])$.
+\end{lem}
+\begin{proof}
+This is proved exactly as~\cite[Lemma 5.12]{St-poly}.
+\end{proof}
+
+
+\begin{thm}\label{thm:3t}
+Let $R$ be a local ring, and let $G$ be a simply connected simple group over $R$
+of isotropic rank $\ge 2$. Let $i_+:\St(R[t])\to\St(R[t^{\pm 1}])$ and $i_-:\St(R[t^{-1}]\to
+\St(R[t^{\pm 1}])$ be the natural homomorphisms.
+Then
+$$
+\St(R[t^{\pm 1}])=i_+(\St(R[t]))i_-(\St(R[t^{-1}]))i_+(\St(R[t])).
+$$
+\end{thm}
+\begin{proof}
+This is proved exactly as~\cite[Theorem 5.1]{St-poly}.
+\end{proof}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Quillen-Suslin lgp, Zariski gluing, Nisnevich gluing, $S$-lemma}
+
+\begin{thm}\label{thm:lg-k2}
+Let $R$ be arbitrary commutative ring and let $\Phi$ be a root system of type $\rA_\ell, \rC_\ell, \rD_\ell$ or $\rE_\ell$ and rank $\ell \geq 3$. 
+An element $g \in \St(\Phi, R[t], tR[t])$ is trivial if and only if 
+its image in $\St(\Phi, R_M[t], tR_M[t])$ is trivial for all maximal ideals $M \trianglelefteq R$.
+\end{thm}
+\begin{proof}
+The case $\Phi=\rC_\ell$, $\ell\geq 3$ is contained in some future Lavrenov's solo paper.
+It think that the case of a simply laced $\Phi$ of rank $\geq 3$ can be settled in a similar way as in \cite{S15}.
+We already have a written proof that \cite[Lemma~2.3]{Tu} extends to rank $3$ groups, see~\href{https://github.com/sxhya/LGK2Chevalley/blob/master/paper.tex}{here}.
+It should be inserted into this article at a some place.
+\end{proof}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{The case of $K_2^G(k[t])$ and some corollaries}
+
+\begin{thm}\label{thm:k[t]}
+Let $k$ be a field.
+Let $G=G(\Phi,-)$ be a simply connected simple Chevalley group of rank $\ge 2$ such that ...
+Then $$K_2^G(k[t])=K_2^G(k).$$
+\end{thm}
+\begin{proof}
+???
+\end{proof}
+
+\begin{cor}\label{cor:k[t]inj}
+Let $G$, $k$ be as in \cref{thm:k[t]}. Then $\St(k[t])\to\St(k[t^{\pm 1}])$ is injective and $\St(k[t])\cap\St(k[t^{-1}])=\St(k)$ inside
+$\St(k[t^{\pm 1}])$.
+\end{cor}
+\begin{proof}
+Clearly, $g\in\ker(\St(k[t])\to\St(k[t^{\pm 1}]))$ implies $g\in K_2^G(k[t])$. Since $K_2^G(k[t])=K_2^G(k)$,
+and  there is a section $K_2^G(k[t^{\pm 1}])\to K_2^G(k)$, the map is injective.
+Second claim: take $g\in \St(k[t])\cap\St(k[t^{-1}])$.
+Then the image $\phi(g)$ belongs to $E(k)=E(k[t])\cap E(k[t^{-1}])$, and
+after adjusting $g$ by an element of $\St(k)$, we can assume that $g\in K_2^G(k[t])\cap K_2^G(k[t^{-1}])$. Hence
+$g\in K_2^G(k)\subseteq\St(k)$.
+\end{proof}
+
+\begin{cor}
+Let $G$, $k$ be as in \cref{thm:k[t]}. Then $K_2^G(k[t^{\pm 1}])=K_2^G(k)$.
+\end{cor}
+\begin{proof}
+We use \cref{thm:3t}.
+Take $g\in K_2^G(k[t^{\pm 1}])$,
+then $g=x_1yx_2$, $x_i\in \St(k[t]))$, $y\in \St(k[t^{-1}]))$ .
+Since $E(k[t])\cap E(k[t^{-1}])=E(k)$,
+we have $y\in\St(k)K_2^G(k[t^{-1}])=\St(k)$ and $x_1x_2\in\St(k)$. That is, $g\in K_2^G(k)$.
+\end{proof}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{$\Pro^1$-gluing}
+
+The following lemma is an analog of~\cite[Proposition 4.3 (a)]{Tu}.
+
+\begin{lem}
+Let $R$ be a local ring, $k=R/m$, and let $k$, $G$ be as in \cref{thm:k[t]}.
+The natural homomorphism $\St(R[t])\to\St(R[t^{\pm 1}])$ is injective.
+\end{lem}
+\begin{proof}
+Let $I$ be the maximal ideal of $R$,
+$l=R/I$, and consider the natural maps $\rho:\St(R[t,t^{-1}])\to \St(l[t,t^{-1}])$,
+$\rho_+:\St(R[t])\to \St(l[t])$, $\rho_-:\St(R[t^{-1}])\to\St(l[t^{-1}])$.
+Take $x\in \ker(\St(R[t])\to\St(R[t^{\pm 1}])$.
+By the field case \cref{cor:k[t]inj} one has
+$\rho_+(x)=1,$ hence $x\in\St(I\cdot R[t])^{\St(R[t])}$.
+
+???????
+\end{proof}
+
+\begin{lem}
+Let $G$, $k$ be as in \cref{thm:k[t]}.
+Let $(R,m)$ be a local ring such that $R/m=k$.
+Then
+$$\St(R[t])\cap \St(R[t^{-1}])=\St(R)$$
+inside $\St(R[t^{\pm 1}])$.
+\end{lem}
+\begin{proof}
+??????
+\end{proof}
+
+\begin{thm}
+Let $A$ be any commutative ring. Then the sequence of pointed sets
+$$1\longrightarrow K_2^G(A)\xrightarrow{\st g\mapsto (g,g)} K_2^G(A[t])\times K_2^G(A[t^{-1}])
+\xrightarrow{\st (g_1,g_2)\mapsto g_1{g_2}^{-1}} K_2^G(A[t,t^{-1}])$$
+is exact.
+\end{thm}
+\begin{proof}
+????
+\end{proof}
+
+\begin{cor}
+ Let $A$ be any commutative ring, and let $f\in A[t]$ be a monic polynomial. Show that
+$K_2^G(A[t])\to K_2^G(A[t]_f)$ is injective.
+\end{cor}
+\begin{proof}
+????
+\end{proof}
+
+\renewcommand{\refname}{References}
+\begin{thebibliography}{MMMM}
+
+\bibitem[A]{Abe} E. Abe, 
+{\it Whitehead groups of Chevalley groups over polynomial rings},
+Comm. Algebra {\bf 11} (1983), 1271--1307.
+
+\bibitem[AHW]{AHW15} A. Asok, M. Hoyois, M. Wendt, 
+{\it Affine representability results in $A^1$-homotopy theory II: principal bundles and homogeneous spaces},
+2015~\href{http://arxiv.org/abs/1507.08020}{arXiv:1507.08020}.
+
+\bibitem[Deo]{Deo} V. V. Deodhar,
+{\it On central extensions of rational points of algebraic groups}, 
+Amer. J. Math. {\bf 100} (1978), 303--386.
+
+\bibitem[J]{J} J.F. Jardine, 
+{\it On the homotopy groups of algebraic groups}, 
+J. Algebra {\bf 81} (1983), 180--201.
+
+\bibitem[S15]{S15} S. Sinchuk,
+{\it \href{http://dx.doi.org/10.1016/j.jpaa.2015.08.003}{On centrality of $\mathrm{K}_2$ for {C}hevalley groups of type $\rE_\ell$}},
+J. Pure Appl. Algebra {\bf 220} (2016), 857--875.
+
+\bibitem[St14]{St-poly} A. Stavrova, 
+{\it Homotopy invariance of non-stable $K_1$-functors}, 
+J. K-Theory {\bf 13} (2014), 199--248.
+
+\bibitem[St15]{St-serr} A. Stavrova, 
+{\it \href{http://dx.doi.org/10.4153/CJM-2015-035-2}{Non-stable $K_1$-functors of multiloop groups}},
+Canad. J. Math. (2015), Online First.
+
+\bibitem[Su]{Sus} A.A.~Suslin,
+{\it On the structure of the special linear group over polynomial rings},
+Math. USSR Izv. {\bf 11} (1977), 221--238.
+
+\bibitem[Tul82]{Tu}
+M.~S. Tulenbaev, \emph{The {S}teinberg group of a polynomial ring}, 
+Mat. Sb. (N.S.) \textbf{117(159)} (1982), no.~1, 131--144.
+
+\bibitem[Wen14]{W-k[t]}
+M.~Wendt, \emph{On homology of linear groups over {$k[t]$}},
+Math. Res. Lett. \textbf{21} (2014), no.~6, 1483--1500.
+
+\bibitem[VW]{VW} K. V\"olkel, M. Wendt, 
+{\it On $\Aff^1$-fundamental groups of isotropic reductive groups},
+2012~\href{http://arxiv.org/abs/1207.2364}{arXiv:1207.2364}.
+
+\end{thebibliography}
+
+\end{document}
