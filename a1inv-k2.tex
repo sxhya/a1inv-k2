@@ -1,11 +1,12 @@
 \documentclass[oneside,12pt]{amsart}
-\usepackage{amssymb, amsxtra, amsmath, amstext, amsthm, amsfonts, amscd, hyperref, tikz, graphicx, thmtools}
+\usepackage{amssymb, amsxtra, amsmath, amstext, amsthm, amsfonts, amscd, enumitem, hyperref, thmtools, tikz, graphicx, tikz-cd}
 \usepackage[T2A]{fontenc}
 \usepackage[cp1251]{inputenc}
 \usepackage[all]{xy}
 \usepackage[notref,notcite]{showkeys}
 \usepackage[capitalize]{cleveref}
-\usetikzlibrary{matrix,arrows}
+\usepackage[toc,page]{appendix}
+\usetikzlibrary{matrix,arrows,cd}
 
 \oddsidemargin 5mm
 \marginparwidth 5mm
@@ -15,6 +16,9 @@
 \headheight 0mm
 \headsep 10mm
 \footskip 5mm
+
+\newlist{thmlist}{enumerate}{1} \setlist[thmlist]{label=(\roman{thmlisti}), ref=\thethm.(\roman{thmlisti}),noitemsep} \Crefname{thmlisti}{Theorem}{Theorems}
+\newlist{lemlist}{enumerate}{1} \setlist[lemlist]{label=(\roman{lemlisti}), ref=\thelem.(\roman{lemlisti}),noitemsep} \Crefname{lemlisti}{Lemma}{Lemmas}
 
 \newtheorem{thm}{Theorem}
 \Crefname{thm}{Theorem}{Theorems}
@@ -93,9 +97,10 @@
 \DeclareMathOperator{\FF}{{\mathbb F}}
 \DeclareMathOperator{\La}{{\mathcal L}}
 
-\newcommand{\id}{\text{\rm id}}
-\newcommand{\Aff}{\mathbb {A}}
-\newcommand{\Pro}{\mathbb {P}}
+\newcommand{\id}{\mathrm{id}}
+\newcommand{\Stb}{\mathrm{St}}
+\newcommand{\Aff}{\mathbb{A}}
+\newcommand{\Pro}{\mathbb{P}}
 \newcommand{\pprime}{\mathfrak{p}}
 \newcommand{\ad}{\mathrm{ad}}
 \newcommand{\scl}{{sc}}
@@ -325,10 +330,9 @@ An element $g \in \St(R[t], tR[t])$ is trivial if and only if
 its image in $\St(R_M[t], tR_M[t])$ is trivial for all maximal ideals $M \trianglelefteq R$.
 \end{thm}
 \begin{proof}
-The case $\Phi=\rC_\ell$, $\ell\geq 3$ is contained in some future Lavrenov's solo paper.
-It think that the case of a simply laced $\Phi$ of rank $\geq 3$ can be settled in a similar way as in \cite{S15}.
-We already have a written proof that \cite[Lemma~2.3]{Tu} extends to rank $3$ groups, see~\href{https://github.com/sxhya/LGK2Chevalley/blob/master/paper.tex}{here}.
-It should be inserted into this article at a some place.
+In the case $\Phi=\rC_\ell$, $\ell\geq 3$ the assertion of the theorem is the main result of \cite{La15}.
+For a simply laced $\Phi$ of rank $\geq 3$ this can be proved by the same token as \cite[Theorem~2]{S15} if one uses a stronger variant of Tulenbaev's lemma
+proved in the appendices below (see \cref{cor:tulmap}).
 \end{proof}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -418,6 +422,118 @@ $K_2^G(A[t])\to K_2^G(A[t]_f)$ is injective.
 ????
 \end{proof}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{appendices}
+ 
+\section{Linear Steinberg group in rank $3$}
+
+The main goal of this subsection is to show that Tulenbaev's \cite[Lemma~2.3]{Tu} remains valid for the linear Steinberg group of rank $\geq 3$.
+In order to do this we will need yet another presentation for the relative linear Steinberg group (cf. \cite[Definitions~3.3 and 3.7]{S15}).
+\begin{dfn}
+ The relative Steinberg group $\Stb^*(n,R, I)$ is the group defined by the following two
+ families generators and four families of relations.
+ \begin{itemize}
+  \item Generators:
+  \begin{enumerate}
+  \item $X^1(u, v)$, where $u \in \EE(n,R) \cdot e_1$, $v\ \in I^n$ such that $v^t \cdot u = 0$;
+  \item $X^2(u, v)$, where $u \in I^n$, $v \in \EE(n,R) \cdot e_1$ such that $v^t \cdot u = 0$.
+ \end{enumerate}
+  Notice that $\phi$ maps both $X^1(u, v)$ and $X^2(u, v)$ to $T(u, v) = e + u \cdot v^t \in \EE(n, R, I)$.
+  \item Relations:
+  \begin{enumerate}
+  \item $X^1(u, v) \cdot X^1(u, w) = X^1(u, v+w)$, $u \in \EE(n,R) \cdot e_1$, $v, w \in I^n$;
+  \item $X^2(u, v) \cdot X^2(w, v) = X^2(u+w, v)$, $u, w \in I^n$, $v \in \EE(n,R) \cdot e_1$;
+  \item ${}^{X^\sigma(u^2, v^2)} \! X^\tau(u^1, v^1) = X^\tau(T(u^2, v^2) \cdot u^1, T(v^2, u^2)^{-1} \cdot v^1)$, $\sigma, \tau = 1,2$;
+  \item $X^1(g \cdot e_1, g^* \cdot be_2) = X^2(g \cdot be_1, g^* \cdot e_2)$ where $b\in I$ and $g^* = {g^t}^{-1}$ denotes the contragradient matrix.
+ \end{enumerate}
+ \end{itemize}
+\end{dfn}
+
+\begin{lem}
+ The groups $\Stb^*(n, R, I)$ and $\Stb(n, R, I)$ are isomorphic.
+\end{lem}
+\begin{proof}
+ {\bf TODO:}
+\end{proof}
+
+The next step of the proof is to is construct certain elements in $\Stb(n, R)$ similar to Tulenbaev's elements $X_{u,v}(a)$ see~\cite[\S~1]{Tu}.
+
+Let $v\in R^n$ be a column.
+Denote by $O(v)$ the submodule of $R^n$ consisting of all columns $w$ such that $w^t \cdot v = 0$.
+A column $w\in R^n$ is called \emph{$v$-decomposable} if it can be presented as a finite sum $w = \sum\limits_{i=1}^p w^i$ such that each $w^i$ has at least two zero entries and $v^t \cdot w^i = 0$. 
+Denote by $D(v)$ the submodule of $O(v)$ consisting of all $v$-decomposable columns.
+For a column $v\in R^n$ denote by $I(v)$ the ideal of $R$ spanned by its entries $v_1,\ldots, v_n$.
+
+Let $u,v,w\in R^n$ be columns such that $w^tv=0$.
+It is easy to check (cf.~\cite[Lemma~3.2]{Ka}) that 
+$$(uv)\cdot w = \sum_{i<j}w_{ij},\ \text{where}\ w_{ij} = (w_iu_j - w_ju_i)(v_je_i - v_ie_j)\in{}\!A^n.$$
+The above decomposition is called the \emph{canonical} decomposition of $(uv)\cdot w$.
+In particular, this shows that the column $a\cdot w$ is always $v$-decomposable for $a\in I(v)$, $w \in O(v)$, i.\,e. $I(v) \cdot O(v) \subseteq D(v)$.
+It is also straightforward to check that $D(v)\subseteq D(bv)$, $b \cdot D(v) \subseteq D(v)$ for $b \in R$.
+
+Denote by $B^1$ the subset of $R^n \times R^n \times R$ consisting of triples $(u, v, a)$ such that $v^t \cdot u = 0$, $v \in D(u)$, $a \in I(u)$.
+Denote by $B^2$ the set consisting of triples $(v, u, a)$ such that $(u, v, a) \in B^1$.
+
+\begin{lem} \label{lem:Zfacts}
+Assume that $n \geq 4$.
+One can define two families of elements $Z^\tau(u, v, a)$, $\tau=1,2$ of the group $\Stb(n, R)$ parametrized by $(u, v, a) \in B^\tau$ satisfying the following properties:
+ \begin{enumerate}
+  \item $\phi(Z^\tau(u, v, a)) = e + uav^t \in \EE(n, R)$, $(u,v,a) \in B^\tau$;
+  \item $Z^{1}(u, v + w, a) = Z^{1}(u, v, a) \cdot Z^{1}(u, w, a)$;
+  \item $Z^{2}(v + w, u, a) = Z^{2}(v, u, a) \cdot Z^{2}(w, u, a)$;
+  \item for $\tau=1,2$ and $b \in R$ if $(u,vb,a), (ub, v, a) \in B^\tau$ then one has
+   $$Z^\tau(u,vb, a) = Z^\tau(u, v, ab) = Z^\tau (ub, v, a);	$$
+  \item ${}^{g}\! Z^{\tau}(u, v, a) = Z^{\tau}(\phi(g) \cdot u, \phi(g)^* \cdot v, a)$, $\tau = 1,2$, $g \in \St(n, R)$.
+ \end{enumerate}
+\end{lem}
+\begin{proof}
+One constructs the elements $Z^1(u,v,a)$ in exactly the same way as Tulenbaev constructs his elements $X_{u,v}(a)$ (see definitions preceding~\cite[Lemma~1.2]{Tu}).
+Indeed, set \begin{equation} Z^1(v, w, a) = \prod\limits_{k=1}^p X(v, a \cdot w^k), \quad Z^2(w, v, a) = \prod\limits_{k=1}^p X(a \cdot w^k, v). \end{equation}
+where $X(u, v)$ denotes the elements defined by Tulenbaev before~\cite[Lemma~1.1]{Tu}.
+
+The correctness of this definition and all the assertions of the lemma (with the exception of the last one in the case $n=4$) can be proved by the same token as in~\cite[Lemma~1.3]{Tu}.
+%TODO: Add more details
+\end{proof}
+
+For the rest of this section $a$ denotes a nonnilpotent element of $R$ and $\lambda_a \colon R \rightarrow R_a$ is the morphism of principal localization at $a$.
+\begin{lem} \label{lem:rk3rels} For any $g \in \EE(n, R_a)$ there exist $u, v \in R^n$ and sufficiently large natural numbers $k$, $m$ such that the following facts hold:
+\begin{enumerate}
+ \item $\lambda_a(u) = g \cdot a^k e_1$, $\lambda_a(v) = g^* \cdot a^k e_2$ and $u^t \cdot v = 0$;
+ \item $(u, v, a^m) \in B^1 \cap B^2$;
+ \item for $b \in R$ divisible by some sufficiently large power of $a$ one has 
+             $$Z^1(u, b \cdot v, a^m) = Z^2(b \cdot u, v, a^m).$$
+\end{enumerate}
+\end{lem}
+\begin{proof}
+It is straightforward to choose $u$ and $v$ satisfying the first requirement of the lemma.
+We can even choose $u$, $v$ in such a way that $u \in D(v)$ and $v \in D(u)$.
+Indeed, notice that $I(u) = a^{k_1}$, $I(v) = a^{k_2}$ for some natural $k_1$, $k_2$ hence for $u' = a^{k_2} \cdot u$ and $v' = a^{k_1} \cdot v$ one has
+$$u' \in I(v) \cdot O(v) \subseteq D(v) \subseteq D(v'),\quad v' \in I(u) \cdot O(u) \subseteq D(u) \subseteq D(u'),$$
+as required.
+
+In fact, we can also choose two extra columns $x, y \in R^n$ and a large natural $p$ in such a way that vectors $u,v,x,y$ additionally satisfy the following properties
+\begin{equation*} \lambda_a(x) = g^* \cdot a^k e_3,\ \lambda_a(y) = g \cdot a^k e_3,\ y^t \cdot x = a^p \in R, \end{equation*}
+\begin{equation*} u^t \cdot x = 0,\ u^t \cdot v = 0,\ y^t \cdot v = 0, \end{equation*}
+\begin{equation*} (u, x, a^m) \in B^1,\ (y, v, a^m) \in B^2. \end{equation*}
+
+Now direct computation using \cref{lem:Zfacts} shows that
+ \begin{multline*}
+ Z^2(a^{m+p}b \cdot u, v, a^m) = Z^2(b \cdot (e+a^m \cdot ux^t)y, (e-a^m \cdot xu^t)v,a^m) \cdot Z^2(-by,v,a^m) = \\
+  = [Z^1(u, x, a^m), Z^2(b \cdot y, v, a^m)] = \\
+    = Z^1(u,x,a^m) \cdot Z^1((e+a^mb \cdot yv^t)u,-(e- a^mb \cdot vy^t)x,a^m) = Z^1(u,a^{m+p}b \cdot v,a^m), \qedhere   
+ \end{multline*}  
+hence the third assertion of the lemma follows. 
+\end{proof}
+
+\begin{cor}\label{cor:tulmap}[Tulenbaev's lemma] For $n \geq 4$ there is a map $T_n$ so that the following diagram commutes.
+\[\begin{tikzcd} \Stb(n, R[t], tR[t]) \arrow[rr] \arrow[dr, "\lambda_a"] & & \Stb(n, R\ltimes tR_a[t], tR_a[t]) \\
+ & \Stb(n, R_a[t], tR_a[t]) \arrow[ur, dotted, "T_n"] & \end{tikzcd}\]
+\end{cor}
+\begin{proof} Follows from \cref{lem:rk3rels} by the same token as in \cite[Lemma~2.3]{Tu}. \end{proof}
+
+\end{appendices}
+
 \renewcommand{\refname}{References}
 \begin{thebibliography}{MMMM}
 
@@ -450,12 +566,20 @@ J. K-Theory {\bf 13} (2014), 199--248.
 Canad. J. Math. (2015), Online First.
 
 \bibitem[Su]{Sus} A.A.~Suslin,
-{\it On the structure of the special linear group over polynomial rings},
+\emph{On the structure of the special linear group over polynomial rings},
 Math. USSR Izv. {\bf 11} (1977), 221--238.
 
 \bibitem[Tul82]{Tu}
 M.~S. Tulenbaev, \emph{The {S}teinberg group of a polynomial ring}, 
 Mat. Sb. (N.S.) \textbf{117(159)} (1982), no.~1, 131--144.
+
+\bibitem[Ka]{Ka}
+W.~van~der~Kallen, \emph{\href{http://dx.doi.org/10.1016/1385-7258(77)90026-9}{Another presentation for {S}teinberg groups}},
+Indag. Math. {\bf 80}, (1977), no.~4, 304--312.
+
+\bibitem[La15]{La15}
+A.~Lavrenov, \emph{Local-global principle for symplectic $K_2$}
+{\bf to appear}.
 
 \bibitem[Wen14]{W-k[t]}
 M.~Wendt, \emph{On homology of linear groups over {$k[t]$}},
