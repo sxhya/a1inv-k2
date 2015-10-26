@@ -52,7 +52,7 @@
 \DeclareMathOperator{\PGL}{PGL}
 \DeclareMathOperator{\Sp}{Sp}
 \DeclareMathOperator{\SL}{SL}
-\DeclareMathOperator{\St}{St}
+\DeclareMathOperator{\St}{St^G}
 \DeclareMathOperator{\EE}{E}
 \DeclareMathOperator{\OO}{O}
 \DeclareMathOperator{\Ep}{\mathcal E}
@@ -125,7 +125,7 @@
 
 \selectlanguage{english}
 
-\title{Homotopy invariance for nonstable $K_2$-functors}
+\title{$\mathbb{A}^1$-invariance for unstable $K_2$}
 
 \author{S. Sinchuk}
 \address{Department of Mathematics and Mechanics, St. Petersburg State University,
@@ -197,19 +197,19 @@ if you want to refer to it.
 
 \subsection{Plan of the proof}
 \begin{enumerate}
-\item\label{plan:3t} {\bf (done)} Let $R$ be a local ring. Show that
+\item\label{plan:3t} ({\bf done}, see \cref{thm:3t}). Let $R$ be a local ring. Show that
 $$\St(R[t^{\pm 1}])=i_+(\St(R[t]))i_-(\St(R[t^{-1}]))i_+(\St(R[t]))$$
 Here $i_\pm$ denote the natural homomorphisms into $\St(R[t^{\pm 1}])$.
 
-\item\label{plan:k[t]} Show that $K_2^G(k[t])=K_2^G(k)$.
+\item\label{plan:k[t]} (open, see \cref{thm:k[t]}). Show that $K_2^G(k[t])=K_2^G(k)$.
 
-\item\label{plan:k-intersect}
+\item\label{plan:k-intersect} ({\bf done}).
 Consequently, $\St(k[t])\to\St(k[t^{\pm 1}])$ is injective and $\St(k[t])\cap\St(k[t^{-1}])=\St(k)$ inside
 $\St(k[t^{\pm 1}])$. Also, $K_2^G(k)=K_2^G(k[t^{\pm 1}])$.
 
 The first claim uses~\eqref{plan:k[t]}. The second claim follows from~\eqref{plan:k[t]} and~\eqref{plan:3t}.
 
-\item\label{plan:QSlgp} {\bf (done)} Prove the Quillen-Suslin lgp for $K_2^G$. See~\cref{thm:lg-k2}.
+\item\label{plan:QSlgp} ({\bf done} for split ACDE, see \cref{thm:lg-k2}). Prove Quillen-Suslin lgp for $K_2^G$.
 
 \item\label{plan:Zglu} (Zariski gluing) for any commutative ring $A$ and any non-nilpotent $f,g\in A$ such that
 $A=fA+gA$, the sequence of pointed sets
@@ -320,9 +320,9 @@ This is proved exactly as~\cite[Theorem 5.1]{St-poly}.
 \section{Quillen-Suslin lgp, Zariski gluing, Nisnevich gluing, $S$-lemma}
 
 \begin{thm}\label{thm:lg-k2}
-Let $R$ be arbitrary commutative ring and let $\Phi$ be a root system of type $\rA_\ell, \rC_\ell, \rD_\ell$ or $\rE_\ell$ and rank $\ell \geq 3$. 
-An element $g \in \St(\Phi, R[t], tR[t])$ is trivial if and only if 
-its image in $\St(\Phi, R_M[t], tR_M[t])$ is trivial for all maximal ideals $M \trianglelefteq R$.
+Let $R$ be arbitrary commutative ring and let $G$ be a simple Chevalley group of type $\rA_\ell, \rC_\ell, \rD_\ell$ or $\rE_\ell$ and rank $\ell \geq 3$. 
+An element $g \in \St(R[t], tR[t])$ is trivial if and only if 
+its image in $\St(R_M[t], tR_M[t])$ is trivial for all maximal ideals $M \trianglelefteq R$.
 \end{thm}
 \begin{proof}
 The case $\Phi=\rC_\ell$, $\ell\geq 3$ is contained in some future Lavrenov's solo paper.
