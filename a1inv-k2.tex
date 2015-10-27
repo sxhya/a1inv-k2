@@ -1,11 +1,13 @@
 \documentclass[oneside,12pt]{amsart}
-\usepackage{amssymb, amsxtra, amsmath, amstext, amsthm, amsfonts, amscd, enumitem, hyperref, thmtools, tikz, graphicx, tikz-cd}
+\usepackage{amssymb, amsxtra, amsmath, amstext, amsthm, amsfonts, amscd, enumitem, hyperref, thmtools,
+tikz, graphicx, tikz-cd}
 \usepackage[T2A]{fontenc}
 \usepackage[cp1251]{inputenc}
 \usepackage[all]{xy}
 \usepackage[notref,notcite]{showkeys}
 \usepackage[capitalize]{cleveref}
 \usepackage[toc,page]{appendix}
+\usepackage[english]{babel}
 \usetikzlibrary{matrix,arrows,cd}
 
 \oddsidemargin 5mm
@@ -115,8 +117,8 @@
 \newcommand{\Mu}{{\mathrm M}}
 \newcommand{\rA}{\mathsf{A}}
 \newcommand{\rB}{\mathsf{B}}
-\newcommand{\rC}{\mathsf{C}} 
-\newcommand{\rD}{\mathsf{D}} 
+\newcommand{\rC}{\mathsf{C}}
+\newcommand{\rD}{\mathsf{D}}
 \newcommand{\rE}{\mathsf{E}}
 \newcommand{\rF}{\mathsf{F}}
 \newcommand{\rG}{\mathsf{G}}
@@ -325,8 +327,8 @@ This is proved exactly as~\cite[Theorem 5.1]{St-poly}.
 \section{Quillen-Suslin lgp, Zariski gluing, Nisnevich gluing, $S$-lemma}
 
 \begin{thm}\label{thm:lg-k2}
-Let $R$ be arbitrary commutative ring and let $G$ be a simple Chevalley group of type $\rA_\ell, \rC_\ell, \rD_\ell$ or $\rE_\ell$ and rank $\ell \geq 3$. 
-An element $g \in \St(R[t], tR[t])$ is trivial if and only if 
+Let $R$ be arbitrary commutative ring and let $G$ be a simple Chevalley group of type $\rA_\ell, \rC_\ell, \rD_\ell$ or $\rE_\ell$ and rank $\ell \geq 3$.
+An element $g \in \St(R[t], tR[t])$ is trivial if and only if
 its image in $\St(R_M[t], tR_M[t])$ is trivial for all maximal ideals $M \trianglelefteq R$.
 \end{thm}
 \begin{proof}
@@ -425,7 +427,7 @@ $K_2^G(A[t])\to K_2^G(A[t]_f)$ is injective.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{appendices}
- 
+
 \section{Linear Steinberg group in rank $3$}
 
 The main goal of this subsection is to show that Tulenbaev's \cite[Lemma~2.3]{Tu} remains valid for the linear Steinberg group of rank $\geq 3$.
@@ -461,12 +463,12 @@ The next step of the proof is to is construct certain elements in $\Stb(n, R)$ s
 
 Let $v\in R^n$ be a column.
 Denote by $O(v)$ the submodule of $R^n$ consisting of all columns $w$ such that $w^t \cdot v = 0$.
-A column $w\in R^n$ is called \emph{$v$-decomposable} if it can be presented as a finite sum $w = \sum\limits_{i=1}^p w^i$ such that each $w^i$ has at least two zero entries and $v^t \cdot w^i = 0$. 
+A column $w\in R^n$ is called \emph{$v$-decomposable} if it can be presented as a finite sum $w = \sum\limits_{i=1}^p w^i$ such that each $w^i$ has at least two zero entries and $v^t \cdot w^i = 0$.
 Denote by $D(v)$ the submodule of $O(v)$ consisting of all $v$-decomposable columns.
 For a column $v\in R^n$ denote by $I(v)$ the ideal of $R$ spanned by its entries $v_1,\ldots, v_n$.
 
 Let $u,v,w\in R^n$ be columns such that $w^tv=0$.
-It is easy to check (cf.~\cite[Lemma~3.2]{Ka}) that 
+It is easy to check (cf.~\cite[Lemma~3.2]{Ka}) that
 $$(uv)\cdot w = \sum_{i<j}w_{ij},\ \text{where}\ w_{ij} = (w_iu_j - w_ju_i)(v_je_i - v_ie_j)\in{}\!A^n.$$
 The above decomposition is called the \emph{canonical} decomposition of $(uv)\cdot w$.
 In particular, this shows that the column $a\cdot w$ is always $v$-decomposable for $a\in I(v)$, $w \in O(v)$, i.\,e. $I(v) \cdot O(v) \subseteq D(v)$.
@@ -501,7 +503,7 @@ For the rest of this section $a$ denotes a nonnilpotent element of $R$ and $\lam
 \begin{enumerate}
  \item $\lambda_a(u) = g \cdot a^k e_1$, $\lambda_a(v) = g^* \cdot a^k e_2$ and $u^t \cdot v = 0$;
  \item $(u, v, a^m) \in B^1 \cap B^2$;
- \item for $b \in R$ divisible by some sufficiently large power of $a$ one has 
+ \item for $b \in R$ divisible by some sufficiently large power of $a$ one has
              $$Z^1(u, b \cdot v, a^m) = Z^2(b \cdot u, v, a^m).$$
 \end{enumerate}
 \end{lem}
@@ -521,9 +523,9 @@ Now direct computation using \cref{lem:Zfacts} shows that
  \begin{multline*}
  Z^2(a^{m+p}b \cdot u, v, a^m) = Z^2(b \cdot (e+a^m \cdot ux^t)y, (e-a^m \cdot xu^t)v,a^m) \cdot Z^2(-by,v,a^m) = \\
   = [Z^1(u, x, a^m), Z^2(b \cdot y, v, a^m)] = \\
-    = Z^1(u,x,a^m) \cdot Z^1((e+a^mb \cdot yv^t)u,-(e- a^mb \cdot vy^t)x,a^m) = Z^1(u,a^{m+p}b \cdot v,a^m), \qedhere   
- \end{multline*}  
-hence the third assertion of the lemma follows. 
+    = Z^1(u,x,a^m) \cdot Z^1((e+a^mb \cdot yv^t)u,-(e- a^mb \cdot vy^t)x,a^m) = Z^1(u,a^{m+p}b \cdot v,a^m), \qedhere
+ \end{multline*}
+hence the third assertion of the lemma follows.
 \end{proof}
 
 \begin{cor}\label{cor:tulmap}[Tulenbaev's lemma] For $n \geq 4$ there is a map $T_n$ so that the following diagram commutes.
@@ -537,31 +539,31 @@ hence the third assertion of the lemma follows.
 \renewcommand{\refname}{References}
 \begin{thebibliography}{MMMM}
 
-\bibitem[A]{Abe} E. Abe, 
+\bibitem[A]{Abe} E. Abe,
 {\it Whitehead groups of Chevalley groups over polynomial rings},
 Comm. Algebra {\bf 11} (1983), 1271--1307.
 
-\bibitem[AHW]{AHW15} A. Asok, M. Hoyois, M. Wendt, 
+\bibitem[AHW]{AHW15} A. Asok, M. Hoyois, M. Wendt,
 {\it Affine representability results in $A^1$-homotopy theory II: principal bundles and homogeneous spaces},
 2015~\href{http://arxiv.org/abs/1507.08020}{arXiv:1507.08020}.
 
 \bibitem[Deo]{Deo} V. V. Deodhar,
-{\it On central extensions of rational points of algebraic groups}, 
+{\it On central extensions of rational points of algebraic groups},
 Amer. J. Math. {\bf 100} (1978), 303--386.
 
-\bibitem[J]{J} J.F. Jardine, 
-{\it On the homotopy groups of algebraic groups}, 
+\bibitem[J]{J} J.F. Jardine,
+{\it On the homotopy groups of algebraic groups},
 J. Algebra {\bf 81} (1983), 180--201.
 
 \bibitem[S15]{S15} S. Sinchuk,
 {\it \href{http://dx.doi.org/10.1016/j.jpaa.2015.08.003}{On centrality of $\mathrm{K}_2$ for {C}hevalley groups of type $\rE_\ell$}},
 J. Pure Appl. Algebra {\bf 220} (2016), 857--875.
 
-\bibitem[St14]{St-poly} A. Stavrova, 
-{\it Homotopy invariance of non-stable $K_1$-functors}, 
+\bibitem[St14]{St-poly} A. Stavrova,
+{\it Homotopy invariance of non-stable $K_1$-functors},
 J. K-Theory {\bf 13} (2014), 199--248.
 
-\bibitem[St15]{St-serr} A. Stavrova, 
+\bibitem[St15]{St-serr} A. Stavrova,
 {\it \href{http://dx.doi.org/10.4153/CJM-2015-035-2}{Non-stable $K_1$-functors of multiloop groups}},
 Canad. J. Math. (2015), Online First.
 
@@ -570,7 +572,7 @@ Canad. J. Math. (2015), Online First.
 Math. USSR Izv. {\bf 11} (1977), 221--238.
 
 \bibitem[Tul82]{Tu}
-M.~S. Tulenbaev, \emph{The {S}teinberg group of a polynomial ring}, 
+M.~S. Tulenbaev, \emph{The {S}teinberg group of a polynomial ring},
 Mat. Sb. (N.S.) \textbf{117(159)} (1982), no.~1, 131--144.
 
 \bibitem[Ka]{Ka}
@@ -585,7 +587,7 @@ A.~Lavrenov, \emph{Local-global principle for symplectic $K_2$}
 M.~Wendt, \emph{On homology of linear groups over {$k[t]$}},
 Math. Res. Lett. \textbf{21} (2014), no.~6, 1483--1500.
 
-\bibitem[VW]{VW} K. V\"olkel, M. Wendt, 
+\bibitem[VW]{VW} K. V\"olkel, M. Wendt,
 {\it On $\Aff^1$-fundamental groups of isotropic reductive groups},
 2012~\href{http://arxiv.org/abs/1207.2364}{arXiv:1207.2364}.
 
