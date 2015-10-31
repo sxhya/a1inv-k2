@@ -1,6 +1,6 @@
 \documentclass[oneside,12pt]{amsart}
 \usepackage{amssymb, amsxtra, amsmath, amstext, amsthm, amsfonts, amscd, enumitem, hyperref, thmtools,
-tikz, graphicx, tikz-cd}
+            tikz, graphicx, tikz-cd, ifthen}
 \usepackage[T2A]{fontenc}
 \usepackage[cp1251]{inputenc}
 \usepackage[all]{xy}
@@ -9,6 +9,20 @@ tikz, graphicx, tikz-cd}
 \usepackage[toc,page]{appendix}
 \usepackage[english]{babel}
 \usetikzlibrary{matrix,arrows,cd}
+
+% If the flag below is set to TRUE the bibliography will be processed using BibLaTeX with biber as backend
+\newboolean{USEBIBLATEX} \setboolean{USEBIBLATEX}{false}
+\ifthenelse{\boolean{USEBIBLATEX}}{  
+  \DeclareRobustCommand{\VAN}[2]{#1}
+  \usepackage[backend=biber, citestyle=authoryear, style=alphabetic, sortlocale=en_US, url=false, doi=false, eprint=true, firstinits=true, maxbibnames=4]{biblatex}                      
+  \addbibresource{a1inv-k2.bib}
+  \renewbibmacro*{volume+number+eid}{\ifentrytype{article}{\- \iffieldundef{volume}{}{{\bf\printfield{volume}},}\iffieldundef{number}{}{ no.~\printfield{number},}}}
+  \renewbibmacro{in:}{\ifentrytype{article}{}{\printtext{\bibstring{in}\intitlepunct}}}
+  \newbibmacro{string+doi}[1]{\iffieldundef{doi}{\iffieldundef{url}{#1}{\href{\thefield{url}}{#1}}}{\href{http://dx.doi.org/\thefield{doi}}{#1}}}
+  \DeclareFieldFormat{title}{\usebibmacro{string+doi}{\mkbibemph{#1}}}
+  \DeclareFieldFormat[article, inproceedings, inbook, thesis]{title}{\usebibmacro{string+doi}{\mkbibquote{#1}}}
+  \renewcommand*{\bibfont}{\small}
+}{}
 
 \oddsidemargin 5mm
 \marginparwidth 5mm
@@ -534,8 +548,13 @@ hence the third assertion of the lemma follows.
 \end{cor}
 \begin{proof} Follows from \cref{lem:rk3rels} by the same token as in \cite[Lemma~2.3]{Tu}. \end{proof}
 
+We refer the reader to \cite{Ka}...
+
 \end{appendices}
 
+\ifthenelse{\boolean{USEBIBLATEX}}{
+\DeclareRobustCommand{\VAN}[2]{#2}
+\printbibliography}{
 \renewcommand{\refname}{References}
 \begin{thebibliography}{MMMM}
 
@@ -555,7 +574,7 @@ Amer. J. Math. {\bf 100} (1978), 303--386.
 {\it On the homotopy groups of algebraic groups},
 J. Algebra {\bf 81} (1983), 180--201.
 
-\bibitem[S15]{S15} S. Sinchuk,
+\bibitem[Si]{S15} S. Sinchuk,
 {\it \href{http://dx.doi.org/10.1016/j.jpaa.2015.08.003}{On centrality of $\mathrm{K}_2$ for {C}hevalley groups of type $\rE_\ell$}},
 J. Pure Appl. Algebra {\bf 220} (2016), 857--875.
 
@@ -584,13 +603,14 @@ A.~Lavrenov, \emph{Local-global principle for symplectic $K_2$}
 {\bf to appear}.
 
 \bibitem[Wen14]{W-k[t]}
-M.~Wendt, \emph{On homology of linear groups over {$k[t]$}},
+M.~Wendt, \emph{\href{https://dx.doi.org/10.4310/MRL.2014.v21.n6.a15}{On homology of linear groups over {$k[t]$}}},
 Math. Res. Lett. \textbf{21} (2014), no.~6, 1483--1500.
 
 \bibitem[VW]{VW} K. V\"olkel, M. Wendt,
-{\it On $\Aff^1$-fundamental groups of isotropic reductive groups},
+\emph{On $\Aff^1$-fundamental groups of isotropic reductive groups},
 2012~\href{http://arxiv.org/abs/1207.2364}{arXiv:1207.2364}.
-
 \end{thebibliography}
+
+} %END \ifthenelse
 
 \end{document}
