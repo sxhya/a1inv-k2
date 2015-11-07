@@ -273,6 +273,12 @@ is exact.
 
 This should use~\eqref{plan:3t}--\eqref{plan:QSlgp}.
 
+\begin{enumerate}
+ \item Prove \cref{lem:TulDiagram} for CDE and \cref{lem:TulMapInject}. This should be relatively easy.
+ \item Prove \cref{prop:TulKernSurject}. This is hard. Have no idea how this can be proved at the moment. 
+ \item Prove $\Pro^1$-glueing using all the above facts.
+\end{enumerate}
+
 \item\label{plan:[]f} (Main corollary of $\Pro^1$-gluing) Let $A$ be any commutative ring, and let $f\in A[t]$ be a monic polynomial. Show that
 $K_2^G(A[t])\to K_2^G(A[t]_f)$ is injective.
 
@@ -390,6 +396,38 @@ we have $y\in\St(k)K_2^G(k[t^{-1}])=\St(k)$ and $x_1x_2\in\St(k)$. That is, $g\i
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{$\Pro^1$-gluing}
+\subsection{Preliminaries}
+
+\begin{lem} \label{lem:TulDiagram}
+The canonical maps of Steinberg groups can be completed to the following commutative diagram.
+\[\begin{tikzcd} \St(R[t^\pm], m[t^\pm]) \arrow[rr, "i^\pm"] \arrow[dr, dotted] &  & \St(R[t^\pm]) \\
+ & \St(R[t^{-1}] + m[t]) \arrow[ur] & \end{tikzcd}\] 
+\end{lem}
+\begin{proof}
+ Compare with \cite[Lemma~3.2]{Tu}. In Tulenbaev's paper this lemma invokes ``another presentation''.
+ I am pretty confident that this result can be demonstrated for $\Phi=\rD_\ell, \rE_\ell$ using the same ``amalgamation`` technique as in the proof of lgp.
+\end{proof}
+
+In all statements below $R$ denotes a commutative local ring with the maximal ideal $m$ and the residue field $k$.
+
+\begin{prop} \label{prop:TulKernSurject}
+The leftmost map in the diagram below is surjective.
+\[\begin{tikzcd} 
+    \mathrm{Ker}(i^+) \ar[d, twoheadrightarrow] \ar[r, hookrightarrow] & \St(R[t], m[t]) \ar[r, "i^+"] \ar[d] & \ar[d] \St(R[t]) \\
+    \mathrm{Ker}(i^\pm) \ar[r, hookrightarrow] & \St(R[t^\pm], m[t^\pm]) \ar[r, "i^\pm"]  & \St(R[t^\pm])
+  \end{tikzcd}\]
+\end{prop}
+\begin{proof}
+ Compare with \cite[Proposition~4.1]{Tu}.
+\end{proof}
+
+\begin{lem} \label{lem:TulMapInject}
+The canonical map $\St(R[t^{-1}]+m[t]) \rightarrow \St(R[t^\pm])$ is injective. \end{lem}
+\begin{proof}
+ Compare with \cite[Corollary~4.2]{Tu}. This should simultaneously invoke \cref{thm:k[t]}, \cref{lem:TulDiagram} and \cref{prop:TulKernSurject}.
+\end{proof}
+
+\subsection{Main result}
 
 The following lemma is an analog of~\cite[Proposition 4.3 (a)]{Tu}.
 
@@ -426,7 +464,7 @@ $$1\longrightarrow K_2^G(A)\xrightarrow{\st g\mapsto (g,g)} K_2^G(A[t])\times K_
 is exact.
 \end{thm}
 \begin{proof}
-????
+Follows from the above lemmas.
 \end{proof}
 
 \begin{cor}
