@@ -274,7 +274,7 @@ is exact.
 This should use~\eqref{plan:3t}--\eqref{plan:QSlgp}.
 
 \begin{enumerate}
- \item Prove \cref{lem:TulDiagram} for CDE and \cref{lem:TulMapInject}. This should be relatively easy.
+ \item Prove \cref{lem:TulDiagram} for CDE and \cref{cor:TulMapInject}. This should be relatively easy.
  \item Prove \cref{prop:TulKernSurject}. This is hard. Have no idea how this can be proved at the moment. 
  \item Prove $\Pro^1$-glueing using all the above facts.
 \end{enumerate}
@@ -398,31 +398,30 @@ we have $y\in\St(k)K_2^G(k[t^{-1}])=\St(k)$ and $x_1x_2\in\St(k)$. That is, $g\i
 \section{$\Pro^1$-gluing}
 \subsection{Preliminaries}
 
-\begin{lem} \label{lem:TulDiagram}
-The canonical maps of Steinberg groups can be completed to the following commutative diagram.
-\[\begin{tikzcd} \St(R[t^\pm], m[t^\pm]) \arrow[rr, "i^\pm"] \arrow[dr, dotted] &  & \St(R[t^\pm]) \\
- & \St(R[t^{-1}] + m[t]) \arrow[ur] & \end{tikzcd}\] 
-\end{lem}
+Let $R$ denote arbitrary commutative local ring with the maximal ideal $m$ and the residue field $k$.
+Consider the following commutative diagram of groups.
+\[\begin{tikzcd} 
+C_+ \ar[r, hookrightarrow] \ar[dddd, "k^+", twoheadrightarrow] & \St(R[t], m[t]) \ar[rd, twoheadrightarrow] \ar[rr, "\mu^+"] \ar[dd, "j^+_1"] & & \ar[dd, "i^+_1"] \St(R[t]) \ar[r, "p^+", twoheadrightarrow] & \St(k[t]) \ar[dd, equal] \\    
+ &  & \mathrm{Ker}(p^+) \ar[ur, hookrightarrow] \ar[dd, "\overline{j^+_1}" near end] & &  \\    
+ & \St(R[t] + m[t^{-1}], m[t^{\pm 1}]) \ar[rd, twoheadrightarrow] \ar[rr, "\mu^{+\varepsilon}" near start] \ar[dd, "j^+_2"] & & \ar[dd, "i^+_2"] \St(R[t]+m[t^{-1}]) \ar[r, "p^{+\varepsilon}", twoheadrightarrow] & \St(k[t]) \ar[dd, hookrightarrow] \\     
+ &  & \mathrm{Ker}(p^{+\varepsilon}) \ar[ur, hookrightarrow] \ar[dd, "\overline{j^+_2}" near end, twoheadrightarrow] & &  \\    
+C_{\pm} \ar[r, hookrightarrow] & \St(R[t^{\pm 1}], m[t^{\pm 1}]) \ar[uurr, bend right=15, dashrightarrow, "\varphi"' near end] \ar[rd, twoheadrightarrow] \ar[rr, "\mu^\pm"' near start] &  & \St(R[t^{\pm 1}]) \ar[r, "p^\pm", twoheadrightarrow] & \St(k[t^{\pm 1}]) \\
+ &  & \mathrm{Ker}(p^\pm) \ar[ur, hookrightarrow] & &  
+\end{tikzcd}\]
+Notice that the map $\overline{j^+_2}$ is surjective (this is what A. Stavrova argument from 08/11/15 letter actually proves).
+
+\begin{lem} \label{lem:TulDiagram} There exists a map $\varphi$ such that $ i_2^+ \varphi = \mu^\pm$. \end{lem}
 \begin{proof}
  Compare with \cite[Lemma~3.2]{Tu}. In Tulenbaev's paper this lemma invokes ``another presentation''.
  I am pretty confident that this result can be demonstrated for $\Phi=\rD_\ell, \rE_\ell$ using the same ``amalgamation`` technique as in the proof of lgp.
 \end{proof}
 
-In all statements below $R$ denotes a commutative local ring with the maximal ideal $m$ and the residue field $k$.
-
-\begin{prop} \label{prop:TulKernSurject}
-The leftmost map in the diagram below is surjective.
-\[\begin{tikzcd} 
-    \mathrm{Ker}(i^+) \ar[d, twoheadrightarrow] \ar[r, hookrightarrow] & \St(R[t], m[t]) \ar[r, "i^+"] \ar[d] & \ar[d] \St(R[t]) \\
-    \mathrm{Ker}(i^\pm) \ar[r, hookrightarrow] & \St(R[t^\pm], m[t^\pm]) \ar[r, "i^\pm"]  & \St(R[t^\pm])
-  \end{tikzcd}\]
-\end{prop}
+\begin{prop} \label{prop:TulKernSurject} The map $k^+$ is surjective. \end{prop}
 \begin{proof}
  Compare with \cite[Proposition~4.1]{Tu}.
 \end{proof}
 
-\begin{lem} \label{lem:TulMapInject}
-The canonical map $\St(R[t^{-1}]+m[t]) \rightarrow \St(R[t^\pm])$ is injective. \end{lem}
+\begin{cor} \label{cor:TulMapInject} The map $i^+_2$ is injective. \end{cor}
 \begin{proof}
  Compare with \cite[Corollary~4.2]{Tu}. This should simultaneously invoke \cref{thm:k[t]}, \cref{lem:TulDiagram} and \cref{prop:TulKernSurject}.
 \end{proof}
