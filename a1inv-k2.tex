@@ -1,6 +1,6 @@
 \documentclass[oneside,12pt]{amsart}
 \usepackage{amssymb, amsxtra, amsmath, amstext, amsthm, amsfonts, amscd, enumitem, hyperref, thmtools,
-            tikz, graphicx, tikz-cd, ifthen}
+            tikz, graphicx, tikz-cd, ifthen, ulem}
 \usepackage[T2A]{fontenc}
 \usepackage[cp1251]{inputenc}
 \usepackage[all]{xy}
@@ -274,7 +274,9 @@ is exact.
 This should use~\eqref{plan:3t}--\eqref{plan:QSlgp}.
 
 \begin{enumerate}
- \item Prove \cref{lem:TulDiagram} for CDE and \cref{cor:TulMapInject}. This should be relatively easy.
+ \item Prove \cref{lem:TulDiagram} for CDE. In Tulenbaev's paper this lemma invokes ``another presentation''.
+  I am pretty confident that this result can be demonstrated for $\Phi=\rD_\ell, \rE_\ell$ using the same ``amalgamation`` technique as in the proof of lgp. 
+ \item {\bf (done)} Prove \cref{cor:TulInj}.
  \item Prove \cref{prop:TulKernSurject}. This is hard. Have no idea how this can be proved at the moment. 
  \item Prove $\Pro^1$-glueing using all the above facts.
 \end{enumerate}
@@ -284,9 +286,8 @@ $K_2^G(A[t])\to K_2^G(A[t]_f)$ is injective.
 
 The proof uses~\eqref{plan:Zglu} and~\eqref{plan:P1}.
 
-\item\label{plan:k(t)} Prove that $K_2^G(k(t))=K_2^G(k)$.
-
-This may be a bit tricky; I will think if we can get rid of it. I don't think Tulenbaev uses it.
+\item\label{plan:k(t)} \sout{Prove that $K_2^G(k(t))=K_2^G(k)$. This may be a bit tricky; I will think if we can get rid of it. I don't think Tulenbaev uses it.} 
+Unsure whether this is true (?). This is true for $SK_1$ but in view of Milnor's theorem can not hold for $K_1$ and $K_2$.
 
 \item\label{plan:k[tn]} Prove that
 $$K_2^G(k[t_1,\ldots,t_n])=K_2^G(k).$$
@@ -370,8 +371,8 @@ Let $G=G(\Phi,-)$ be a simply connected simple Chevalley group of rank $\ge 2$ t
 \end{proof}
 
 \begin{cor}\label{cor:k[t]inj}
-Let $G$, $k$ be as in \cref{thm:k[t]}. Then $\St(k[t])\to\St(k[t^{\pm 1}])$ is injective and $\St(k[t])\cap\St(k[t^{-1}])=\St(k)$ inside
-$\St(k[t^{\pm 1}])$.
+Let $G$, $k$ be as in \cref{thm:k[t]}. 
+Then $\St(k[t])\to\St(k[t^{\pm 1}])$ is injective and $\St(k[t])\cap\St(k[t^{-1}])=\St(k)$ inside $\St(k[t^{\pm 1}])$.
 \end{cor}
 \begin{proof}
 Clearly, $g\in\ker(\St(k[t])\to\St(k[t^{\pm 1}]))$ implies $g\in K_2^G(k[t])$. Since $K_2^G(k[t])=K_2^G(k)$,
@@ -403,27 +404,31 @@ Consider the following commutative diagram of groups.
 \[\begin{tikzcd} 
 C_+ \ar[r, hookrightarrow] \ar[dddd, "k^+", twoheadrightarrow] & \St(R[t], m[t]) \ar[rd, twoheadrightarrow] \ar[rr, "\mu^+"] \ar[dd, "j^+_1"] & & \ar[dd, "i^+_1"] \St(R[t]) \ar[r, "p^+", twoheadrightarrow] & \St(k[t]) \ar[dd, equal] \\    
  &  & \mathrm{Ker}(p^+) \ar[ur, hookrightarrow] \ar[dd, "\overline{j^+_1}" near end] & &  \\    
- & \St(R[t] + m[t^{-1}], m[t^{\pm 1}]) \ar[rd, twoheadrightarrow] \ar[rr, "\mu^{+\varepsilon}" near start] \ar[dd, "j^+_2"] & & \ar[dd, "i^+_2"] \St(R[t]+m[t^{-1}]) \ar[r, "p^{+\varepsilon}", twoheadrightarrow] & \St(k[t]) \ar[dd, hookrightarrow] \\     
+ & \St(R[t] + m[t^{-1}], m[t^{\pm 1}]) \ar[rd, twoheadrightarrow] \ar[rr, "\mu^{+\varepsilon}" near start] \ar[dd, "j^+_2"] & & \ar[dd, "i^+_2"] \St(R[t]+m[t^{-1}]) \ar[r, "p^{+\varepsilon}", twoheadrightarrow] & \St(k[t]) \ar[dd, hookrightarrow, "\overline{i_2^+}"] \\     
  &  & \mathrm{Ker}(p^{+\varepsilon}) \ar[ur, hookrightarrow] \ar[dd, "\overline{j^+_2}" near end, twoheadrightarrow] & &  \\    
 C_{\pm} \ar[r, hookrightarrow] & \St(R[t^{\pm 1}], m[t^{\pm 1}]) \ar[uurr, bend right=15, dashrightarrow, "\varphi"' near end] \ar[rd, twoheadrightarrow] \ar[rr, "\mu^\pm"' near start] &  & \St(R[t^{\pm 1}]) \ar[r, "p^\pm", twoheadrightarrow] & \St(k[t^{\pm 1}]) \\
  &  & \mathrm{Ker}(p^\pm) \ar[ur, hookrightarrow] & &  
 \end{tikzcd}\]
-Notice that the map $\overline{j^+_2}$ is surjective (this is what A. Stavrova argument from 08/11/15 letter actually proves).
+By the argument from A. Stavrova's 08/11/15 letter one also has that $\overline{j^+_2}$ is surjective.
 
 \begin{lem} \label{lem:TulDiagram} There exists a map $\varphi$ such that $ i_2^+ \varphi = \mu^\pm$. \end{lem}
 \begin{proof}
- Compare with \cite[Lemma~3.2]{Tu}. In Tulenbaev's paper this lemma invokes ``another presentation''.
- I am pretty confident that this result can be demonstrated for $\Phi=\rD_\ell, \rE_\ell$ using the same ``amalgamation`` technique as in the proof of lgp.
+ Compare with \cite[Lemma~3.2]{Tu}.  
 \end{proof}
 
 \begin{prop} \label{prop:TulKernSurject} The map $k^+$ is surjective. \end{prop}
 \begin{proof}
- Compare with \cite[Proposition~4.1]{Tu}.
+ Compare with \cite[Proposition~4.1]{Tu}. This should invoke \cref{lem:TulDiagram}. 
 \end{proof}
 
-\begin{cor} \label{cor:TulMapInject} The map $i^+_2$ is injective. \end{cor}
+\begin{cor} \label{cor:TulInj} The map $i^+_2$ is injective. \end{cor}
 \begin{proof}
- Compare with \cite[Corollary~4.2]{Tu}. This should simultaneously invoke \cref{thm:k[t]}, \cref{lem:TulDiagram} and \cref{prop:TulKernSurject}.
+ Follows from the above lemmata by a simple diagram chasing (cf.~\cite[Cor.~4.2]{Tu}).
+ 
+ Indeed, let $g \in \St(R[t] + m[t^{-1}])$ be an element of $\Ker(i_2^+)$.
+ By \cref{cor:k[t]inj} $g$ also lies in $\Ker(p^{+\varepsilon})$ and hence comes from some $\widetilde{g} \in \St(A[t]+m[t^{-1}], m[t^{\pm 1}])$ via $\mu^{+\varepsilon}$.
+ Since $j^+_2(\widetilde{g})$ lies in $C_\pm$ by \cref{prop:TulKernSurject} it comes from some $\widehat{g} \in C_+$ via $k^+$.
+ It remains to notice that $g = \mu^{+\varepsilon}(\widetilde{g}) = i_1^+\mu^+(\widehat{g}) = i_1^+(1) = 1$, as claimed. 
 \end{proof}
 
 \subsection{Main result}
@@ -583,8 +588,6 @@ hence the third assertion of the lemma follows.
  & \Stb(n, R_a[t], tR_a[t]) \arrow[ur, dotted, "T_n"] & \end{tikzcd}\]
 \end{cor}
 \begin{proof} Follows from \cref{lem:rk3rels} by the same token as in \cite[Lemma~2.3]{Tu}. \end{proof}
-
-We refer the reader to \cite{Ka}...
 
 \end{appendices}
 
