@@ -309,6 +309,16 @@ Definition, functoriality, "congruence subgroups"{} $\St(\Phi,R,I)$ versus $\ker
 %The map $\St(R)\to E(R)$ is bijective on subgroups of the form $U_\Psi(R)$, where $\Psi$ is a
 %unipotent set of roots.
 
+\subsection{Tulenbaev's map}
+The following property of linear Steinberg groups was discovered for the first time by Tulenbaev (see~\cite[Lemma 2.3]{Tu}).
+
+\begin{dfn} \label{def:tep}
+Let $R$ be arbitrary commutative ring and let $a \in R$ be any nonnilpotent element.
+We say that the Steinberg group functor $\St$ satisfies {\it Tulenbaev's excision property} if there exists a map $T$ 
+which completes the canonical solid arrows in the diagram below to a commutative diagram.
+\[\begin{tikzcd} \St(R[t], tR[t]) \arrow[rr] \arrow[dr, "\lambda_a"] & & \St(n, R\ltimes tR_a[t], tR_a[t]) \\
+ & \St(n, R_a[t], tR_a[t]) \arrow[ur, dotted, "T"] & \end{tikzcd}\] \end{dfn}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Decomposition theorems for $\St(A[t^{\pm 1}])$ and $\St\bigl(A((t))\bigr)$.}
@@ -348,14 +358,12 @@ This is proved exactly as~\cite[Theorem 5.1]{St-poly}.
 \section{Quillen-Suslin lgp, Zariski gluing, Nisnevich gluing, $S$-lemma}
 
 \begin{thm}\label{thm:lg-k2}
-Let $R$ be arbitrary commutative ring and let $G$ be a simple Chevalley group of type $\rA_\ell, \rC_\ell, \rD_\ell$ or $\rE_\ell$ and rank $\ell \geq 3$.
-An element $g \in \St(R[t], tR[t])$ is trivial if and only if
-its image in $\St(R_M[t], tR_M[t])$ is trivial for all maximal ideals $M \trianglelefteq R$.
+Assume that the Steinberg group functor $\St$ satisfies Tulenbaev's excision property (cf.~\cref{def:tep}).
+Then an element $g \in \St(R[t], tR[t])$ is trivial if and only if its image in $\St(R_M[t], tR_M[t])$ is trivial for all maximal ideals $M \trianglelefteq R$.
 \end{thm}
 \begin{proof}
 In the case $\Phi=\rC_\ell$, $\ell\geq 3$ the assertion of the theorem is the main result of \cite{La15}.
-For a simply laced $\Phi$ of rank $\geq 3$ this can be proved by the same token as \cite[Theorem~2]{S15} if one uses a stronger variant of Tulenbaev's lemma
-proved in the appendices below (see \cref{cor:tulmap}).
+For a simply laced $\Phi$ of rank $\geq 3$ this can be proved by the same token as \cite[Theorem~2]{S15} if one uses a stronger variant of Tulenbaev's lemma proved in the appendices below (see \cref{cor:tulmap}).
 \end{proof}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -584,8 +592,7 @@ hence the third assertion of the lemma follows.
 \end{proof}
 
 \begin{cor}\label{cor:tulmap}[Tulenbaev's lemma] For $n \geq 4$ there is a map $T_n$ so that the following diagram commutes.
-\[\begin{tikzcd} \Stb(n, R[t], tR[t]) \arrow[rr] \arrow[dr, "\lambda_a"] & & \Stb(n, R\ltimes tR_a[t], tR_a[t]) \\
- & \Stb(n, R_a[t], tR_a[t]) \arrow[ur, dotted, "T_n"] & \end{tikzcd}\]
+
 \end{cor}
 \begin{proof} Follows from \cref{lem:rk3rels} by the same token as in \cite[Lemma~2.3]{Tu}. \end{proof}
 
