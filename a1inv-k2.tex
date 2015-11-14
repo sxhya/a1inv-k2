@@ -1,6 +1,7 @@
 \documentclass[oneside,12pt]{amsart}
-\usepackage{amssymb, amsxtra, amsmath, amstext, amsthm, amsfonts, amscd, enumitem, hyperref, thmtools,
-            tikz, graphicx, tikz-cd, ifthen, ulem}
+\usepackage{amssymb, amsxtra, amsmath, amstext, amsthm, amsfonts, amscd, enumitem, thmtools,
+            tikz, graphicx, tikz-cd, ifthen}
+\usepackage[breaklinks=true, pdfencoding=auto]{hyperref}            
 \usepackage[T2A]{fontenc}
 \usepackage[cp1251]{inputenc}
 \usepackage[all]{xy}
@@ -10,18 +11,23 @@
 \usepackage[english]{babel}
 \usetikzlibrary{matrix,arrows,cd}
 
-% If the flag below is set to TRUE the bibliography will be processed using BibLaTeX with biber as backend
-\newboolean{USEBIBLATEX} \setboolean{USEBIBLATEX}{false}
+\definecolor{darkblue}{rgb}{0.0, 0.0, 0.6}
+
+\hypersetup{colorlinks=true, urlcolor=darkblue, linkcolor=darkblue, citecolor=darkblue}
+
+% Replace ``true'' flag below with ``false'' if you can't compile the bibliography properly using BibLaTeX/biber
+\newboolean{USEBIBLATEX} \setboolean{USEBIBLATEX}{true}
 \ifthenelse{\boolean{USEBIBLATEX}}{  
   \DeclareRobustCommand{\VAN}[2]{#1}
-  \usepackage[backend=biber, citestyle=authoryear, style=alphabetic, sortlocale=en_US, url=false, doi=false, eprint=true, firstinits=true, maxbibnames=4]{biblatex}                      
+  \usepackage[hyperref=true, backend=biber, citestyle=authoryear, style=alphabetic, sortlocale=en_US, url=false, doi=false, eprint=true, firstinits=true, maxbibnames=4]{biblatex}                      
   \addbibresource{a1inv-k2.bib}
   \renewbibmacro*{volume+number+eid}{\ifentrytype{article}{\- \iffieldundef{volume}{}{{\bf\printfield{volume}},}\iffieldundef{number}{}{ no.~\printfield{number},}}}
   \renewbibmacro{in:}{\ifentrytype{article}{}{\printtext{\bibstring{in}\intitlepunct}}}
   \newbibmacro{string+doi}[1]{\iffieldundef{doi}{\iffieldundef{url}{#1}{\href{\thefield{url}}{#1}}}{\href{http://dx.doi.org/\thefield{doi}}{#1}}}
   \DeclareFieldFormat{title}{\usebibmacro{string+doi}{\mkbibemph{#1}}}
   \DeclareFieldFormat[article, inproceedings, inbook, thesis]{title}{\usebibmacro{string+doi}{\mkbibquote{#1}}}
-  \renewcommand*{\bibfont}{\small}
+  \DeclareFieldFormat[online]{title}{``#1''}
+  \renewcommand*{\bibfont}{\footnotesize}
 }{}
 
 \oddsidemargin 5mm
@@ -286,7 +292,7 @@ $K_2^G(A[t])\to K_2^G(A[t]_f)$ is injective.
 
 The proof uses~\eqref{plan:Zglu} and~\eqref{plan:P1}.
 
-\item\label{plan:k(t)} \sout{Prove that $K_2^G(k(t))=K_2^G(k)$. This may be a bit tricky; I will think if we can get rid of it. I don't think Tulenbaev uses it.} 
+\item\label{plan:k(t)} Prove that $K_2^G(k(t))=K_2^G(k)$. This may be a bit tricky; I will think if we can get rid of it. I don't think Tulenbaev uses it.
 Unsure whether this is true (?). This is true for $SK_1$ but in view of Milnor's theorem can not hold for $K_1$ and $K_2$.
 
 \item\label{plan:k[tn]} Prove that
@@ -321,7 +327,7 @@ which completes the canonical solid arrows in the diagram below to a commutative
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Decomposition theorems for $\St(A[t^{\pm 1}])$ and $\St\bigl(A((t))\bigr)$.}
+\section{Decomposition theorems for \texorpdfstring{$\St(A[t^{\pm 1}])$}{St(A[t, t\textminussuperior\textonesuperior])} and \texorpdfstring{$\St\bigl(A((t))\bigr)$}{St(A((t)))}.}
 
 \begin{lem}
  Let $(R,m)$ be a local ring, and let $G$ be a simply connected simple group over $R$
@@ -368,7 +374,7 @@ For a simply laced $\Phi$ of rank $\geq 3$ this can be proved by the same token 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{The case of $K_2^G(k[t])$ and some corollaries}
+\section{The case of \texorpdfstring{$K_2^G(k[t])$}{K\texttwoinferior(k[t])} and some corollaries}
 
 \begin{thm}\label{thm:k[t]}
 Let $k$ be a field.
@@ -404,7 +410,7 @@ we have $y\in\St(k)K_2^G(k[t^{-1}])=\St(k)$ and $x_1x_2\in\St(k)$. That is, $g\i
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{$\Pro^1$-gluing}
+\section{\texorpdfstring{$\Pro^1$}{P\textonesuperior}-gluing}
 \subsection{Preliminaries}
 
 Let $R$ denote arbitrary commutative local ring with the maximal ideal $m$ and the residue field $k$.
