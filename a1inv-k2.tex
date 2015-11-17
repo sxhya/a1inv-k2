@@ -314,7 +314,7 @@ Definition, functoriality, "congruence subgroups"{} $\St(\Phi,R,I)$ versus $\ker
 %unipotent set of roots.
 
 \subsection{Tulenbaev's lifting property}
-The following property of linear Steinberg groups was discovered for the first time by Tulenbaev (see~\cite[Lemmas 2.3, 3.2]{Tu}).
+The following property of linear Steinberg groups was discovered for the first time by Tulenbaev (see~\cite[Lemmas 2.3, 3.2]{Tu}) and plays a key role in the sequel.
 
 \begin{dfn} \label{def:tlp}
 We say that the Steinberg group functor $\St$ satisfies {\it Tulenbaev's lifting property} if
@@ -366,10 +366,8 @@ This is proved exactly as~\cite[Theorem 5.1]{St-poly}.
 Assume that the Steinberg group functor $\St$ satisfies Tulenbaev's lifting property (cf.~\cref{def:tlp}).
 Then an element $g \in \St(R[t], tR[t])$ is trivial if and only if its image in $\St(R_M[t], tR_M[t])$ is trivial for all maximal ideals $M \trianglelefteq R$.
 \end{thm}
-\begin{proof}
-In the case $\Phi=\rC_\ell$, $\ell\geq 3$ the assertion of the theorem is the main result of \cite{La15}.
-For a simply laced $\Phi$ of rank $\geq 3$ this can be proved by the same token as \cite[Theorem~2]{S15} if one uses a stronger variant of Tulenbaev's lemma proved in the appendices below (see \cref{cor:tulmap}).
-\end{proof}
+\begin{proof} Follows by the same argument as \cite[Theorem~2.1]{Tu} or \cite[Theorem~2]{S15} \end{proof}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -420,7 +418,7 @@ The following result is a Steinberg level analogue of the well-known Bruhat deco
  For $\Phi$ of rank $\geq 2$ and a field $k$ one has $$\Stb(\Phi, k) = \UU(\Phi^+, k) \cdot \WW(\Phi, k) \cdot \UU(\Phi^+, k).$$
 \end{cor}
 \begin{proof}
- From \cref{satz1} it follows that $K_2(\Phi, k)$ is contained in $\WW(\Phi, k)$, therefore the reqired assertion follows from \cite[Theorem~4]{St-lect}.
+ From \cref{satz1} it follows that $K_2(\Phi, k)$ is contained in $\WW(\Phi, k)$, therefore the reqired assertion follows from the classical Bruhat decomposition (see e.\,g. \cite[Theorem~4]{St-lect}).
  For a direct proof in the linear case see also \cite[\S~2.3A]{HOM}.
 \end{proof}
 
@@ -451,7 +449,7 @@ C_{\pm} \ar[r, hookrightarrow] & \St(R[t^{\pm 1}], m[t^{\pm 1}]) \ar[uurr, bend 
 
 \begin{cor} \label{cor:TulInj} The map $i^+_2$ is injective. \end{cor}
 \begin{proof}
- Follows from the above lemmata by a simple diagram chasing (cf.~\cite[Cor.~4.2]{Tu}).
+ Follows from the above proposition by a simple diagram chasing (cf.~\cite[Cor.~4.2]{Tu}).
  
  Indeed, let $g \in \St(R[t] + m[t^{-1}])$ be an element of $\Ker(i_2^+)$.
  By \cref{cor:k[t]inj} $g$ also lies in $\Ker(p^{+\varepsilon})$ and hence comes from some $\widetilde{g} \in \St(A[t]+m[t^{-1}], m[t^{\pm 1}])$ via $\mu^{+\varepsilon}$.
