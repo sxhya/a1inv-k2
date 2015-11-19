@@ -310,17 +310,25 @@ This uses~\eqref{plan:QSlgp},~\eqref{plan:k[tn]} and~\eqref{plan:Nglu}.
 
 Definition, functoriality, "congruence subgroups"{} $\St(\Phi,R,I)$ versus $\ker(\St(\Phi,R)\to\St(\Phi,R/I))$.
 
-%The map $\St(R)\to E(R)$ is bijective on subgroups of the form $U_\Psi(R)$, where $\Psi$ is a
-%unipotent set of roots.
+%The map $\St(R)\to E(R)$ is bijective on subgroups of the form $U_\Psi(R)$, where $\Psi$ is a unipotent set of roots.
 
 \subsection{Tulenbaev's lifting property}
-The following property of linear Steinberg groups was discovered for the first time by Tulenbaev (see~\cite[Lemmas 2.3, 3.2]{Tu}) and plays a key role in the sequel.
+Let $I \trianglelefteq R$ be an ideal of a commutative ring.
+For a nonnilpotent element $a \in R$ denote by $\lambda_a\colon R \rightarrow R_a$ the morphism of principal localization at $a$.
+Consider the following commutative square.
+\begin{equation} \label{msq}
+ \begin{tikzcd} 
+    R \ar[r, "\lambda_a"] \ar[d, twoheadrightarrow] \ar[r] & R_a \ar[d, twoheadrightarrow] \\
+    R/I \ar[r, "\overline{\lambda_a}"]& R_a/I_a\\
+   \end{tikzcd}
+\end{equation}
+Notice that \eqref{msq} is a pull-back square if and only if $\lambda_a$ induces an isomorphism of $I$ and $I_a$.
+Such squares are usually called \emph{Milnor squares} in the literature, see \cite[Ch.~I, \S~2]{Kbook}.
 
+The following property of linear Steinberg groups was discovered for the first time by Tulenbaev (see~\cite[Lemmas 2.3, 3.2]{Tu}) and plays a key role in the sequel.
 \begin{dfn} \label{def:tlp}
-We say that the Steinberg group functor $\St$ satisfies {\it Tulenbaev's lifting property} if
-for every pair $(R, I)$ and every nonnilpotent $a \in R$ such that the localization map of modules $\lambda_a\colon I \rightarrow I_a$ is an isomorphism
-the following lifting problem has a solution.
-\[\begin{tikzcd} \St(R,   I) \arrow[r, "\mu"] \arrow[d, "\lambda_a^*"]          &  \St(R) \ar[d, "\lambda_a^*"] \\
+We say that the Steinberg group functor $\St$ satisfies {\it Tulenbaev's lifting property} if for every pull-back square \eqref{msq} the following lifting problem has a solution.
+\[\begin{tikzcd} \St(R,   I) \arrow[r, "\mu"] \arrow[d]          &  \St(R) \ar[d, "\lambda_a^*"] \\
                  \St(R_a, I) \arrow[r, "\mu"] \arrow[ur, dotted] &  \St(R_a) \end{tikzcd}\]
 \end{dfn}
 
