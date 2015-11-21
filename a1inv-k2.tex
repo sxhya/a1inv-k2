@@ -440,29 +440,25 @@ The following result is a Steinberg level analogue of the well-known Bruhat deco
 Let $R$ denote arbitrary commutative local ring with the maximal ideal $m$ and the residue field $k$.
 Consider the following commutative diagram of groups.
 \[\begin{tikzcd} 
-C_+ \ar[r, hookrightarrow] \ar[dddd, "k^+", twoheadrightarrow] & \St(R[t], m[t]) \ar[rd, twoheadrightarrow] \ar[rr, "\mu^+"] \ar[dd, "j^+_1"] & & \ar[dd, "i^+_1"] \St(R[t]) \ar[r, "p^+", twoheadrightarrow] & \St(k[t]) \ar[dd, equal] \\    
- &  & \mathrm{Ker}(p^+) \ar[ur, hookrightarrow] \ar[dd, "\overline{j^+_1}" near end] & &  \\    
- & \St(R[t] + m[t^{-1}], m[t^{\pm 1}]) \ar[rd, twoheadrightarrow] \ar[rr, "\mu^{+\varepsilon}" near start] \ar[dd, "j^+_2"] & & \ar[dd, "i^+_2"] \St(R[t]+m[t^{-1}]) \ar[r, "p^{+\varepsilon}", twoheadrightarrow] & \St(k[t]) \ar[dd, hookrightarrow, "\overline{i_2^+}"] \\     
- &  & \mathrm{Ker}(p^{+\varepsilon}) \ar[ur, hookrightarrow] \ar[dd, "\overline{j^+_2}" near end, twoheadrightarrow] & &  \\    
-C_{\pm} \ar[r, hookrightarrow] & \St(R[t^{\pm 1}], m[t^{\pm 1}]) \ar[uurr, bend right=15, dashrightarrow, "\varphi"' near end] \ar[rd, twoheadrightarrow] \ar[rr, "\mu^\pm"' near start] &  & \St(R[t^{\pm 1}]) \ar[r, "p^\pm", twoheadrightarrow] & \St(k[t^{\pm 1}]) \\
- &  & \mathrm{Ker}(p^\pm) \ar[ur, hookrightarrow] & &  
+C_+ \ar[r, hookrightarrow] \ar[dd, "k^+", twoheadrightarrow] & \St(R[t], m[t]) \ar[r, "\mu^+"] \ar[d, "j^+_1"] & \ar[d, "i^+_1"] \St(R[t]) \ar[r, "p^+", twoheadrightarrow] & \St(k[t]) \ar[d, equal] \\    
+                                                             & \St(R[t] + m[t^{-1}], m[t^{\pm 1}]) \ar[r, "\mu^{+\varepsilon}" near start] \ar[d, "j^+_2"] & \ar[d, "i^+_2"] \St(R[t]+m[t^{-1}]) \ar[r, "p^{+\varepsilon}", twoheadrightarrow] & \St(k[t]) \ar[d, hookrightarrow, "\overline{i_2^+}"] \\     
+C_{\pm} \ar[r, hookrightarrow]                               & \St(R[t^{\pm 1}], m[t^{\pm 1}]) \ar[ur, dashrightarrow, "\varphi"] \ar[r, "\mu^\pm"' near start] & \St(R[t^{\pm 1}]) \ar[r, "p^\pm", twoheadrightarrow] & \St(k[t^{\pm 1}]) \\
 \end{tikzcd}\]
 
 \begin{prop} \label{prop:TulKernSurject} The map $k^+$ is surjective. \end{prop}
 \begin{proof}
- First of all, notice that using Tulenbaev's lifting property~\ref{def:tlp} we find a map $\varphi$ such that $i_2^+ \varphi = \mu^\pm$.
- 
  Compare with \cite[Proposition~4.1]{Tu}. 
 \end{proof}
 
 \begin{cor} \label{cor:TulInj} The map $i^+_2$ is injective. \end{cor}
 \begin{proof}
- Follows from the above proposition by a simple diagram chasing (cf.~\cite[Cor.~4.2]{Tu}).
+ First of all, notice that by invoking Tulenbaev's lifting property~\ref{def:tlp} we find a map $\varphi$ such that $i_2^+ \varphi = \mu^\pm$.
  
- Indeed, let $g \in \St(R[t] + m[t^{-1}])$ be an element of $\Ker(i_2^+)$.
+ Now let $g \in \St(R[t] + m[t^{-1}])$ be an element of $\Ker(i_2^+)$.
  By \cref{cor:k[t]inj} $g$ also lies in $\Ker(p^{+\varepsilon})$ and hence comes from some $\widetilde{g} \in \St(A[t]+m[t^{-1}], m[t^{\pm 1}])$ via $\mu^{+\varepsilon}$.
- Since $j^+_2(\widetilde{g})$ lies in $C_\pm$ by \cref{prop:TulKernSurject} it comes from some $\widehat{g} \in C_+$ via $k^+$.
- It remains to notice that $g = \mu^{+\varepsilon}(\widetilde{g}) = i_1^+\mu^+(\widehat{g}) = i_1^+(1) = 1$, as claimed. 
+ Since $j^+_2(\widetilde{g})$ lies in $C_\pm$ by \cref{prop:TulKernSurject} it comes from some $\widehat{g} \in C_+$ via $k^+$. 
+ The statement of corollary now follows from a simple diagram chasing, indeed:
+ $$g = \varphi(j_2^+(\widetilde{g})) = \varphi(k^+(\widehat{g})) = \varphi(j_2^+(j_1^+(\widehat{g}))) = \mu^{+\varepsilon}(j_1^+(\widehat{g})) = i_1^+(\mu^+(\widehat{g})) = i_1^+(1) = 1. \qedhere $$
 \end{proof}
 
 \subsection{Main result}
