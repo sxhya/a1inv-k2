@@ -1,8 +1,6 @@
 \documentclass[oneside,12pt]{amsart}
-\usepackage{amssymb, amsxtra, amsmath, amstext, amsthm, amsfonts, amscd, enumitem, thmtools,
-            tikz, graphicx, tikz-cd, ifthen}
+\usepackage{amssymb, amsxtra, amsmath, amstext, amsthm, amsfonts, amscd, enumitem, thmtools, tikz, graphicx, tikz-cd}
 \usepackage[breaklinks=true, pdfencoding=auto]{hyperref}            
-%\usepackage[T2A]{fontenc}
 \usepackage[cp1251]{inputenc}
 \usepackage[all]{xy}
 \usepackage[notref,notcite]{showkeys}
@@ -15,20 +13,16 @@
 
 \hypersetup{colorlinks=true, urlcolor=darkblue, linkcolor=darkblue, citecolor=darkblue}
 
-% Replace ``true'' flag below with ``false'' if you can't compile the bibliography properly using BibLaTeX/biber
-\newboolean{USEBIBLATEX} \setboolean{USEBIBLATEX}{true}
-\ifthenelse{\boolean{USEBIBLATEX}}{  
-  \DeclareRobustCommand{\VAN}[2]{#1}
-  \usepackage[hyperref=true, backend=biber, citestyle=authoryear, style=alphabetic, sortlocale=en_US, url=false, doi=false, eprint=true, firstinits=true, maxbibnames=4]{biblatex}                      
-  \addbibresource{a1inv-k2.bib}
-  \renewbibmacro*{volume+number+eid}{\ifentrytype{article}{\- \iffieldundef{volume}{}{{\bf\printfield{volume}},}\iffieldundef{number}{}{ no.~\printfield{number},}}}
-  \renewbibmacro{in:}{\ifentrytype{article}{}{\printtext{\bibstring{in}\intitlepunct}}}
-  \newbibmacro{string+doi}[1]{\iffieldundef{doi}{\iffieldundef{url}{#1}{\href{\thefield{url}}{#1}}}{\href{http://dx.doi.org/\thefield{doi}}{#1}}}
-  \DeclareFieldFormat{title}{\usebibmacro{string+doi}{\mkbibemph{#1}}}
-  \DeclareFieldFormat[article, inproceedings, inbook, thesis]{title}{\usebibmacro{string+doi}{\mkbibquote{#1}}}
-  \DeclareFieldFormat[online]{title}{``#1''}
-  \renewcommand*{\bibfont}{\footnotesize}
-}{}
+\DeclareRobustCommand{\VAN}[2]{#1}
+\usepackage[hyperref=true, backend=biber, citestyle=authoryear, style=alphabetic, sortlocale=en_US, url=false, doi=false, eprint=true, firstinits=true, maxbibnames=4]{biblatex}                      
+\addbibresource{a1inv-k2.bib}
+\renewbibmacro*{volume+number+eid}{\ifentrytype{article}{\- \iffieldundef{volume}{}{{\bf\printfield{volume}},}\iffieldundef{number}{}{ no.~\printfield{number},}}}
+\renewbibmacro{in:}{\ifentrytype{article}{}{\printtext{\bibstring{in}\intitlepunct}}}
+\newbibmacro{string+doi}[1]{\iffieldundef{doi}{\iffieldundef{url}{#1}{\href{\thefield{url}}{#1}}}{\href{http://dx.doi.org/\thefield{doi}}{#1}}}
+\DeclareFieldFormat{title}{\usebibmacro{string+doi}{\mkbibemph{#1}}}
+\DeclareFieldFormat[article, inproceedings, inbook, thesis]{title}{\usebibmacro{string+doi}{\mkbibquote{#1}}}
+\DeclareFieldFormat[online]{title}{``#1''}
+\renewcommand*{\bibfont}{\footnotesize}
 
 \oddsidemargin 5mm
 \marginparwidth 5mm
@@ -155,13 +149,11 @@
 \title{$\mathbb{A}^1$-invariance for unstable $K_2$}
 
 \author{S. Sinchuk}
-\address{Department of Mathematics and Mechanics, St. Petersburg State University,
-St. Petersburg, Russia}
+\address{Department of Mathematics and Mechanics, St. Petersburg State University, St. Petersburg, Russia}
 \email{sinchukss@gmail.com}
 
 \author{A. Stavrova}
-\address{Department of Mathematics and Mechanics, St. Petersburg State University,
-St. Petersburg, Russia}
+\address{Department of Mathematics and Mechanics, St. Petersburg State University, St. Petersburg, Russia}
 \email{anastasia.stavrova@gmail.com}
 
 \author{A. Lavrenov}
@@ -308,7 +300,19 @@ This uses~\eqref{plan:QSlgp},~\eqref{plan:k[tn]} and~\eqref{plan:Nglu}.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Steinberg groups of Chevalley groups: preliminaries}
 
-Definition, functoriality, "congruence subgroups"{} $\St(\Phi,R,I)$ versus $\ker(\St(\Phi,R)\to\St(\Phi,R/I))$.
+%TODO: Definition, functoriality, "congruence subgroups"{} $\St(\Phi,R,I)$ versus $\ker(\St(\Phi,R)\to\St(\Phi,R/I))$.
+
+\subsection{Definition and basic properties}
+Let $G$ be a split simple Chevalley groups with a root system $\Phi$ of rank $\geq 2$.
+Recall that the \emph{Steinberg group} $\St(R)$ (also denoted $\Stb(\Phi, R)$) is defined by means of generators 
+$\mathcal{X}_{\Phi, R} = \{x_{\alpha}(\xi) \mid \xi\in R, \alpha\in\Phi\}$ and the set of relations $\mathcal{R}_{\Phi, R}$ defined as follows:
+\begin{align}
+& \phantom{[}
+x_\alpha(s) x_\alpha(t) = x_\alpha(s+t), \label{rel:add}\\
+& [x_\alpha(s), x_\beta(t)] = \prod x_{i\alpha + j\beta}\left(N_{\alpha\beta ij}\, s^i t^j\right), \quad \alpha\neq-\beta, \quad N_{\alpha\beta ij}\in\mathbb{Z}. \label{rel:CCF}
+\end{align} 
+The indices $i$, $j$ appearing in the right-hand side of the above relation range over all positive natural numbers such that $i\alpha + j\beta\in\Phi$.
+The structure constants $N_{\alpha \beta i j}=\pm 1,2,3$ appearing in \eqref{rel:CCF} depend only on $\Phi$ and can be computed precisely.
 
 %The map $\St(R)\to E(R)$ is bijective on subgroups of the form $U_\Psi(R)$, where $\Psi$ is a unipotent set of roots.
 
@@ -331,6 +335,19 @@ We say that the Steinberg group functor $\St$ satisfies {\it Tulenbaev's lifting
 \[\begin{tikzcd} \St(R,   I) \arrow[r, "\mu"] \arrow[d]          &  \St(R) \ar[d, "\lambda_a^*"] \\
                  \St(R_a, I) \arrow[r, "\mu"] \arrow[ur, dotted] &  \St(R_a) \end{tikzcd}\]
 \end{dfn}
+
+\subsection{The action of torus}
+Throughout this subsection $G=G_\ad$ denotes a split simple Chevalley group of adjoint type with the root system $\Phi$ of rank $\geq 2$.
+Denote by $T = T_\ad$ the torus of $G$ and by $T(R)$ its group of $R$-points.
+
+We identify the root lattice $X^*(T) = \Hom(T, \Gm)$ with the lattice $\ZZ \Phi$ in the obvious way.
+In particular, for $\alpha \in \Phi$ we denote by $\alpha_R$ the corresponding map $T(R) \rightarrow R^*$ on $R$-points.
+An element $h \in T(R)$ defines a permutation of the set $\mathcal{X}_{\Phi, R}$ of generators of $\St(R)$ as follows:
+\begin{equation} h \cdot x_\alpha(\xi) = x_\alpha(\alpha_R(h) \cdot \xi). \end{equation}
+
+Notice that $h$ preserves the defining relations $\mathcal{R}_{\Phi, R}$ of the Steinberg group (and thus, determines a permutation of $\mathcal{R}_{\Phi, R}$).
+Indeed, the assertion is immediate for relation~\eqref{rel:add}.
+Verification of the fact that $h$ preserves~\eqref{rel:CCF} is a routine computation which should use the fact that for $\alpha, \beta \in \ZZ \Phi$ one has $(\alpha+\beta)_R(h) = \alpha_R(h) \cdot \beta_R(h)$.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -620,65 +637,7 @@ hence the third assertion of the lemma follows.
 
 \end{appendices}
 
-\ifthenelse{\boolean{USEBIBLATEX}}{
 \DeclareRobustCommand{\VAN}[2]{#2}
-\printbibliography}{
-\renewcommand{\refname}{References}
-\begin{thebibliography}{MMMM}
-
-\bibitem[A]{Abe} E. Abe,
-{\it Whitehead groups of Chevalley groups over polynomial rings},
-Comm. Algebra {\bf 11} (1983), 1271--1307.
-
-\bibitem[AHW]{AHW15} A. Asok, M. Hoyois, M. Wendt,
-{\it Affine representability results in $A^1$-homotopy theory II: principal bundles and homogeneous spaces},
-2015~\href{http://arxiv.org/abs/1507.08020}{arXiv:1507.08020}.
-
-\bibitem[Deo]{Deo} V. V. Deodhar,
-{\it On central extensions of rational points of algebraic groups},
-Amer. J. Math. {\bf 100} (1978), 303--386.
-
-\bibitem[J]{J} J.F. Jardine,
-{\it On the homotopy groups of algebraic groups},
-J. Algebra {\bf 81} (1983), 180--201.
-
-\bibitem[Si]{S15} S. Sinchuk,
-{\it \href{http://dx.doi.org/10.1016/j.jpaa.2015.08.003}{On centrality of $\mathrm{K}_2$ for {C}hevalley groups of type $\rE_\ell$}},
-J. Pure Appl. Algebra {\bf 220} (2016), 857--875.
-
-\bibitem[St14]{St-poly} A. Stavrova,
-{\it Homotopy invariance of non-stable $K_1$-functors},
-J. K-Theory {\bf 13} (2014), 199--248.
-
-\bibitem[St15]{St-serr} A. Stavrova,
-{\it \href{http://dx.doi.org/10.4153/CJM-2015-035-2}{Non-stable $K_1$-functors of multiloop groups}},
-Canad. J. Math. (2015), Online First.
-
-\bibitem[Su]{Sus} A.A.~Suslin,
-\emph{On the structure of the special linear group over polynomial rings},
-Math. USSR Izv. {\bf 11} (1977), 221--238.
-
-\bibitem[Tul82]{Tu}
-M.~S. Tulenbaev, \emph{The {S}teinberg group of a polynomial ring},
-Mat. Sb. (N.S.) \textbf{117(159)} (1982), no.~1, 131--144.
-
-\bibitem[Ka]{Ka}
-W.~van~der~Kallen, \emph{\href{http://dx.doi.org/10.1016/1385-7258(77)90026-9}{Another presentation for {S}teinberg groups}},
-Indag. Math. {\bf 80}, (1977), no.~4, 304--312.
-
-\bibitem[La15]{La15}
-A.~Lavrenov, \emph{Local-global principle for symplectic $K_2$}
-{\bf to appear}.
-
-\bibitem[Wen14]{W-k[t]}
-M.~Wendt, \emph{\href{https://dx.doi.org/10.4310/MRL.2014.v21.n6.a15}{On homology of linear groups over {$k[t]$}}},
-Math. Res. Lett. \textbf{21} (2014), no.~6, 1483--1500.
-
-\bibitem[VW]{VW} K. V\"olkel, M. Wendt,
-\emph{On $\Aff^1$-fundamental groups of isotropic reductive groups},
-2012~\href{http://arxiv.org/abs/1207.2364}{arXiv:1207.2364}.
-\end{thebibliography}
-
-} %END \ifthenelse
+\printbibliography
 
 \end{document}
