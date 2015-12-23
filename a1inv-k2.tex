@@ -415,19 +415,24 @@ This is proved exactly as~\cite[Theorem 5.1]{St-poly}.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{\texorpdfstring{$\Pro^1$}{P\textonesuperior}-gluing}
-Throughout this section $G=G(\Phi, -)$ denotes an arbitrary Chevalley group scheme of type $\Phi$.
-We also assume everywhere below that $\Phi$ is irreducible and has rank $\geq 2$.
+Throughout this section $G=G(\Phi, -)$ denotes a Chevalley group scheme of type $\Phi$.
 
 \begin{dfn} \label{def:p1g} Let $F$ be a group-valued functor from $\catname{CRings}$ to $\catname{Groups}$ and let $A$ be a commutative ring.
-Consider the following commutative diagram of rings.
+Consider the following commutative diagram.
 \[ \begin{tikzcd} A \ar[r, "i_+"] \ar[d, "i_-"'] & A[t] \ar[d, "j_+"] \\ A[t^{-1}] \ar[r, "j_-"] & A[t, t^{-1}] \end{tikzcd} \]
-We say that $F$ satisfies the \emph{$\Pro^1$-glueing property for $A$} if the following sequence of groups is exact in the middle term:
-\[ \begin{tikzcd} F(A) \ar[r, hookrightarrow, "\Delta_A"] & F(A[t]) \times F(A[t^{-1}]) \ar[r, "\pm_A"] & F(A[t, t^{-1}]). \end{tikzcd} \]
-Here $\Delta_A$ denotes the (split injective) diagonal map $F(i_+, i_-)$ and $\pm_A$ is a shorthand for $m \circ \left(F(j_+) \pi_1, inv \circ F(j_-)\pi_2\right)$ 
-where $m$ and $inv$ denote the morphisms of inversion and multiplication in the group $F(A[t, t^{-1}])$. \end{dfn}
+We say that $F$ satisfies the \emph{$\Pro^1$-glueing property for $A$} if the following sequence of \emph{pointed sets} is exact in the middle term:
+\[ \begin{tikzcd} F(A) \ar[r, hookrightarrow, "\Delta_A^F"] & F(A[t]) \times F(A[t^{-1}]) \ar[r, "\pm_A^F"] & F(A[t, t^{-1}]). \end{tikzcd} \]
+Here $\Delta^F_A$ denotes the (split injective) diagonal map and, by definition, $\pm_A^F$ maps $(g^+, g^-)$ to $F(j_+)(g^+) \cdot F(j_-)(g^-)^{-1}.$
+Notice that a priori $\pm_A^F$ is only a morphism of pointed sets but if $F$ takes values in abelian groups then $\pm_A^F$ is also a morphism of groups. 
 
-The main result of this section is the following theorem which plays a crucial role in the sequel.
-\begin{thm} \label{thm:p1} The Steinberg group functor $\St(-)$ satisfies $\Pro^1$-glueing property for an arbitrary commutative ring $A$. \end{thm}
+An equivalent way to formulate $\Pro^1$-glueing property is as follows: 
+$F(j_+)$ and $F(j_-)$ are injective and the intersection of their images coincides with the image of $F(j_+ i_+) = F(j_- i_-).$ \end{dfn}
+
+The main result of this section is the following theorem which generalizes \cite[Theorem~5.1]{Tu} to Chevalley groups.
+Notice that a $K_1$-analogue of the result below has been established in a much greater generality by the second-named author (see~\cite[Theorem~1.1]{St-poly}).
+%TODO: TLP is not the only ingredient needed in the proof
+\begin{thm} \label{thm:p1} Assume that $G$ satisfies Tulenbaev lifting property~\ref{def:tlp}.
+Then the Steinberg group functor $\St(-)$ satisfies $\Pro^1$-glueing property for an arbitrary commutative ring $A$. \end{thm}
 \begin{proof}
  Let $(g^+, g^-)$ be an element of $\St(A[t]) \times \St(A[t^{-1}])$ such that the equality $g^+ = g^-$ holds in $\St(A[t, t^{-1}])$.
  
@@ -435,8 +440,14 @@ The main result of this section is the following theorem which plays a crucial r
  By \cref{prop:p1g} below the functor $\St(-)$ satisfies $\Pro^1$-glueing property for the local ring $A_M$ hence 
  $(\lambda_M^*(g_+), \lambda_M^*(g_-)) = \Delta_{A_M}(\lambda_M^*(g^+)(0))$ and in the groups $\St(A_M[t])$ and $\St(A_M[t^{-1}])$ we have the equalities:
  $$\lambda_M^*(g^+ \cdot g^+(0)^{-1}) = \lambda_M^*(g^+) \cdot {\lambda_M^*(g^+)(0)}^{-1} = 1; \qquad \lambda_M^*(g^-\cdot g^+(0)^{-1}) =1. $$
- Now, by the local-global principle for $\St(-)$ (see \cref{thm:lg-k2}) these equalities hold globally and $(g^+, g^-) = \Delta_A(g^+(0))$, as claimed.
+ Now, by the local-global principle for $\St(-)$ (see \cref{thm:lg-k2}) these equalities hold globally and $(g^+, g^-) = \Delta_A(g^+(0))$, as claimed. 
 \end{proof}
+
+\begin{rem} \label{rem:stk2} It is clear that if the functor $\St$ satisfies $\Pro^1$-glueing property for $A$ then so does the functor $K_2^G$.
+ The converse statement also holds, indeed, if $(g^+, g^-)\in\Bigker(\pm^{\Stb}_A)$ then inside $\EE^G(A[t, t^{-1}])$ we have the equality:
+ $$\varphi(\St(j_+)(g^+)) = \varphi(\St(j_-)(g^-)) \in \EE^G(A[t]) \cap \EE^G(A[t^{-1}]) = \EE^G(A).$$
+ Consequently, we can find $g_0 \in \St(A)$ so that $(g^+ g_0^{-1}, g^- g_0^{-1}) \in \Bigker(\pm_A^{K_2})$ and
+ it remains to apply the $\Pro^1$-glueing property for $K_2^G$. \end{rem}
 
 \begin{cor} Let $A$ be any commutative ring and $f\in A[t]$ be a monic polynomial.
 Then the map $K_2^G(A[t])\to K_2^G(A[t]_f)$ is injective. \end{cor}
@@ -447,40 +458,23 @@ Then the map $K_2^G(A[t])\to K_2^G(A[t]_f)$ is injective. \end{cor}
 \subsection{The case of a field}
 Throughout this section $k$ denotes arbitrary field $k$.
 \begin{thm} \label{thm:k[t]}
-The following statements are true.
-\begin{thmlist}
- \item \label{satz1} For $A=k, k[t]$ the subgroup $K_2^G(A) \trianglelefteq \St(A)$ is generated by elements of the form 
+Assume that $G=G(\Phi, -)$ and $\Phi$ is irreducible of rank $\geq 2$.
+\begin{thmlist} \item \label{satz1} The subgroup $K_2^G(k[t]) \trianglelefteq \St(k[t])$ is generated by elements of the form 
   $$h_\alpha(uv) h_\alpha(u)^{-1} h_\alpha(v)^{-1},\ u,v\in k^*.$$
- \item As a consequence, the canonical injection $K_2^G(k) \hookrightarrow K_2^G(k[t])$ is an isomorphism.
-\end{thmlist}
-\end{thm}
-\begin{proof}
- See \cite[Satz~1]{Re75} and the corollary after it.
-\end{proof}
+ \item As a consequence, the canonical injection $K_2^G(k) \hookrightarrow K_2^G(k[t])$ is an isomorphism. \end{thmlist} \end{thm}
+\begin{proof} See \cite[Satz~1]{Re75} and the corollary after it. \end{proof}
 
-\begin{cor}\label{cor:k[t]inj}
-Let $G$, $k$ be as in the above theorem. Then the functor $\St(-)$ satisfies $\Pro^1$-glueing for $k$.
-%Then $\St(k[t])\to\St(k[t^{\pm 1}])$ is injective and $\St(k[t])\cap\St(k[t^{-1}])=\St(k)$ inside $\St(k[t^{\pm 1}])$.
-\end{cor}
-\begin{proof}
-Clearly, $g\in\Bigker(\St(k[t])\to\St(k[t^{\pm 1}]))$ implies $g\in K_2^G(k[t])$. Since $K_2^G(k[t])=K_2^G(k)$,
-and  there is a section $K_2^G(k[t^{\pm 1}])\to K_2^G(k)$, the map is injective.
-Second claim: take $g\in \St(k[t])\cap\St(k[t^{-1}])$.
-Then the image $\phi(g)$ belongs to $E(k)=E(k[t])\cap E(k[t^{-1}])$, and
-after adjusting $g$ by an element of $\St(k)$, we can assume that $g\in K_2^G(k[t])\cap K_2^G(k[t^{-1}])$. Hence
-$g\in K_2^G(k)\subseteq\St(k)$.
-\end{proof}
+\begin{cor}\label{cor:k[t]inj} Let $G$ be as in the above theorem. Then the functors $\St$, $K_2^G$ satisfy $\Pro^1$-glueing property for $k$. \end{cor}
+\begin{proof} By \cref{rem:stk2} it suffices to prove the assertion only for the functor $K_2^G$.
+By the previous theorem $K_2^G(i_+)$ and $K_2^G(i_-)$ are isomorphisms hence the morphisms $K_2^G(j_+)$ and $K_2^G(j_-)$ are split injective
+and $\im(j_+i_+) = \im (j_-i_-) = \im(j_+) = \im(j_-)$. \end{proof}
 
-\begin{cor}
-Let $G$, $k$ be as in \cref{thm:k[t]}. Then $K_2^G(k[t^{\pm 1}])=K_2^G(k)$.
-\end{cor}
-\begin{proof}
-We use \cref{thm:3t}.
-Take $g\in K_2^G(k[t^{\pm 1}])$,
-then $g=x_1yx_2$, $x_i\in \St(k[t]))$, $y\in \St(k[t^{-1}]))$.
-Since $E(k[t])\cap E(k[t^{-1}])=E(k)$,
-we have $y\in\St(k)K_2^G(k[t^{-1}])=\St(k)$ and $x_1x_2\in\St(k)$. That is, $g\in K_2^G(k)$.
-\end{proof}
+\begin{cor} Let $G$, $k$ be as in \cref{thm:k[t]}. Then $K_2^G(k[t^{\pm 1}])=K_2^G(k)$. \end{cor}
+\begin{proof} We use \cref{thm:3t}.
+ Take $g\in K_2^G(k[t^{\pm 1}])$,
+ then $g=x_1yx_2$, $x_i\in \St(k[t]))$, $y\in \St(k[t^{-1}]))$.
+ Since $E(k[t])\cap E(k[t^{-1}])=E(k)$,
+ we have $y\in\St(k)K_2^G(k[t^{-1}])=\St(k)$ and $x_1x_2\in\St(k)$. That is, $g\in K_2^G(k)$. \end{proof}
 
 \subsection{The case of a local ring}
 For the rest of this section $A$ denotes an arbitrary commutative local ring with the maximal ideal $m$ and the residue field $k$.
@@ -491,44 +485,38 @@ Throughout this section we will employ the following notation:
  \item $B$ denotes the subring $A[t] + m[t^{-1}]$ of $R$ consisting of Laurent polynomials $f(t,t^{-1})$ whose coefficients of terms of negative degree belong to $m$;
  \item $I$ denotes the ideal $m[t, t^{-1}]$ of $R$ (which can be also considered as an ideal of $B$). \end{itemize}
 
-Consider the following commutative diagram of groups.
-\begin{equation} \label{diag:cs} \begin{tikzcd} 
-C_{B} \ar[r, hookrightarrow] \ar[d, "k^+", twoheadrightarrow] & \St(B, I) \ar[r, "\mu^{+0}" near start] \ar[d, "j^+"] & \ar[d, "i^+"] \St(B) \ar[r, "p^{+0}", twoheadrightarrow] & \St(k[t]) \ar[d, hookrightarrow, "\overline{i^+}"] \\     
-C_{R} \ar[r, hookrightarrow]                                  & \St(R, I) \ar[ur, dashrightarrow, "\varphi"] \ar[r, "\mu^\pm"' near start] & \St(R) \ar[r, "p^\pm"', twoheadrightarrow] & \St(k[t, t^{-1}]) \\ \end{tikzcd} \end{equation}
-
-Notice that by \cref{cor:k[t]inj} the map $\overline{i^+}$ in the right-hand side of the above diagram is injective.
-Invoking Tulenbaev's property~\ref{def:tlp} we also find a lifting map in the central square of the diagram.
-
-Our next result is analogous to \cite[Lemma~3.1(e)]{Tu} (cf. also with \cite[\S~2.3A]{HOM}).
+Our first result is analogous to \cite[Lemma~3.1(e)]{Tu} (cf. also with \cite[\S~2.3A]{HOM}).
 \begin{lem} \label{cor:bruhat} The Steinberg group $\St(A)$ admits the following analogue of the Bruhat decomposition:
-$$\St(A) = \UU(\Phi^+, A) \cdot \WW(\Phi, A) \cdot \UU(\Phi^+, A) \cdot \im(\St(A, m) \rightarrow \St(A)).$$ \end{lem}
-\begin{proof}
- First of all, notice that $\St(k)$ admits Bruhat decomposition for arbitrary field $k$:
+\[ \St(A) = \UU(\Phi^+, A) \cdot \WW(\Phi, A) \cdot \UU(\Phi^+, A) \cdot \im(\St(A, m) \rightarrow \St(A)).\] \end{lem}
+\begin{proof} First of all, notice that $\St(k)$ admits Bruhat decomposition for arbitrary field $k$:
  $$\St(k) = \UU(\Phi^+, k) \cdot \WW(\Phi, k) \cdot \UU(\Phi^+, k).$$
  Indeed, this is an immediate consequence of the classical Bruhat decomposition for the linear groups (see e.\,g. \cite[Theorem~4]{St-lect}) and the fact
- that $K_2^G(k)$ is central in $\St(k)$ and is generated by symbols $h_\alpha(u)$ lying in $\WW(\Phi, k)$ (cf. \cref{satz1}).
+ that $K_2^G(k)$ is central in $\St(k)$ and is generated by symbols $h_\alpha(u)$ lying in $\WW(\Phi, k)$ (cf. \cref{satz1}). 
  
- Denote the map $A \rightarrow k$ by $\pi$.
- By ??? the first factor of the decomposition coincides with $\Bigker(\pi_*)$ whereas by \cref{cor:bruhat} the product of the last three factors is mapped epimorphically onto $\St(k)$.
-\end{proof}
+ As a consequence, the first three factors in the right hand side of the decomposition are mapped epimorphically onto $\St(k)$ and the last factor coincides with $\Bigker(\pi_*)$
+ from which the assertion of the lemma follows. \end{proof}
+
+\begin{lem} \label{lem:tulinj} Assume that $G$ satisfies Tulenbaev lifting property~\ref{def:tlp}. 
+Then the map $i$ in the following commutative diagram of groups is injective.
+\begin{equation} \label{diag:cs} \begin{tikzcd} 
+C_{B} \ar[r, hookrightarrow] \ar[d, "k", twoheadrightarrow] & \St(B, I) \ar[r, "\mu_B" near start] \ar[d, "j"] & \ar[d, "i"] \St(B) \ar[r, "\pi_B", twoheadrightarrow] & \St(k[t]) \ar[d, hookrightarrow] \\     
+C_{R} \ar[r, hookrightarrow]                                & \St(R, I) \ar[ur, dashrightarrow, "\varphi"] \ar[r, "\mu_R"' near start] & \St(R) \ar[r, "\pi_R"', twoheadrightarrow] & \St(k[t, t^{-1}]) \\ \end{tikzcd} \end{equation} \end{lem}
+\begin{proof} First of all, notice that by \cref{cor:k[t]inj} the vertical map in the right-hand side of the diagram is injective.
+ Invoking Tulenbaev's property~\ref{def:tlp} we also find a lifting map $\varphi$ in the central square of the diagram.
+
+ Let $g \in \St(B)$ be an element of $\Bigker(i)$.
+ Since $g$ also lies in $\Bigker(\pi_B)$ it comes from some $\widetilde{g} \in \St(B, I)$ via $\mu_B$.
+ But $j(\widetilde{g})$ lies in $C_R$, hence, by \cref{prop:kersurj} below it comes from some $\widehat{g} \in C_B$ via $k$.
+ Finally, $g = \varphi(j(\widetilde{g})) = \varphi(k(\widehat{g})) = \mu_B(\widehat{g}) = 1,$ as claimed. \end{proof}
 
 The following result is analogous to \cite[Proposition~4.1]{Tu}.
-\begin{prop} \label{prop:kersurj} The map $k^+$ is surjective. \end{prop}
+\begin{prop} \label{prop:kersurj} Under the assumptions of \cref{lem:tulinj} the map $k$ in the diagram \eqref{diag:cs} is surjective. \end{prop}
 \begin{proof}
 %TODO: Write proof 
 \end{proof}
 
-Using a simple diagram chasing argument we are able to obtain the following result.
-\begin{cor} \label{cor:tulinj} The canonical map $i^+ \colon \St(B) \rightarrow \St(R)$ is injective. \end{cor}
-\begin{proof}
- Let $g \in \St(B^+)$ be an element of $\Bigker(i^+)$.
- Since $g$ also lies in $\Bigker(p^{+0})$ it comes from some $\widetilde{g} \in \St(B^+, I)$ via $\mu^{+0}$.
- Now $j^+(\widetilde{g})$ lies in $C_\pm$, hence, by \cref{prop:kersurj} it comes from some $\widehat{g} \in C_{+0}$ via $k^+$.
- Finally, $g = \varphi(j^+(\widetilde{g})) = \varphi(k^+(\widehat{g})) = \mu^{+0}(\widehat{g}) = 1,$ as claimed.
-\end{proof}
-
-\begin{prop}[$\Pro^1$-glueing in the local case] \label{prop:p1g} 
-Blah-blah-blah 
+The following result is analogous to \cite[Proposition~4.3]{Tu}.
+\begin{prop} \label{prop:p1g} The functors $\St$, $K_2^G$ satisfy $\Pro^1$-glueing property for arbitrary local ring $A$.
 \end{prop}
 \begin{proof}
 %TODO: Write proof 
