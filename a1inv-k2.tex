@@ -115,6 +115,7 @@
 \DeclareMathOperator{\FF}{{\mathbb F}}
 \DeclareMathOperator{\La}{{\mathcal L}}
 
+\newcommand{\catname}[1]{{\normalfont\textbf{#1}}}
 \newcommand{\id}{\mathrm{id}}
 \newcommand{\Stb}{\mathrm{St}}
 \newcommand{\Aff}{\mathbb{A}}
@@ -417,10 +418,13 @@ This is proved exactly as~\cite[Theorem 5.1]{St-poly}.
 Throughout this section $G=G(\Phi, -)$ denotes an arbitrary Chevalley group scheme of type $\Phi$.
 We also assume everywhere below that $\Phi$ is irreducible and has rank $\geq 2$.
 
-\begin{dfn} \label{def:p1g} We say that the Steinberg group functor $\St(-)$ satisfies \emph{$\Pro^1$-glueing property} for a ring $A$ if the following sequence of groups is exact in the middle term
-\[ \begin{tikzcd} \St(A) \ar[r, hookrightarrow, "\Delta_A"] & \St(A[t]) \times \St(A[t^{-1}]) \ar[r, "\pm_A"] & \St(A[t, t^{-1}]). \end{tikzcd} \]
-Here we denote by $\Delta_A$ the split injection $g \mapsto (g, g)$ and $\pm_A$ denotes the map $(g, h) \rightarrow g \cdot h^{-1}$.
-\end{dfn}
+\begin{dfn} \label{def:p1g} Let $F$ be a group-valued functor from $\catname{CRings}$ to $\catname{Groups}$ and let $A$ be a commutative ring.
+Consider the following commutative diagram of rings.
+\[ \begin{tikzcd} A \ar[r, "i_+"] \ar[d, "i_-"'] & A[t] \ar[d, "j_+"] \\ A[t^{-1}] \ar[r, "j_-"] & A[t, t^{-1}] \end{tikzcd} \]
+We say that $F$ satisfies the \emph{$\Pro^1$-glueing property for $A$} if the following sequence of groups is exact in the middle term:
+\[ \begin{tikzcd} F(A) \ar[r, hookrightarrow, "\Delta_A"] & F(A[t]) \times F(A[t^{-1}]) \ar[r, "\pm_A"] & F(A[t, t^{-1}]). \end{tikzcd} \]
+Here $\Delta_A$ denotes the (split injective) diagonal map $F(i_+, i_-)$ and $\pm_A$ is a shorthand for $m \circ \left(F(j_+) \pi_1, inv \circ F(j_-)\pi_2\right)$ 
+where $m$ and $inv$ denote the morphisms of inversion and multiplication in the group $F(A[t, t^{-1}])$. \end{dfn}
 
 The main result of this section is the following theorem which plays a crucial role in the sequel.
 \begin{thm} \label{thm:p1} The Steinberg group functor $\St(-)$ satisfies $\Pro^1$-glueing property for an arbitrary commutative ring $A$. \end{thm}
@@ -455,11 +459,11 @@ The following statements are true.
 \end{proof}
 
 \begin{cor}\label{cor:k[t]inj}
-Let $G$, $k$ be as in \cref{thm:k[t]}. 
-Then $\St(k[t])\to\St(k[t^{\pm 1}])$ is injective and $\St(k[t])\cap\St(k[t^{-1}])=\St(k)$ inside $\St(k[t^{\pm 1}])$.
+Let $G$, $k$ be as in the above theorem. Then the functor $\St(-)$ satisfies $\Pro^1$-glueing for $k$.
+%Then $\St(k[t])\to\St(k[t^{\pm 1}])$ is injective and $\St(k[t])\cap\St(k[t^{-1}])=\St(k)$ inside $\St(k[t^{\pm 1}])$.
 \end{cor}
 \begin{proof}
-Clearly, $g\in\ker(\St(k[t])\to\St(k[t^{\pm 1}]))$ implies $g\in K_2^G(k[t])$. Since $K_2^G(k[t])=K_2^G(k)$,
+Clearly, $g\in\Bigker(\St(k[t])\to\St(k[t^{\pm 1}]))$ implies $g\in K_2^G(k[t])$. Since $K_2^G(k[t])=K_2^G(k)$,
 and  there is a section $K_2^G(k[t^{\pm 1}])\to K_2^G(k)$, the map is injective.
 Second claim: take $g\in \St(k[t])\cap\St(k[t^{-1}])$.
 Then the image $\phi(g)$ belongs to $E(k)=E(k[t])\cap E(k[t^{-1}])$, and
