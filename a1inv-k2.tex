@@ -361,17 +361,24 @@ if for every pull-back square \eqref{msq} the following lifting problem has a so
 
 
 \subsection{The action of torus}
-Throughout this subsection $G=G_\ad$ denotes a split simple Chevalley group of adjoint type with the root system $\Phi$ of rank $\geq 2$.
-Denote by $T = T_\ad$ the torus of $G$ and by $T(R)$ its group of $R$-points.
+Throughout this subsection $G=G_\ad(\Phi, -)$ denotes a split simple Chevalley group scheme of adjoint type of rank $\ell \geq 2$ with a fixed (algebraic) torus $T= T_\ad$.
 
-We identify the root lattice $X^*(T) = \Hom(T, \Gm)$ with the lattice $\ZZ \Phi$ in the obvious way.
-In particular, for $\alpha \in \Phi$ we denote by $\alpha_R$ the corresponding map $T(R) \rightarrow R^*$ on $R$-points.
+We identify the lattices $X^*(T) = \Hom(T, \Gm)$, $X_*(T) = \Hom(\Gm, T)$ with the lattices $\ZZ \Phi$, $\ZZ \Phi^\vee$ in the obvious way.
+In particular, for $\alpha \in \Phi$ (resp. $\alpha^\vee \in \Phi^\vee$) we denote by $\alpha(R)$ (resp. ${\alpha^\vee}(R)$) the corresponding map $T(R) \to R^*$ (resp. $R^* \to T(R)$) on $R$-points.
 An element $h \in T(R)$ defines a permutation of the set $\mathcal{X}_{\Phi, R}$ of generators of $\St(R)$ as follows:
-\begin{equation} h \cdot x_\alpha(\xi) = x_\alpha(\alpha_R(h) \cdot \xi). \end{equation}
+\begin{equation} h \cdot x_\alpha(\xi) = x_\alpha(\alpha(R)(h) \cdot \xi). \end{equation}
 
-Notice that $h$ preserves the defining relations $\mathcal{R}_{\Phi, R}$ of the Steinberg group (and thus, determines a permutation of $\mathcal{R}_{\Phi, R}$).
+Notice that $h$ preserves the defining relations $\mathcal{R}_{\Phi, R}$ of the Steinberg group (in fact, it even determines a permutation of $\mathcal{R}_{\Phi, R}$).
 Indeed, the assertion is immediate for relation~\eqref{rel:add}.
-Verification of the fact that $h$ preserves~\eqref{rel:CCF} is a routine computation which should use the fact that for $\alpha, \beta \in \ZZ \Phi$ one has $(\alpha+\beta)_R(h) = \alpha_R(h) \cdot \beta_R(h)$.
+Verification of the fact that $h$ preserves~\eqref{rel:CCF} is a routine computation which should use the fact that for 
+$\alpha, \beta \in \ZZ \Phi$ one has $(\alpha+\beta)(R)(h) = \alpha(R)(h) \cdot \beta(R)(h)$.
+
+The prototypical example which motivates the above construction is as follows.
+\begin{example} Let $A$ be an arbitarary ring, $R = A[t, t^{-1}]$ be a ring of Laurent polynomials over $A$ and $\Phi$ be a root system of rank $\ell$ with the basis of simple roots $\Pi=\{\alpha_1, \ldots, \alpha_\ell\}$.
+Then there is a injective group homomorphism $\ZZ^\ell \subseteq T^{ad}(R)$ sending the standard basis vector 
+$e_i \in \ZZ^\ell$, $1\leq i\leq \ell$ to ${\alpha_i^\vee}(R)(t)$.
+\end{example}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
