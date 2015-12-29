@@ -361,22 +361,27 @@ if for every pull-back square \eqref{msq} the following lifting problem has a so
 
 
 \subsection{The action of torus}
-Throughout this subsection $G=G_\ad(\Phi, -)$ denotes a split simple Chevalley group scheme of adjoint type of rank $\ell \geq 2$ with a fixed (algebraic) torus $T= T_\ad$.
+Our notation and conventions follows~\cite[\S~4]{VavWE}.
+Let $\Phi$ be an irreducible root system with some fixed basis of simple roots $\Pi = \{\alpha_1, \ldots, \alpha_\ell\}$.
+We denote by $\Phi^\vee$ the \emph{dual root system of $\Phi$} consisting of vectors $\alpha^\vee = 2\alpha/(\alpha, \alpha)$, $\alpha\in \Phi$.
+As usual, $P(\Phi^\vee)$ denotes the lattice spanned by the \emph{fundamental weights $\varpi_i$}.
+Recall that $\varpi_i$ are uniquely determined by relations $\langle\varpi_i, \alpha_j^\vee \rangle = (\varpi_i, \alpha_j) = \delta_{ij}.$
 
-We identify the lattices $X^*(T) = \Hom(T, \Gm)$, $X_*(T) = \Hom(\Gm, T)$ with the lattices $\ZZ \Phi$, $\ZZ \Phi^\vee$ in the obvious way.
-In particular, for $\alpha \in \Phi$ (resp. $\alpha^\vee \in \Phi^\vee$) we denote by $\alpha(R)$ (resp. ${\alpha^\vee}(R)$) the corresponding map $T(R) \to R^*$ (resp. $R^* \to T(R)$) on $R$-points.
-An element $h \in T(R)$ defines a permutation of the set $\mathcal{X}_{\Phi, R}$ of generators of $\St(R)$ as follows:
-\begin{equation} h \cdot x_\alpha(\xi) = x_\alpha(\alpha(R)(h) \cdot \xi). \end{equation}
+Notice that for $\varpi \in P(\Phi^\vee)$ and $\beta \in \ZZ \Phi$ one has $(\varpi, \beta) \in \ZZ$.
+Consequently, for $\varepsilon \in R^*$ and $\varpi \in P(\Phi^\vee)$ the identity $\chi_{\varpi, \varepsilon}(\beta) = \varepsilon ^ {(\varpi, \beta)}$
+gives a well-defined character $\chi_{\varpi, \varepsilon} \in \Hom(\ZZ \Phi, R^*)$.
 
-Notice that $h$ preserves the defining relations $\mathcal{R}_{\Phi, R}$ of the Steinberg group (in fact, it even determines a permutation of $\mathcal{R}_{\Phi, R}$).
-Indeed, the assertion is immediate for relation~\eqref{rel:add}.
-Verification of the fact that $h$ preserves~\eqref{rel:CCF} is a routine computation which should use the fact that for 
-$\alpha, \beta \in \ZZ \Phi$ one has $(\alpha+\beta)(R)(h) = \alpha(R)(h) \cdot \beta(R)(h)$.
+Consider the action of $H=\Hom(\ZZ \Phi, R^*)$ on the set of generators $\mathcal{X}_{\Phi, R}$ of the Steinberg group $\St(R)$ defined by
+\begin{equation} \chi \cdot x_\alpha(\xi) = x_\alpha(\chi(\alpha) \cdot \xi),\ \chi \in H,\ \alpha\in \Phi,\ \xi \in R. \end{equation}
+Since $\chi$ is a character, the above action preserves the set of Steinberg relations $\mathcal{R}_{\Phi, R}$ and,
+thus, gives a well-defined action of $H$ on $\St(R)$.
 
-The prototypical example which motivates the above construction is as follows.
-\begin{example} Let $A$ be an arbitarary ring, $R = A[t, t^{-1}]$ be a ring of Laurent polynomials over $A$ and $\Phi$ be a root system of rank $\ell$ with the basis of simple roots $\Pi=\{\alpha_1, \ldots, \alpha_\ell\}$.
-Then there is a injective group homomorphism $\ZZ^\ell \subseteq T^{ad}(R)$ sending the standard basis vector 
-$e_i \in \ZZ^\ell$, $1\leq i\leq \ell$ to ${\alpha_i^\vee}(R)(t)$.
+\begin{example} The principal example which motivates the above construction is as follows.
+Let $A$ be a ring, take $R = A[t, t^{-1}]$ to be the ring of Laurent polynomials over $A$ and choose some vertex labeled $i$ on the Dynkin diagram of $\Phi$.
+Since $t \in R^*$ we can consider the automorphism $\sigma_i$ of $\Stb(\Phi, R)$ given by $\sigma_i = \chi_{\varpi_i, t}$.
+It is easy to see that 
+\begin{equation}\sigma_i(x_\alpha(\xi)) = x_\alpha(t^{m_i(\alpha)} \cdot \xi),\end{equation}
+where $m_k(\alpha)$ denotes the coefficient in the expansion of $\alpha$ in $\Pi$, i.\,e. $\alpha = \sum m_k(\alpha) \alpha_k$.
 \end{example}
 
 
