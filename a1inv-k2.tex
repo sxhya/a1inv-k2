@@ -376,173 +376,6 @@ if for every pull-back square \eqref{msq} the following lifting problem has a so
 \end{thm}
 \begin{proof} Follows by the same argument as \cite[Theorem~2.1]{Tu} or \cite[Theorem~2]{S15} \end{proof}
 
-\subsection{Steinberg group of type \texorpdfstring{$\rA_3$}{A\textthreeinferior}}
-
-The main goal of this subsection is to show that Tulenbaev's \cite[Lemma~2.3]{Tu} remains valid for the linear Steinberg group of rank $\geq 3$.
-In order to do this we will need yet another presentation for the relative linear Steinberg group (cf. \cite[Definitions~3.3 and 3.7]{S15}).
-\begin{dfn}
- The relative Steinberg group $\Stb^*(n,R, I)$ is the group defined by the following two
- families generators and four families of relations.
- \begin{itemize}
-  \item Generators:
-  \begin{enumerate}
-  \item $X^1(u, v)$, where $u \in \EE(n,R) \cdot e_1$, $v\ \in I^n$ such that $v^t \cdot u = 0$;
-  \item $X^2(u, v)$, where $u \in I^n$, $v \in \EE(n,R) \cdot e_1$ such that $v^t \cdot u = 0$.
- \end{enumerate}
-  Notice that $\phi$ maps both $X^1(u, v)$ and $X^2(u, v)$ to $T(u, v) = e + u \cdot v^t \in \EE(n, R, I)$.
-  \item Relations:
-  \begin{enumerate}
-  \item $X^1(u, v) \cdot X^1(u, w) = X^1(u, v+w)$, $u \in \EE(n,R) \cdot e_1$, $v, w \in I^n$;
-  \item $X^2(u, v) \cdot X^2(w, v) = X^2(u+w, v)$, $u, w \in I^n$, $v \in \EE(n,R) \cdot e_1$;
-  \item ${}^{X^\sigma(u^2, v^2)} \! X^\tau(u^1, v^1) = X^\tau(T(u^2, v^2) \cdot u^1, T(v^2, u^2)^{-1} \cdot v^1)$, $\sigma, \tau = 1,2$;
-  \item $X^1(g \cdot e_1, g^* \cdot be_2) = X^2(g \cdot be_1, g^* \cdot e_2)$ where $b\in I$ and $g^* = {g^t}^{-1}$ denotes the contragradient matrix.
- \end{enumerate}
- \end{itemize}
-\end{dfn}
-
-\begin{lem}
- The groups $\Stb^*(n, R, I)$ and $\Stb(n, R, I)$ are isomorphic.
-\end{lem}
-\begin{proof}
- {\bf TODO:}
-\end{proof}
-
-The next step of the proof is to is construct certain elements in $\Stb(n, R)$ similar to Tulenbaev's elements $X_{u,v}(a)$ see~\cite[\S~1]{Tu}.
-
-Let $v\in R^n$ be a column.
-Denote by $O(v)$ the submodule of $R^n$ consisting of all columns $w$ such that $w^t \cdot v = 0$.
-A column $w\in R^n$ is called \emph{$v$-decomposable} if it can be presented as a finite sum $w = \sum\limits_{i=1}^p w^i$ such that each $w^i$ has at least two zero entries and $v^t \cdot w^i = 0$.
-Denote by $D(v)$ the submodule of $O(v)$ consisting of all $v$-decomposable columns.
-For a column $v\in R^n$ denote by $I(v)$ the ideal of $R$ spanned by its entries $v_1,\ldots, v_n$.
-
-Let $u,v,w\in R^n$ be columns such that $w^tv=0$.
-It is easy to check (cf.~\cite[Lemma~3.2]{Ka}) that
-$$(uv)\cdot w = \sum_{i<j}w_{ij},\ \text{where}\ w_{ij} = (w_iu_j - w_ju_i)(v_je_i - v_ie_j)\in{}\!A^n.$$
-The above decomposition is called the \emph{canonical} decomposition of $(uv)\cdot w$.
-In particular, this shows that the column $a\cdot w$ is always $v$-decomposable for $a\in I(v)$, $w \in O(v)$, i.\,e. $I(v) \cdot O(v) \subseteq D(v)$.
-It is also straightforward to check that $D(v)\subseteq D(bv)$, $b \cdot D(v) \subseteq D(v)$ for $b \in R$.
-
-Denote by $B^1$ the subset of $R^n \times R^n \times R$ consisting of triples $(u, v, a)$ such that $v^t \cdot u = 0$, $v \in D(u)$, $a \in I(u)$.
-Denote by $B^2$ the set consisting of triples $(v, u, a)$ such that $(u, v, a) \in B^1$.
-
-\begin{lem} \label{lem:Zfacts}
-Assume that $n \geq 4$.
-One can define two families of elements $Z^\tau(u, v, a)$, $\tau=1,2$ of the group $\Stb(n, R)$ parametrized by $(u, v, a) \in B^\tau$ satisfying the following properties:
- \begin{enumerate}
-  \item $\phi(Z^\tau(u, v, a)) = e + uav^t \in \EE(n, R)$, $(u,v,a) \in B^\tau$;
-  \item $Z^{1}(u, v + w, a) = Z^{1}(u, v, a) \cdot Z^{1}(u, w, a)$;
-  \item $Z^{2}(v + w, u, a) = Z^{2}(v, u, a) \cdot Z^{2}(w, u, a)$;
-  \item for $\tau=1,2$ and $b \in R$ if $(u,vb,a), (ub, v, a) \in B^\tau$ then one has
-   $$Z^\tau(u,vb, a) = Z^\tau(u, v, ab) = Z^\tau (ub, v, a);	$$
-  \item ${}^{g}\! Z^{\tau}(u, v, a) = Z^{\tau}(\phi(g) \cdot u, \phi(g)^* \cdot v, a)$, $\tau = 1,2$, $g \in \St(n, R)$.
- \end{enumerate}
-\end{lem}
-\begin{proof}
-One constructs the elements $Z^1(u,v,a)$ in exactly the same way as Tulenbaev constructs his elements $X_{u,v}(a)$ (see definitions preceding~\cite[Lemma~1.2]{Tu}).
-Indeed, set \begin{equation} Z^1(v, w, a) = \prod\limits_{k=1}^p X(v, a \cdot w^k), \quad Z^2(w, v, a) = \prod\limits_{k=1}^p X(a \cdot w^k, v). \end{equation}
-where $X(u, v)$ denotes the elements defined by Tulenbaev before~\cite[Lemma~1.1]{Tu}.
-
-The correctness of this definition and all the assertions of the lemma (with the exception of the last one in the case $n=4$) can be proved by the same token as in~\cite[Lemma~1.3]{Tu}.
-%TODO: Add more details
-\end{proof}
-
-For the rest of this section $a$ denotes a nonnilpotent element of $R$ and $\lambda_a \colon R \rightarrow R_a$ is the morphism of principal localization at $a$.
-\begin{lem} \label{lem:rk3rels} For any $g \in \EE(n, R_a)$ there exist $u, v \in R^n$ and sufficiently large natural numbers $k$, $m$ such that the following facts hold:
-\begin{enumerate}
- \item $\lambda_a(u) = g \cdot a^k e_1$, $\lambda_a(v) = g^* \cdot a^k e_2$ and $u^t \cdot v = 0$;
- \item $(u, v, a^m) \in B^1 \cap B^2$;
- \item for $b \in R$ divisible by some sufficiently large power of $a$ one has
-             $$Z^1(u, b \cdot v, a^m) = Z^2(b \cdot u, v, a^m).$$
-\end{enumerate}
-\end{lem}
-\begin{proof}
-It is straightforward to choose $u$ and $v$ satisfying the first requirement of the lemma.
-We can even choose $u$, $v$ in such a way that $u \in D(v)$ and $v \in D(u)$.
-Indeed, notice that $I(u) = a^{k_1}$, $I(v) = a^{k_2}$ for some natural $k_1$, $k_2$ hence for $u' = a^{k_2} \cdot u$ and $v' = a^{k_1} \cdot v$ one has
-$$u' \in I(v) \cdot O(v) \subseteq D(v) \subseteq D(v'),\quad v' \in I(u) \cdot O(u) \subseteq D(u) \subseteq D(u'),$$
-as required.
-
-In fact, we can also choose two extra columns $x, y \in R^n$ and a large natural $p$ in such a way that vectors $u,v,x,y$ additionally satisfy the following properties
-\begin{equation*} \lambda_a(x) = g^* \cdot a^k e_3,\ \lambda_a(y) = g \cdot a^k e_3,\ y^t \cdot x = a^p \in R, \end{equation*}
-\begin{equation*} u^t \cdot x = 0,\ u^t \cdot v = 0,\ y^t \cdot v = 0, \end{equation*}
-\begin{equation*} (u, x, a^m) \in B^1,\ (y, v, a^m) \in B^2. \end{equation*}
-
-Now direct computation using \cref{lem:Zfacts} shows that
- \begin{multline*}
- Z^2(a^{m+p}b \cdot u, v, a^m) = Z^2(b \cdot (e+a^m \cdot ux^t)y, (e-a^m \cdot xu^t)v,a^m) \cdot Z^2(-by,v,a^m) = \\
-  = [Z^1(u, x, a^m), Z^2(b \cdot y, v, a^m)] = \\
-    = Z^1(u,x,a^m) \cdot Z^1((e+a^mb \cdot yv^t)u,-(e- a^mb \cdot vy^t)x,a^m) = Z^1(u,a^{m+p}b \cdot v,a^m), \qedhere
- \end{multline*}
-hence the third assertion of the lemma follows.
-\end{proof}
-
-\begin{cor}\label{cor:tlpA3} For $G=G(\rA_3, -)$ the Steinberg group functor $\St(R)$ satisfies Tulenbaev lifting property~\ref{def:tlp}.
-
-\end{cor}
-\begin{proof} Follows from \cref{lem:rk3rels} by the same token as in \cite[Lemma~2.3]{Tu}. \end{proof}
-
-
-
-\subsection{The action of torus}
-Our notation and conventions follows~\cite[\S~4]{VavWE}.
-Let $\Phi$ be an irreducible root system with some fixed basis of simple roots $\Pi = \{\alpha_1, \ldots, \alpha_\ell\}$.
-We denote by $\Phi^\vee$ the \emph{dual root system of $\Phi$} consisting of vectors $\alpha^\vee = 2\alpha/(\alpha, \alpha)$, $\alpha\in \Phi$.
-As usual, $P(\Phi^\vee)$ denotes the lattice spanned by the \emph{fundamental weights $\varpi_i$}.
-Recall that $\varpi_i$ are uniquely determined by relations $\langle\varpi_i, \alpha_j^\vee \rangle = (\varpi_i, \alpha_j) = \delta_{ij}.$
-
-Notice that for $\varpi \in P(\Phi^\vee)$ and $\beta \in \ZZ \Phi$ one has $(\varpi, \beta) \in \ZZ$.
-Consequently, for $\varepsilon \in R^*$ and $\varpi \in P(\Phi^\vee)$ the identity $\chi_{\varpi, \varepsilon}(\beta) = \varepsilon ^ {(\varpi, \beta)}$
-gives a well-defined character $\chi_{\varpi, \varepsilon} \in \Hom(\ZZ \Phi, R^*)$.
-
-Consider the action of $H=\Hom(\ZZ \Phi, R^*)$ on the set of generators $\mathcal{X}_{\Phi, R}$ of the Steinberg group $\St(R)$ defined by
-\begin{equation} \chi \cdot x_\alpha(\xi) = x_\alpha(\chi(\alpha) \cdot \xi),\ \chi \in H,\ \alpha\in \Phi,\ \xi \in R. \end{equation}
-Since $\chi$ is a character, the above action preserves the set of Steinberg relations $\mathcal{R}_{\Phi, R}$ and,
-thus, gives a well-defined action of $H$ on $\St(R)$.
-
-\begin{example} The principal example which motivates the above construction is as follows.
-Let $A$ be a ring, take $R = A[t, t^{-1}]$ to be the ring of Laurent polynomials over $A$ and let $\alpha_i \in \Pi$ be some simple root.
-Since $t \in R^*$ we can consider the automorphism $\sigma_i$ of $\Stb(\Phi, R)$ given by $\sigma_i = \chi_{\varpi_i, t}$.
-It is easy to see that 
-\begin{equation}\sigma_i(x_\alpha(\xi)) = x_\alpha(t^{m_i(\alpha)} \cdot \xi),\end{equation}
-where $m_k(\alpha)$ denotes the coefficient in the expansion of $\alpha$ in $\Pi$, i.\,e. $\alpha = \sum m_k(\alpha) \alpha_k$.
-\end{example}
-
-Our next goal is to define an analogue of $\sigma_i$ for the group $\St(A[t])$.
-Obviously, we cannot expect such map to be automorphism or even be defined on the whole group $\St(A[t])$.
-However, it turns out that in some cases it is still possible to define it on a certain subgroup of $\St(A[t])$.
-
-\begin{lem} \label{lem:sigma}
- Assume that $A$ is a local commutative ring, $G = G(\Phi, -)$ and $(\Phi, i)$ is as follows:
- \begin{itemize}
-  \item $\Phi = \rA_\ell$, $\ell \geq 3$, $i=1$;
-  \item $\Phi$ is classical of rank $\ell\geq 4$, $i=1$;
-  \item $\Phi = \rE_\ell$, $\ell=6,7,8$, $i=\ell$.
- \end{itemize}
-
- Then there exists subgroups $N_i^+$, $N_i^-$ of $\St(A[t])$ and a homomorphism $\sigma_i' \colon N_i^+ \to N_i^-$ 
- compatible with the action of $\sigma_i$ i.\,e. such that the following diagram commutes:
- \[\begin{tikzcd} N_i^+ \arrow[r, "\lambda_t^*"] \arrow[d, "\sigma_i'"]          &  \St(A[t, t^{-1}]) \ar[d, "\sigma_i"] \\
-                  N_i^- \arrow[r, "\lambda_t^*"] &  \St(A[t, t^{-1}]) \end{tikzcd}\]
-
-\end{lem}
-We first prove the assertion of the lemma in the linear case and then deduce all the other cases from it.
-
-In the case when $m_i(\widetilde{\alpha})=1$ the subgroups $N_i^\pm$ can be constructed explicitly as follows.
-For $\alpha_i\in\Pi$ consider the subgroup $P_i^+$ (resp. $P_i^-$) of $\St(A)$ generated by $x_\alpha(\xi)$ for $\xi \in A$, $\alpha\in\Sigma_i^+ \cup \Delta_i$ (resp. $\alpha\in\Sigma_i^- \cup \Delta_i$).
-Now, let $N_{i}^+$ (resp. $N_i^-$) be the subgroup consisting of $g \in \St(A[t])$ such that $g(0) \in P_i^+$ (resp. $g(0) \in P_i^-$).
-
-\begin{proof}[Proof in the case $\Phi=\rA_\ell$, $\ell\geq 3$.]
-
-Denote by $i_\ell$ the natural map $\Stb^{G(\Delta_1)}(A)\to \Stb^{G(\Phi)}(A)$. Notice that $\Delta_1 \cong \rA_{\ell-1}$.
-By the Levi decomposition $P_1^+$ is isomorphic to $\UU(\Sigma_1, A) \rtimes \im(i_\ell)$.
-
-The stable rank of $A$ equals $1$ hence from the injective stability theorem for $K_2$ (see~\cite[Theorem~4.1]{ST76}) it follows that the map $i_\ell$ is injective for $\ell \geq 3$
-and that $P_1^+ \cong \UU(\Sigma_1, A) \rtimes \Stb^{G(\Delta_1)}(A)$.
-
-By \cref{item:st-semi} $\St(A[t]) = \St(A) \ltimes \St(A[t], tA[t])$ hence $N_1^\pm = P_1^\pm \ltimes \St(A[t], tA[t])$.
-Define $\sigma_1'$ on the generators $X^1(u, v)$, $X^2(v, u)$ of $\St(A[t], tA[t])$ ($u \in \EE(\ell+1, A[t])\cdot e_1$, $v\in {tA[t]}^{\ell+1}$) by
-$$ \sigma_1'(X^1(u, v)) = Z^1()$$
-\end{proof}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -581,6 +414,8 @@ This is proved exactly as~\cite[Theorem 5.1]{St-poly}.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %\section{Quillen-Suslin lgp, Zariski gluing, Nisnevich gluing, $S$-lemma}
+
+\section{Steinberg group of type \texorpdfstring{$\rA_3$}{A\textthreeinferior}} \input{another.tex}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -647,6 +482,8 @@ and $\im(j_+i_+) = \im (j_-i_-) = \im(j_+) = \im(j_-)$. \end{proof}
  Since $E(k[t])\cap E(k[t^{-1}])=E(k)$,
  we have $y\in\St(k)K_2^G(k[t^{-1}])=\St(k)$ and $x_1x_2\in\St(k)$. That is, $g\in K_2^G(k)$. \end{proof}
 
+\subsection{The action of torus} \input{torus.tex} 
+ 
 \subsection{The case of a local ring}
 For the rest of this section $A$ denotes an arbitrary commutative local ring with the maximal ideal $m$ and the residue field $k$.
 We denote by $\pi$ the canonical projection $A \rightarrow k$.
