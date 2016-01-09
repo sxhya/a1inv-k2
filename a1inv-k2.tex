@@ -303,7 +303,7 @@ This uses~\eqref{plan:QSlgp},~\eqref{plan:k[tn]} and~\eqref{plan:Nglu}.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Steinberg groups of Chevalley groups: preliminaries}
+\section{Steinberg groups: preliminaries}
 
 %TODO: Definition, functoriality, "congruence subgroups"{} $\St(\Phi,R,I)$ versus $\ker(\St(\Phi,R)\to\St(\Phi,R/I))$.
 
@@ -376,7 +376,6 @@ if for every pull-back square \eqref{msq} the following lifting problem has a so
 \end{thm}
 \begin{proof} Follows by the same argument as \cite[Theorem~2.1]{Tu} or \cite[Theorem~2]{S15} \end{proof}
 
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Decomposition theorems for \texorpdfstring{$\St(A[t^{\pm 1}])$}{St(A[t, t\textminussuperior\textonesuperior])} and \texorpdfstring{$\St\bigl(A((t))\bigr)$}{St(A((t)))}.}
@@ -415,7 +414,98 @@ This is proved exactly as~\cite[Theorem 5.1]{St-poly}.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %\section{Quillen-Suslin lgp, Zariski gluing, Nisnevich gluing, $S$-lemma}
 
-\section{Steinberg group of type \texorpdfstring{$\rA_3$}{A\textthreeinferior}} \input{another.tex}
+\section{Steinberg groups: another presentation}
+
+\subsection{Presentation of \texorpdfstring{$\Stb(4, R)$}{St(4, R)}} \label{sec:stbA3} \input{another.tex}
+
+\subsection{Application: centrality of \texorpdfstring{$K_2$}{K\texttwoinferior} in the simply-laced case}
+
+%Write how one can deduce Tulenbaev lifting property / centrality of K_2 in the simply laced case and rank >= 3 from this presentation
+
+\subsection{Application: the automorphisms \texorpdfstring{$\sigma_i$}{\textsigma\textiinferior}} \label{sec:sigma}
+Our notation and conventions follows~\cite[\S~4]{VavWE}.
+Let $\Phi$ be an irreducible root system with some fixed basis of simple roots $\Pi = \{\alpha_1, \ldots, \alpha_\ell\}$.
+We denote by $\Phi^\vee$ the \emph{dual root system of $\Phi$} consisting of vectors $\alpha^\vee = 2\alpha/(\alpha, \alpha)$, $\alpha\in \Phi$.
+As usual, $P(\Phi^\vee)$ denotes the lattice spanned by the \emph{fundamental weights $\varpi_i$}.
+Recall that $\varpi_i$ are uniquely determined by relations $\langle\varpi_i, \alpha_j^\vee \rangle = (\varpi_i, \alpha_j) = \delta_{ij}.$
+
+Notice that for $\varpi \in P(\Phi^\vee)$ and $\beta \in \ZZ \Phi$ one has $(\varpi, \beta) \in \ZZ$.
+Consequently, for $\varepsilon \in R^*$ and $\varpi \in P(\Phi^\vee)$ the identity $\chi_{\varpi, \varepsilon}(\beta) = \varepsilon ^ {(\varpi, \beta)}$
+gives a well-defined character $\chi_{\varpi, \varepsilon} \in \Hom(\ZZ \Phi, R^*)$.
+
+Consider the action of $H=\Hom(\ZZ \Phi, R^*)$ on the set of generators $\mathcal{X}_{\Phi, R}$ of the Steinberg group $\St(R)$ defined by
+\begin{equation} \chi \cdot x_\alpha(\xi) = x_\alpha(\chi(\alpha) \cdot \xi),\ \chi \in H,\ \alpha\in \Phi,\ \xi \in R. \end{equation}
+Since $\chi$ is a character, the above action preserves the set of Steinberg relations $\mathcal{R}_{\Phi, R}$ and,
+thus, gives a well-defined action of $H$ on $\St(R)$.
+
+\begin{example} The principal example which motivates the above construction is as follows.
+Let $A$ be a ring, take $R = A[t, t^{-1}]$ to be the ring of Laurent polynomials over $A$ and let $\alpha_i \in \Pi$ be some simple root.
+Since $t \in R^*$ we can consider the automorphisms $\sigma_i^+$ and $\sigma_i^-$ of $\Stb(\Phi, R)$ given by $\sigma_i^+ = \chi_{\varpi_i, t}$, $\sigma_i^- = \chi_{\varpi_i, t^{-1}}$.
+It is easy to see that 
+\begin{equation}\sigma_i^\pm(x_\alpha(\xi)) = x_\alpha(t^{\pm m_i(\alpha)} \cdot \xi),\end{equation}
+where $m_k(\alpha)$ denotes the coefficient in the expansion of $\alpha$ in $\Pi$, i.\,e. $\alpha = \sum m_k(\alpha) \alpha_k$.
+\end{example}
+
+One of the key steps of our proof of Suslin lemma for $K_2$ is to define an analogue of $\sigma_i$ for the group $\St(A[t])$.
+Of course, we cannot expect such map to be automorphism or even be defined on the whole group $\St(A[t])$.
+However, it turns out that for certain $i$ is still possible to define certain subgroups of $\St(A[t])$ and the maps modeling $\sigma_i$ between them.
+First, we settle the case $\Phi=\rA_3$ invoking the presentation obtained in \ref{sec:stbA3}.
+Then we study the general case using the Curtis-Tits presentation.
+
+\begin{lem} \label{lem:sigma}
+ Let $A$ be a local commutative ring, $G = G(\Phi, -)$ where $\Phi$ is an irreducible root system.
+ Assume that on the Dynkin diagram of $\Phi$ one can find an endnode numbered $i$ such that $i$ is contained in a subdiagram of type $\rA_3$.
+
+ Then there exists subgroups $N_i^+$, $N_i^-$ of $\St(A[t])$ and homomorphisms $\widetilde{\sigma}_i^+ \colon N_i^+ \to N_i^-$, $\widetilde{\sigma}_i^-\colon N_i^- \to N_i^+$
+ compatible with the action of $\sigma_i^\pm$ i.\,e. such that the following diagram commutes.
+ \[\begin{tikzcd} N_i^\pm \arrow[r, "\lambda_t^*"] \arrow[d, "\widetilde{\sigma}_i^\pm"]          &  \St(A[t, t^{-1}]) \ar[d, "\sigma_i^\pm"] \\
+                  N_i^\mp \arrow[r, "\lambda_t^*"] &  \St(A[t, t^{-1}]) \end{tikzcd}\]
+
+\end{lem}
+
+\begin{proof}[Proof for $\Phi=\rA_\ell$, $\ell\geq 3$ and $i=1$.]
+ For $\alpha_i\in\Pi$ denote by $P_i^+$ (resp. $P_i^-$) the subgroup of $\St(A)$ generated by 
+ $x_\alpha(\xi)$ for $\xi \in A$, $\alpha\in\Sigma_i^+ \cup \Delta_i$ (resp. $\alpha\in\Sigma_i^- \cup \Delta_i$).
+
+ First, we define the subgroups $N_i^\pm$ (this definition also works for $\Phi$ such that $m_i(\widetilde{\alpha})=1$).
+ Define $N_{i}^+$ (resp. $N_i^-$) to be the subgroup consisting of $g \in \St(A[t])$ such that $g(0) \in P_i^+$ (resp. $g(0) \in P_i^-$).
+
+ Denote by $j_\ell$ the natural map $\Stb(\Delta_1, A)\to \Stb(\Phi, A)$.
+ By the Levi decomposition $P_1^\pm$ is isomorphic to $\UU(\Sigma_1^\pm, A) \rtimes \im(j_\ell)$.
+
+ The stable rank of $A$ equals $1$ hence from the injective stability theorem for $K_2$ (see~\cite[Theorem~4.1]{ST76}) it follows that the map $j_\ell$ is injective for $\ell \geq 3$
+ and that $P_1^\pm = \UU(\Sigma_1^\pm, A) \rtimes \Stb(\Delta_1,A)$.
+ Clearly, there exists a unique group homomorphism $\sigma_1^\pm \colon P_1^\pm \to \St(\Phi, A[t])$ acting identically on $\Stb(\Delta_1, A)$ and sending
+ any generator $x_\alpha(\xi) \in \UU(\Sigma_1^\pm, A)$ (i.\,e. $\alpha\in\Sigma_1^\pm$) to $x_\alpha(t\cdot \xi)$.
+
+ 
+ Set $H=\St(A[t], tA[t])$.
+ By \cref{item:st-semi} we have $\St(A[t]) = \St(A) \ltimes H$ hence $N_1^\pm \cong P_1^\pm \ltimes H.$
+ Define the map $\widetilde{\sigma}^\pm_1 \colon H \to \St(A[t])$ on the generators of $\St(A[t], tA[t])$ as follows ?????.
+ %TODO: Fill in the gap using another presentation for relative (!) linear Steinberg groups of rank 3 
+ A routine check shows that the defining relations ?????? of $H$ are satisfied and that $\sigma_1^\pm$ preserves the action of $P_1^\pm$ on $H$.
+ Thus, we obtain a well-defined map $\sigma_1^\pm:N_i^\pm \to \St(A[t])$ fitting into the above commutative diagram.
+ The fact that the image of $\sigma_1^\pm$ is contained in $N_i^\mp$ is obvious. 
+ \renewcommand{\qedsymbol}{} \end{proof}
+
+\begin{proof}[Proof in the general case.]
+ Denote by $\Psi$ the root subsystem corresponding to the subdiagram of type $\rA_3$ from the condition of the lemma.
+ Clearly, $D(\Phi) = D(\Delta_i) \cup D(\Psi)$ and $D(\Delta_i)\cap D(\Psi)$ is a single simple bond.
+ 
+ Denote by $F$ the free product of Steinberg groups of rank $1$ corresponding to the vertices of $D(\Delta_i)\cap D(\Psi)$.
+ There are obvious maps $F \to \Stb(\Delta_i, A[t])$, $F \to \Stb(\Psi, A[t])$ (notice that the image of the latter map is contained in $\Stb(\Psi\cap\Delta_1, A[t])$).
+ By the Curtis---Tits presentation, $\Stb(\Phi, A[t]) \cong \Stb(\Psi, A[t]) *_F \Stb(\Delta_i, A[t])$.
+ 
+ Define $N_i^\pm$ as $N_1^\pm *_F \Stb(\Delta_i, A[t])$ ($N_1^\pm$ is the subgroup constructed in the first part of the proof).
+ %TODO: Check that $N_i^\pm$ are INDEED subgroups of $\Stb(\Phi, A[t])$. This seems plausible but I haven't checked this properly yet.
+ Now, we can recover $\widetilde{\sigma}_i^\pm$ from the universal property of amalgamated products as follows:
+ \[ \begin{tikzcd}  
+  F \ar[r] \ar[d] & N_1^\pm \ar[d] \ar[rdd, "\widetilde{\sigma}_1^\pm"] &  \\
+ \Stb(\Delta_i, A[t]) \ar[r] \ar[rrd, "\id"'] & N_i^\pm \ar[rd, "\widetilde{\sigma}^\pm_i", dotted, pos=0.2]  & \\
+  & & N_1^\mp *_F \Stb(\Delta_i, A[t]) \end{tikzcd} \]
+ It is easy to see that this definition is correct and satisfies the requirements of the lemma.
+\end{proof}
+
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -442,16 +532,16 @@ Then the Steinberg group functor $\St(-)$ satisfies $\Pro^1$-glueing property fo
 \begin{proof}
  Let $(g^+, g^-)$ be an element of $\St(A[t]) \times \St(A[t^{-1}])$ such that the equality $g^+ = g^-$ holds in $\St(A[t, t^{-1}])$.
  
- Let $M$ be a maximal ideal of $A$.
- By \cref{prop:p1g} below the functor $\St(-)$ satisfies $\Pro^1$-glueing property for the local ring $A_M$ hence 
- $(\lambda_M^*(g_+), \lambda_M^*(g_-)) = \Delta_{A_M}(\lambda_M^*(g^+)(0))$ and in the groups $\St(A_M[t])$ and $\St(A_M[t^{-1}])$ we have the equalities:
- $$\lambda_M^*(g^+ \cdot g^+(0)^{-1}) = \lambda_M^*(g^+) \cdot {\lambda_M^*(g^+)(0)}^{-1} = 1; \qquad \lambda_M^*(g^-\cdot g^+(0)^{-1}) =1. $$
+ Let $m$ be a maximal ideal of $A$.
+ By \cref{prop:p1g} below the functor $\St(-)$ satisfies $\Pro^1$-glueing property for the local ring $A_m$ hence 
+ $(\lambda_m^*(g_+), \lambda_m^*(g_-)) = \Delta_{A_m}(\lambda_m^*(g^+)(0))$ and in the groups $\St(A_m[t])$ and $\St(A_m[t^{-1}])$ we have the equalities:
+ $$\lambda_m^*(g^+ \cdot g^+(0)^{-1}) = \lambda_m^*(g^+) \cdot {\lambda_m^*(g^+)(0)}^{-1} = 1; \qquad \lambda_m^*(g^-\cdot g^+(0)^{-1}) =1. $$
  Now, by the local-global principle for $\St(-)$ (see \cref{thm:lg-k2}) these equalities hold globally and $(g^+, g^-) = \Delta_A(g^+(0))$, as claimed. 
 \end{proof}
 
 \begin{rem} \label{rem:stk2} It is clear that if the functor $\St$ satisfies $\Pro^1$-glueing property for $A$ then so does the functor $K_2^G$.
- The converse statement also holds, indeed, if $(g^+, g^-)\in\Bigker(\pm^{\Stb}_A)$ then inside $\EE^G(A[t, t^{-1}])$ we have the equality:
- $$\varphi(\St(j_+)(g^+)) = \varphi(\St(j_-)(g^-)) \in \EE^G(A[t]) \cap \EE^G(A[t^{-1}]) = \EE^G(A).$$
+ The converse statement also holds, indeed, if $(g^+, g^-)\in\Bigker(\pm^{\Stb}_A)$ then inside $E^G(A[t, t^{-1}])$ we have the equality:
+ $$\varphi(\St(j_+)(g^+)) = \varphi(\St(j_-)(g^-)) \in E^G(A[t]) \cap E^G(A[t^{-1}]) = E^G(A).$$
  Consequently, we can find $g_0 \in \St(A)$ so that $(g^+ g_0^{-1}, g^- g_0^{-1}) \in \Bigker(\pm_A^{K_2})$ and
  it remains to apply the $\Pro^1$-glueing property for $K_2^G$. \end{rem}
 
@@ -481,10 +571,8 @@ and $\im(j_+i_+) = \im (j_-i_-) = \im(j_+) = \im(j_-)$. \end{proof}
  then $g=x_1yx_2$, $x_i\in \St(k[t]))$, $y\in \St(k[t^{-1}]))$.
  Since $E(k[t])\cap E(k[t^{-1}])=E(k)$,
  we have $y\in\St(k)K_2^G(k[t^{-1}])=\St(k)$ and $x_1x_2\in\St(k)$. That is, $g\in K_2^G(k)$. \end{proof}
-
-\subsection{The action of torus} \input{torus.tex} 
  
-\subsection{The case of a local ring}
+\subsection{Suslin lemma for \texorpdfstring{$K_2$}{K\texttwoinferior}}
 For the rest of this section $A$ denotes an arbitrary commutative local ring with the maximal ideal $m$ and the residue field $k$.
 We denote by $\pi$ the canonical projection $A \rightarrow k$.
 Throughout this section we will employ the following notation:
@@ -518,10 +606,13 @@ C_{R} \ar[r, hookrightarrow]                                & \St(R, I) \ar[ur, 
  Finally, $g = \varphi(j(\widetilde{g})) = \varphi(k(\widehat{g})) = \mu_B(\widehat{g}) = 1,$ as claimed. \end{proof}
 
 The following result is analogous to \cite[Proposition~4.1]{Tu}.
+It plays the same role in our proof of $\Pro^1$-glueing for $K_2$ as generalized Suslin lemma (cf. \cite[Theorem~2.16]{Abe}) does in the corresponding proof for $K_1$.
 \begin{prop} \label{prop:kersurj} Under the assumptions of \cref{lem:tulinj} the map $k$ in the diagram \eqref{diag:cs} is surjective. \end{prop}
 \begin{proof}
 %TODO: Write proof 
 \end{proof}
+
+\subsection{Proof of the main result}
 
 The following result is analogous to \cite[Proposition~4.3]{Tu}.
 \begin{prop} \label{prop:p1g} The functors $\St$, $K_2^G$ satisfy $\Pro^1$-glueing property for arbitrary local ring $A$.
