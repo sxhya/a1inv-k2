@@ -489,24 +489,25 @@ Then we study the general case using the Curtis-Tits presentation.
  \renewcommand{\qedsymbol}{} \end{proof}
 
 \begin{proof}[Proof in the general case.]
- Denote by $\Psi$ the root subsystem corresponding to the subdiagram of type $\rA_3$ from the condition of the lemma.
- Clearly, $D(\Phi) = D(\Delta_i) \cup D(\Psi)$ and $D(\Delta_i)\cap D(\Psi)$ is a single simple bond.
+%TODO: Check that $N_i^\pm$ are subgroups of $\Stb(\Phi, A[t])$.
+%UPD:  Andrei provided an example showing that the above statement is not obvious and may be even wrong.
+
+ %Denote by $\Psi$ the root subsystem corresponding to the subdiagram of type $\rA_3$ from the condition of the lemma.
+ %Clearly, $D(\Phi) = D(\Delta_i) \cup D(\Psi)$ and $D(\Delta_i)\cap D(\Psi)$ is a single simple bond.
  
- Denote by $F$ the free product of Steinberg groups of rank $1$ corresponding to the vertices of $D(\Delta_i)\cap D(\Psi)$.
- There are obvious maps $F \to \Stb(\Delta_i, A[t])$, $F \to \Stb(\Psi, A[t])$ (notice that the image of the latter map is contained in $\Stb(\Psi\cap\Delta_1, A[t])$).
- By the Curtis---Tits presentation, $\Stb(\Phi, A[t]) \cong \Stb(\Psi, A[t]) *_F \Stb(\Delta_i, A[t])$.
+ %Denote by $F$ the free product of Steinberg groups of rank $1$ corresponding to the vertices of $D(\Delta_i)\cap D(\Psi)$.
+ %There are obvious maps $F \to \Stb(\Delta_i, A[t])$, $F \to \Stb(\Psi, A[t])$ (notice that the image of the latter map is contained in $\Stb(\Psi\cap\Delta_1, A[t])$).
+ %By the Curtis---Tits presentation, $\Stb(\Phi, A[t]) \cong \Stb(\Psi, A[t]) *_F \Stb(\Delta_i, A[t])$.
  
- Define $N_i^\pm$ as $N_1^\pm *_F \Stb(\Delta_i, A[t])$ ($N_1^\pm$ is the subgroup constructed in the first part of the proof).
- %TODO: Check that $N_i^\pm$ are INDEED subgroups of $\Stb(\Phi, A[t])$. This seems plausible but I haven't checked this properly yet.
- Now, we can recover $\widetilde{\sigma}_i^\pm$ from the universal property of amalgamated products as follows:
- \[ \begin{tikzcd}  
-  F \ar[r] \ar[d] & N_1^\pm \ar[d] \ar[rdd, "\widetilde{\sigma}_1^\pm"] &  \\
- \Stb(\Delta_i, A[t]) \ar[r] \ar[rrd, "\id"'] & N_i^\pm \ar[rd, "\widetilde{\sigma}^\pm_i", dotted, pos=0.2]  & \\
-  & & N_1^\mp *_F \Stb(\Delta_i, A[t]) \end{tikzcd} \]
- It is easy to see that this definition is correct and satisfies the requirements of the lemma.
+ %Define $N_i^\pm$ as $N_1^\pm *_F \Stb(\Delta_i, A[t])$ ($N_1^\pm$ is the subgroup constructed in the first part of the proof).
+ 
+ %Now, we can recover $\widetilde{\sigma}_i^\pm$ from the universal property of amalgamated products as follows:
+ %\[ \begin{tikzcd}  
+ % F \ar[r] \ar[d] & N_1^\pm \ar[d] \ar[rdd, "\widetilde{\sigma}_1^\pm"] &  \\
+ %\Stb(\Delta_i, A[t]) \ar[r] \ar[rrd, "\id"'] & N_i^\pm \ar[rd, "\widetilde{\sigma}^\pm_i", dotted, pos=0.2]  & \\
+ % & & N_1^\mp *_F \Stb(\Delta_i, A[t]) \end{tikzcd} \]
+ %It is easy to see that this definition is correct and satisfies the requirements of the lemma.
 \end{proof}
-
-
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -606,15 +607,42 @@ C_{R} \ar[r, hookrightarrow]                                & \St(R, I) \ar[ur, 
  Finally, $g = \varphi(j(\widetilde{g})) = \varphi(k(\widehat{g})) = \mu_B(\widehat{g}) = 1,$ as claimed. \end{proof}
 
 The following result is analogous to \cite[Proposition~4.1]{Tu}.
-It plays the same role in our proof of $\Pro^1$-glueing for $K_2$ as generalized Suslin lemma (cf. \cite[Theorem~2.16]{Abe}) does in the corresponding proof for $K_1$.
 \begin{prop} \label{prop:kersurj} Under the assumptions of \cref{lem:tulinj} the map $k$ in the diagram \eqref{diag:cs} is surjective. \end{prop}
-\begin{proof}
-%TODO: Write proof 
+\begin{proof}[Sketch/draft of the proof]
+The argument presented below only may work under additional assumption that $m_i(\widetilde{\alpha}) = 1$ ($i$ is as in the statement of \cref{lem:sigma}).
+
+Consider the following set
+$$X = \St(B) \times \widetilde{B}(R) \times \St(R, I) /  \simeq.$$
+The congruence relation we impose should be similar to that used in Tulenbaev's paper.
+In particular, there are two maps $\psi_1\colon\St(B, I) \to \St(R, I)$, $p_{2B}^* \colon \St(B, I) \to \St(B)$ satisfying:
+($p_2^*$ is the canonical projection from $\St(B, I)$ to $\St(B)$ induced by the projection from $D(B, I)$ on the second coordinate, cf. section 3.1 in \cite{S15}),
+$$[p_2^*(h), 1, g] \simeq [1, 1, \psi_1(h) g].$$
+Notice that instead of $\St(A[t])$ (used by Tulenbayev in the first factor) we use $\St(B)$.
+
+TODO: We should prove that there is a well-defined action of $\St(R)$ on $X$.
+
+We also assume that there is an automorphism $\sigma_i$ defined on $\St(R, I)$ (this should be simple: first define it
+on $\St(D(R, I))$, then show that it is an automorphism of the subgroup $\ker(p_2^*)$ 
+then show that it is an automorphism of the relative group $\St(R, I)$).
+
+Now assume that $g \in \St(R, I)$ is such that its image $p_{2R}^*(g)$ in $\St(R)$ is trivial 
+
+Using \cite[Lemma~5]{S15} we can rewrite $g$ as a product of $Z_\alpha((0, s), (\xi_1, \xi_2))$, $(\xi_1,\xi_2)\in D(R, I)$, $\alpha\in\Sigma_1^+$, $s\in I$
+and $x_\alpha((0, s))$, $s\in I$, $\alpha\in \Phi$.
+Clearly, for $\alpha\in\Sigma_1^+$ we have 
+$$\sigma^{-N}(Z_\alpha((0, s), (\xi_1, \xi_2))) = Z_\alpha((0, s\cdot t^{-N}), (\xi_1 \cdot t^N, \xi_2 \cdot t^N)).$$
 \end{proof}
+By the above formula, for sufficiently large $N$ we have that $\sigma^{-N}(g)$ is a product of $Z_\alpha((0, s), (\xi_1, \xi_2))$ for $\xi_1, \xi_2 \in A[t] \subseteq B$.
+In particular, this shows that $g \in \im(\psi_1)$ hence for some $g' \in \St(B, I)$ we have
+$$[1, 1, g] = \sigma^N \cdot \sigma^{-N} [1, 1, g] = \sigma^N [1, 1, \psi_1(g')] = \sigma^N [p_{2B}^*(g'), 1, 1] = \sigma^N p_{2B}^*(g')\cdot  \sigma^{-N} \cdot [1, 1, 1]. $$
+
+At this point we should be able to prove that $\sigma^N p_{2B}^*(g')\cdot  \sigma^{-N} = p_{2R}^*(g) = 1$ (cf. definition of Tulenbaev's action).
+Finally, we get $[1, 1, g] = [1,1,1]$ from which the assertion of the Lemma should follow.
 
 \subsection{Proof of the main result}
 
 The following result is analogous to \cite[Proposition~4.3]{Tu}.
+It plays the same role in our proof of $\Pro^1$-glueing for $K_2$ as generalized Suslin lemma (cf. \cite[Theorem~2.16]{Abe}) does in the corresponding proof for $K_1$.
 \begin{prop} \label{prop:p1g} The functors $\St$, $K_2^G$ satisfy $\Pro^1$-glueing property for arbitrary local ring $A$.
 \end{prop}
 \begin{proof}
