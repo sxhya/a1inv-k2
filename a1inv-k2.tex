@@ -654,30 +654,16 @@ The argument presented below only may work under additional assumption that $m_i
 Consider the following set
 $$X = \St(B) \times \widetilde{B}(R) \times \St(R, I) /  \simeq.$$
 The congruence relation we impose should be similar to that used in Tulenbaev's paper.
-In particular, there are two maps $\psi_1\colon\St(B, I) \to \St(R, I)$, $p_{2B}^* \colon \St(B, I) \to \St(B)$ satisfying:
-($p_2^*$ is the canonical projection from $\St(B, I)$ to $\St(B)$ induced by the projection from $D(B, I)$ on the second coordinate, cf. section 3.1 in \cite{S15}),
-$$[p_2^*(h), 1, g] \simeq [1, 1, \psi_1(h) g].$$
+In particular, for $h \in \St(B, I)$ we should have the following relation in $X$
+$$[\mu_B(h), 1, g] \simeq [1, 1, j(h) g].$$
 Notice that instead of $\St(A[t])$ (used by Tulenbayev in the first factor) we use $\St(B)$.
 
 TODO: We should prove that there is a well-defined action of $\St(R)$ on $X$.
 
-We also assume that there is an automorphism $\sigma_i$ defined on $\St(R, I)$ (this should be simple: first define it
-on $\St(D(R, I))$, then show that it is an automorphism of the subgroup $\ker(p_2^*)$ 
-then show that it is an automorphism of the relative group $\St(R, I)$).
-
-Now assume that $g \in \St(R, I)$ is such that its image $p_{2R}^*(g)$ in $\St(R)$ is trivial 
-
-Using \cite[Lemma~5]{S15} we can rewrite $g$ as a product of $Z_\alpha((0, s), (\xi_1, \xi_2))$, $(\xi_1,\xi_2)\in D(R, I)$, $\alpha\in\Sigma_1^+$, $s\in I$
-and $x_\alpha((0, s))$, $s\in I$, $\alpha\in \Phi$.
-Clearly, for $\alpha\in\Sigma_1^+$ we have 
-$$\sigma^{-N}(Z_\alpha((0, s), (\xi_1, \xi_2))) = Z_\alpha((0, s\cdot t^{-N}), (\xi_1 \cdot t^N, \xi_2 \cdot t^N)).$$
+Now let $g$ be an element of $C_R$. By the previous lemma we have for some $g' \in \St(B, I)$
+\[ [1, 1, g] = [1, 1, j(g')] = [\mu_B(g'), 1, 1] = i\mu_B(g')[1, 1, 1] = [1, 1, 1]. \qedhere \]
 \end{proof}
-By the above formula, for sufficiently large $N$ we have that $\sigma^{-N}(g)$ is a product of $Z_\alpha((0, s), (\xi_1, \xi_2))$ for $\xi_1, \xi_2 \in A[t] \subseteq B$.
-In particular, this shows that $g \in \im(\psi_1)$ hence for some $g' \in \St(B, I)$ we have
-$$[1, 1, g] = \sigma^N \cdot \sigma^{-N} [1, 1, g] = \sigma^N [1, 1, \psi_1(g')] = \sigma^N [p_{2B}^*(g'), 1, 1] = \sigma^N p_{2B}^*(g')\cdot  \sigma^{-N} \cdot [1, 1, 1]. $$
 
-At this point we should be able to prove that $\sigma^N p_{2B}^*(g')\cdot  \sigma^{-N} = p_{2R}^*(g) = 1$ (cf. definition of Tulenbaev's action).
-Finally, we get $[1, 1, g] = [1,1,1]$ from which the assertion of the Lemma should follow.
 
 \subsection{Proof of the main result}
 
