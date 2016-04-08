@@ -429,15 +429,7 @@ This is proved exactly as~\cite[Theorem 5.1]{St-poly}.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %\section{Quillen-Suslin lgp, Zariski gluing, Nisnevich gluing, $S$-lemma}
 
-\section{Steinberg groups: another presentation}
-
-\subsection{Presentation of \texorpdfstring{$\Stb(4, R)$}{St(4, R)}} \label{sec:stbA3} \input{another.tex}
-
-\subsection{Application: centrality of \texorpdfstring{$K_2$}{K\texttwoinferior} in the simply-laced case}
-
-%Write how one can deduce Tulenbaev lifting property / centrality of K_2 in the simply laced case and rank >= 3 from this presentation
-
-\subsection{Application: the automorphisms \texorpdfstring{$\sigma_i$}{\textsigma\textiinferior}} \label{sec:sigma}
+\subsection{The automorphisms \texorpdfstring{$\sigma_i$}{\textsigma\textiinferior}} \label{sec:sigma}
 Our notation and conventions follows~\cite[\S~4]{VavWE}.
 Let $\Phi$ be an irreducible root system with some fixed basis of simple roots $\Pi = \{\alpha_1, \ldots, \alpha_\ell\}$.
 We denote by $\Phi^\vee$ the \emph{dual root system of $\Phi$} consisting of vectors $\alpha^\vee = 2\alpha/(\alpha, \alpha)$, $\alpha\in \Phi$.
@@ -502,27 +494,6 @@ Then we study the general case using the Curtis-Tits presentation.
  Thus, we obtain a well-defined map $\sigma_1^\pm:N_i^\pm \to \St(A[t])$ fitting into the above commutative diagram.
  The fact that the image of $\sigma_1^\pm$ is contained in $N_i^\mp$ is obvious. 
  \renewcommand{\qedsymbol}{} \end{proof}
-
-\begin{proof}[Proof in the general case.]
-%TODO: Check that $N_i^\pm$ are subgroups of $\Stb(\Phi, A[t])$.
-%UPD:  Andrei provided an example showing that the above statement is not obvious and may be even wrong.
-
- %Denote by $\Psi$ the root subsystem corresponding to the subdiagram of type $\rA_3$ from the condition of the lemma.
- %Clearly, $D(\Phi) = D(\Delta_i) \cup D(\Psi)$ and $D(\Delta_i)\cap D(\Psi)$ is a single simple bond.
- 
- %Denote by $F$ the free product of Steinberg groups of rank $1$ corresponding to the vertices of $D(\Delta_i)\cap D(\Psi)$.
- %There are obvious maps $F \to \Stb(\Delta_i, A[t])$, $F \to \Stb(\Psi, A[t])$ (notice that the image of the latter map is contained in $\Stb(\Psi\cap\Delta_1, A[t])$).
- %By the Curtis---Tits presentation, $\Stb(\Phi, A[t]) \cong \Stb(\Psi, A[t]) *_F \Stb(\Delta_i, A[t])$.
- 
- %Define $N_i^\pm$ as $N_1^\pm *_F \Stb(\Delta_i, A[t])$ ($N_1^\pm$ is the subgroup constructed in the first part of the proof).
- 
- %Now, we can recover $\widetilde{\sigma}_i^\pm$ from the universal property of amalgamated products as follows:
- %\[ \begin{tikzcd}  
- % F \ar[r] \ar[d] & N_1^\pm \ar[d] \ar[rdd, "\widetilde{\sigma}_1^\pm"] &  \\
- %\Stb(\Delta_i, A[t]) \ar[r] \ar[rrd, "\id"'] & N_i^\pm \ar[rd, "\widetilde{\sigma}^\pm_i", dotted, pos=0.2]  & \\
- % & & N_1^\mp *_F \Stb(\Delta_i, A[t]) \end{tikzcd} \]
- %It is easy to see that this definition is correct and satisfies the requirements of the lemma.
-\end{proof}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
