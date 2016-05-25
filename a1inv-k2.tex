@@ -1,6 +1,6 @@
 \documentclass[oneside,12pt]{amsart}
 \usepackage{amssymb, amsxtra, amsmath, amstext, amsthm, amsfonts, amscd, enumitem, thmtools, tikz, graphicx, tikz-cd}
-\usepackage[breaklinks=true, pdfencoding=auto]{hyperref}            
+\usepackage[breaklinks=true, pdfencoding=auto]{hyperref}
 \usepackage[cp1251]{inputenc}
 \usepackage[all]{xy}
 \usepackage[notref,notcite]{showkeys}
@@ -14,7 +14,7 @@
 \hypersetup{colorlinks=true, urlcolor=darkblue, linkcolor=darkblue, citecolor=darkblue}
 
 \DeclareRobustCommand{\VAN}[2]{#1}
-\usepackage[hyperref=true, backend=biber, citestyle=numeric-comp, sortlocale=en_US, url=false, doi=false, eprint=true, firstinits=true, maxbibnames=4]{biblatex}                      
+\usepackage[hyperref=true, backend=biber, citestyle=numeric-comp, sortlocale=en_US, url=false, doi=false, eprint=true, firstinits=true, maxbibnames=4]{biblatex}
 \addbibresource{a1inv-k2.bib}
 \renewbibmacro*{volume+number+eid}{\ifentrytype{article}{\- \iffieldundef{volume}{}{{\bf\printfield{volume}},}\iffieldundef{number}{}{ no.~\printfield{number},}}}
 \renewbibmacro{in:}{\ifentrytype{article}{}{\printtext{\bibstring{in}\intitlepunct}}}
@@ -143,11 +143,16 @@
 \newcommand{\eval}[4]{ev_{\scriptstyle \left[\frac{#2[#1] \rightarrow #3}{#1 \mapsto #4}\right]}}
 \newcommand{\ev}[3]{\eval{t}{#1}{#2}{#3}}
 
+%stavrova
+
 \let\l\left
 \let\r\right
 \let\semir\ltimes
 \let\semil\rtimes
+\DeclareMathOperator{\Stsym}{Sym}
+\DeclareMathOperator{\Stsymt}{{Sym}^t}
 
+%stavrova
 \begin{document}
 
 \selectlanguage{english}
@@ -199,26 +204,6 @@ In~\cite{St-poly} stabilization is not used. However, the key steps
 of both proofs are the same: the case of $R=k$ (hidden somewhere around~\cite[p. 140]{Tu}, or, respectively,
 ~\cite[Theorem 3.1]{St-poly}); Quillen-Suslin lgp; $\Pro^1$-gluing (see~\cite[Theorem 5.1]{Tu} or~\cite[Theorem 1.1]{St-poly}).
 
-\subsection{The case $R=k$}
-We consider the case of $K_2^G(k[t])$ vs. $K_2^G(k)$.
-(As in the $\Aff^1$-invariance of $K_1^G$, this case should be used to deduce that $K_2^G(k[t_1,\ldots,t_n])=K_2^G(k)$.)
-
-In Tulenbaev's framework, it follows from stabilization.
-However, the equality $K_2^G(k[t])=K_2^G(k)$ is sort of known for all groups.
-Namely, in~\cite[Theorem 5.1]{W-k[t]}: let $k$ be an infinite field and let $G$ be a connected reductive
-group over $k$. Then the inclusion $k\hookrightarrow k[t]$ induces an
-isomorphism
-$$H_\bullet(G(k),\mathbb{Z})\stackrel{\cong}{\longrightarrow} H_\bullet(G(k[t]),\mathbb{Z}),$$
-if the order of the fundamental group of $G$ is invertible in $k$.
-Once we know that the homology $H_2$ coincides with $K_2^G$ (on both sides), this gives the result.
-It would be nice to check Wendt's proof; maybe, discuss it in a seminar?
-
-Is it necessary to know the centrality in order to show that $K_2^G$ coincides with $H_2$?
-If yes, then we probably know it for $K_2^G(k)$ even for isotropic groups~\cite{Deo}, but only for the good
-Chevalley groups for $K_2^G(k[t])$.
-We should try to understand what is proved in~\cite[Proposition 5.3]{VW} using only the universality of
-the Steinberg group. This may be useful. The paper is unpublished, so again everything should be double-checked
-if you want to refer to it.
 
 \subsection{Plan of the proof}
 \begin{enumerate}
@@ -278,7 +263,7 @@ is exact.
 This should use~\eqref{plan:3t}--\eqref{plan:QSlgp}.
 
 \begin{enumerate}
- \item Prove \cref{prop:kersurj}. This is hard. Have no idea how this can be proved at the moment. 
+ \item Prove \cref{prop:kersurj}. This is hard. Have no idea how this can be proved at the moment.
  \item Prove $\Pro^1$-glueing using all the above facts.
 \end{enumerate}
 
@@ -308,23 +293,98 @@ This uses~\eqref{plan:QSlgp},~\eqref{plan:k[tn]} and~\eqref{plan:Nglu}.
 %TODO: Definition, functoriality, "congruence subgroups"{} $\St(\Phi,R,I)$ versus $\ker(\St(\Phi,R)\to\St(\Phi,R/I))$.
 
 \subsection{Definition and basic properties}
-Let $G$ be a split simple Chevalley groups with a root system $\Phi$ of rank $\geq 2$.
-Recall that the \emph{Steinberg group} $\St(R)$ (also denoted $\Stb(\Phi, R)$) is defined by means of generators 
+
+In what follows $\Phi$ denotes a reduced irreducible root system and $\Pi\subseteq \Phi$ denotes its basis (i.e. the set of simple roots).
+Denote by $\widetilde{\alpha}$, $\Phi^+$ and $\Phi^-$, respectively, the maximal root of $\Phi$ and the subsets of positive and negative roots of $\Phi$.
+The Dynkin diagram and the extended Dynkin diagram of $\Phi$ corresponding to $\Pi$ will be denoted by $D(\Phi)$, $\widetilde{D}(\Phi)$, respectively.
+
+A proper closed root subset $S\subseteq \Phi$ is called {\it parabolic} (resp. {\it reductive}, resp. {\it special}) if $\Phi=S \cup -S$ (resp. $S = -S$, resp. $S \cap -S=\varnothing$).
+Any parabolic subset $S \subseteq \Phi$ can be decomposed into the disjoint union of its reductive and special part, i.e. $S = \Sigma_S \sqcup \Delta_S$, where $\Sigma_S \cap (-\Sigma_S) = \varnothing$, $\Delta_S = -\Delta_S$.
+
+Denote by $m_\beta(\alpha)$ the coefficient of $\beta$ in the expansion of $\alpha$ in $\Pi$, i.\,e. $\alpha = \sum_{\beta\in\Pi} m_\beta(\alpha) \beta$.
+For $\beta\in\Pi$ denote by $\Delta_\beta$ the subsystem of $\Phi$ spanned by all simple roots except $\beta$ and by $\Sigma_\beta$ the set consisting of roots $\alpha\in \Phi$ such that $m_\beta(\alpha)>0$.
+
+We denote by $(\alpha, \beta)$ the scalar product of roots and by $\langle \beta, \alpha\rangle$ the integer $2(\beta, \alpha)/(\alpha, \alpha)$.
+The Weyl group $W(\Phi)$ is a subgroup of isometries of $\Phi$ generated by all reflections $\sigma_\alpha$, where $\sigma_\alpha(\beta)=\beta-\langle\beta,\alpha \rangle\cdot \alpha$.
+For a subset of roots $S \subseteq \Phi$ we denote by $\langle S \rangle$ the root subsystem spanned by $S$, i.e. the minimal subset of $\Phi$ containing $S$ and invariant under the action of reflections $\sigma_\alpha$, $\alpha\in S$.
+
+Let $G=G(\Phi,-)$ be a (split) simply connected simple Chevalley--Demazure group scheme
+over $R$ with a root system $\Phi$ of rank $\geq 2$.
+Recall that the \emph{Steinberg group} $\St(R)$ (also denoted $\Stb(\Phi, R)$) is defined by means of generators
 $\mathcal{X}_{\Phi, R} = \{x_{\alpha}(\xi) \mid \xi\in R, \alpha\in\Phi\}$ and the set of relations $\mathcal{R}_{\Phi, R}$ defined as follows:
 \begin{align}
 & \phantom{[}
-x_\alpha(s) x_\alpha(t) = x_\alpha(s+t), \label{rel:add}\\
-& [x_\alpha(s), x_\beta(t)] = \prod x_{i\alpha + j\beta}\left(N_{\alpha\beta ij}\, s^i t^j\right), \quad \alpha\neq-\beta, \quad N_{\alpha\beta ij}\in\mathbb{Z}. \label{rel:CCF}
-\end{align} 
-The indices $i$, $j$ appearing in the right-hand side of the above relation range over all positive natural numbers such that $i\alpha + j\beta\in\Phi$.
+x_\alpha(s) x_\alpha(t) = x_\alpha(s+t),\ \alpha\in\Phi,\ s,t\in R; \label{rel:add}\\
+& [x_\alpha(s), x_\beta(t)] = \prod\limits_{i,j\in\mathbb{N}} x_{i\alpha + j\beta}\left(N_{\alpha\beta ij}\, s^i t^j\right),\quad \alpha,\beta\in\Phi,\ \alpha\neq\pm\beta,\ s,t\in R. \label{rel:CCF}
+\end{align}
+The indices $i$, $j$ appearing in the right-hand side of the above relation range over
+all positive natural numbers such that $i\alpha + j\beta\in\Phi$.
 The structure constants $N_{\alpha \beta i j}=\pm 1,2,3$ appearing in \eqref{rel:CCF} depend only on $\Phi$ and can be computed precisely.
 
 Recall that for $\alpha\in\Phi$, $\varepsilon\in R^*$ the semisimple root elements $h_\alpha(\varepsilon)$ are defined as $h_\alpha(\varepsilon)=w_\alpha(\varepsilon)w_\alpha(-1)$.
-Denote by $\WW(\Phi, R)$ the subgroup of $\Stb(\Phi, R)$ generated by all elements $w_\alpha(\varepsilon)$, $\varepsilon\in R^*$.
+Denote by $\WW(\Phi, R)$ the subgroup of $\Stb(\Phi, R)$ generated by all elements
+$w_\alpha(\varepsilon)$, $\varepsilon\in R^*$, $\alpha\in\Phi$, and by $\HH(\Phi,R)$
+ the subgroup generated by all elements
+$h_\alpha(\varepsilon)$, $\varepsilon\in R^*$, $\alpha\in\Phi$.
+
+Following~\cite{Ste73}, we set
+$$
+\{u,v\}_\alpha=h_\alpha(uv)h_\alpha(u)^{-1}h_\alpha(v)^{-1},\qquad u,v\in R^*,\ \alpha\in\Phi,
+$$
+and call these elements~\emph{symbols in $\Stb(\Phi,R)$}.
+For any ideal $I$ of $R$, we set
+$$
+\Stsym(\Phi,R,I)=\left<\{u,v\}_\alpha,\ u\in R^*,\ v\in (1+I)^*,\ \alpha\in\Phi\right>\le\Stb(\Phi,R).
+$$
+The group $\Stsym(\Phi,R,R)$ is denoted by $\Stsym(\Phi,R)$.
+Clearly, one has $\{u,v\}_\alpha\in K_2(\Phi,R)$ for any $u,v\in R^*,\ \alpha\in\Phi$. By~\cite[Prop. 1.3 (c)]{Ste73}
+the group $\Stsym(\Phi,R,I)$ is  generated by all symbols $\{u,v\}_\alpha$,
+$u\in R^*,\ v\in (1+I)^*$, for any fixed long root $\alpha\in\Phi$.
+
 
 %The map $\St(R)\to E(R)$ is bijective on subgroups of the form $U_\Psi(R)$, where $\Psi$ is a unipotent set of roots.
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Non-standard generation of Steinberg groups}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{lem}\label{lem:parab-gen}
+Let $R$ be any commutative ring. Let $\Phi$ be an irreducible root system of rank $\ge 2$, let $\Pi$ be a system of simple roots in $\Phi$,
+and let $J\subseteq\Pi$ be such that $|J|\ge 2$. Set
+$$
+\alpha_J=\sum\limits_{\beta\in J}m_\beta(\alpha)\beta\ \mbox{for any}\ \alpha\in\Phi,
+$$
+and
+$$
+\Sigma_J=\{\alpha\in\Phi\ |\ m_\beta(\alpha)>0\ \mbox{for at least one}\ \beta\in J\}.
+$$
+Let $H$ be the group defined by the generators $x_\alpha(u)$, $\alpha\in\Sigma_J\cup(-\Sigma_J)$,
+$u\in R$, and the relations~\eqref{rel:add} and~\eqref{rel:CCF} ranging only over
+$\alpha\in\Sigma_J\cup(-\Sigma_J)$, and
+$\beta\in\Sigma_J\cup(-\Sigma_J)$ such that $m\alpha_J\neq-k\beta_J$ for all $m,k\in\mathbb{N}$.
+Then the natural homomorphism $H\to\Stb(\Phi,R)$ is surjective
+and has central kernel. In particular, if $\Stb(\Phi,R)$ is centrally closed, then $H\cong\Stb(\Phi,R)$.
+\end{lem}
+\begin{proof}
+The group scheme $G=G(\Phi,-)$ over $R$ contais two opposite parabolic $R$-subgroups $P^\pm$ such that
+$\pm\Sigma_J$ are the sets of roots corresponding to the unipotent radicals of $P^\pm$. One can show that
+$H=\Stb_{P^+}(R)$ and $\Stb(\Phi,R)=\Stb_B(R)$ in the sense of~\cite{St-cong}.
+% for compatibility of CCF use isomorphism onto unipotent subgroups in E
+ By~\cite[Lemma 8]{St-cong}
+the natural homomorphism $H\to\Stb(\Phi,R)$ is surjective. By~\cite[Lemma 14]{St-cong} its kernel is central.
+
+\end{proof}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \subsection{Relative Steinberg groups}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 
 Denote by $D(R, I)$ the double of the ring $R$ relative to an ideal $I$, i.\,e. the fibered product of rings
 $R \times_{R/I} R$ with the natural projections $p_1, p_2 \colon D(R, I) \to R$ defined by $p_i(\xi_1, \xi_2) = \xi_i$, $i=1,2$.
@@ -333,7 +393,7 @@ We define the relative Steinberg group $\St(R, I)$ as $G_1 / C$, where $C = [G_1
 Clearly, there is an exact sequence.
 \begin{equation} \label{eq:suite} \begin{tikzcd} 1 \ar[r] & (G_1\cap G_2)/C \ar[r] & \St(R, I) \ar[r, "\overline{p_2^*}"] & \St(R) \ar[r, "\pi^*"] & \St(R/I) \ar[r] & 1 \end{tikzcd} \end{equation}
 
-\begin{lem} 
+\begin{lem}
  Assume that $R$ and $I$ are such that the canonical projection $ R \to R/I $ splits.
  Then the following facts are true.
  \begin{lemlist}
@@ -361,7 +421,7 @@ Throughout this section $I \trianglelefteq A$ is an ideal of arbitrary commutati
 For a nonnilpotent element $a \in A$ denote by $\lambda_a\colon A \rightarrow A_a$ the morphism of principal localization at $a$.
 Consider the following commutative square.
 \begin{equation} \label{msq}
- \begin{tikzcd} 
+ \begin{tikzcd}
     A \ar[r, "\lambda_a"] \ar[d, twoheadrightarrow] \ar[r] & A_a \ar[d, twoheadrightarrow] \\
     A/I \ar[r, "\overline{\lambda_a}"]& A_a/I_a\\
    \end{tikzcd}
@@ -369,7 +429,7 @@ Consider the following commutative square.
 Notice that \eqref{msq} is a pull-back square if and only if $\lambda_a$ induces an isomorphism of $I$ and $I_a$.
 Such squares are usually called \emph{Milnor squares} in the literature, see \cite[Ch.~I, \S~2]{Kbook}.
 
-The following property of linear Steinberg groups was discovered for the first time by Tulenbaev 
+The following property of linear Steinberg groups was discovered for the first time by Tulenbaev
 (see~\cite[Lemmas 2.3, 3.2]{Tu}) and plays a key role in the sequel.
 \begin{dfn} \label{def:tlp}
 We say that the Steinberg group functor $\St$ satisfies {\it Tulenbaev's lifting property}
@@ -382,7 +442,7 @@ if for every pull-back square \eqref{msq} the following lifting problem has a so
 \begin{thmlist}
  \item \label{thm:dp} A dilation principle holds for $\St(-)$, i.\,e. if $g\in\St(A[t], tA[t])$ is such that equality $\lambda_a^*(h) = 1$ holds in $\St(\Phi, R_a[t])$ then
        for sufficiently large $n$ one has $$\ev{R}{R[t]}{a^n\cdot t}^*(h) = 1.$$
- \item \label{thm:lg-k2} A local-global principle holds for $\St(-)$, i.\,e. an element $g \in \St(A[t], tA[t])$ is trivial if and only if its image in 
+ \item \label{thm:lg-k2} A local-global principle holds for $\St(-)$, i.\,e. an element $g \in \St(A[t], tA[t])$ is trivial if and only if its image in
                          $\St(A_m[t], tA_m[t])$ is trivial for all maximal ideals $m \trianglelefteq A$.
  \item \label{thm:centr} $K_2^G(A)$ is contained in the centre of $\St(A)$.
 \end{thmlist}
@@ -391,38 +451,6 @@ if for every pull-back square \eqref{msq} the following lifting problem has a so
 \end{thm}
 \begin{proof} Follows by the same argument as \cite[Theorem~2.1]{Tu} or \cite[Theorem~2]{S15} \end{proof}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Decomposition theorems for \texorpdfstring{$\St(A[t^{\pm 1}])$}{St(A[t, t\textminussuperior\textonesuperior])} and \texorpdfstring{$\St\bigl(A((t))\bigr)$}{St(A((t)))}.}
-
-\begin{lem}
- Let $(R,m)$ be a local ring, and let $G$ be a simply connected simple group over $R$
-of isotropic rank $\ge 2$. Let $i_+:\St(R[t])\to\St(R[t^{\pm 1}])$ and $i_-:\St(R[t^{-1}]\to
-\St(R[t^{\pm 1}])$ be the natural homomorphisms.
-Then
-$$
-i_+\bigl(\St(m\cdot R[t])^{\St(R[t])}\bigr)i_-\bigl(\St(R[t^{-1}]\bigr)=i_-\bigl(\St(R[t^{-1}]\bigr)
-i_+\bigl(\St(m\cdot R[t])^{\St(R[t])}\bigr)
-$$
-inside $\St(R[t^{\pm 1}])$.
-\end{lem}
-\begin{proof}
-This is proved exactly as~\cite[Lemma 5.12]{St-poly}.
-\end{proof}
-
-
-\begin{thm}\label{thm:3t}
-Let $R$ be a local ring, and let $G$ be a simply connected simple group over $R$
-of isotropic rank $\ge 2$. Let $i_+:\St(R[t])\to\St(R[t^{\pm 1}])$ and $i_-:\St(R[t^{-1}]\to
-\St(R[t^{\pm 1}])$ be the natural homomorphisms.
-Then
-$$
-\St(R[t^{\pm 1}])=i_+(\St(R[t]))i_-(\St(R[t^{-1}]))i_+(\St(R[t])).
-$$
-\end{thm}
-\begin{proof}
-This is proved exactly as~\cite[Theorem 5.1]{St-poly}.
-\end{proof}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -448,7 +476,7 @@ thus, gives a well-defined action of $H$ on $\St(R)$.
 \begin{example} The principal example which motivates the above construction is as follows.
 Let $A$ be a ring, take $R = A[t, t^{-1}]$ to be the ring of Laurent polynomials over $A$ and let $\alpha_i \in \Pi$ be some simple root.
 Since $t \in R^*$ we can consider the automorphisms $\sigma_i^+$ and $\sigma_i^-$ of $\Stb(\Phi, R)$ given by $\sigma_i^+ = \chi_{\varpi_i, t}$, $\sigma_i^- = \chi_{\varpi_i, t^{-1}}$.
-It is easy to see that 
+It is easy to see that
 \begin{equation}\label{eq:sigma_act} \sigma_i^\pm(x_\alpha(\xi)) = x_\alpha(t^{\pm m_i(\alpha)} \cdot \xi),\end{equation}
 where $m_k(\alpha)$ denotes the coefficient in the expansion of $\alpha$ in $\Pi$, i.\,e. $\alpha = \sum m_k(\alpha) \alpha_k$.
 \end{example}
@@ -471,7 +499,7 @@ Then we study the general case using the Curtis-Tits presentation.
 \end{lem}
 
 \begin{proof}[Proof for $\Phi=\rA_\ell$, $\ell\geq 3$ and $i=1$.]
- For $\alpha_i\in\Pi$ denote by $P_i^+$ (resp. $P_i^-$) the subgroup of $\St(A)$ generated by 
+ For $\alpha_i\in\Pi$ denote by $P_i^+$ (resp. $P_i^-$) the subgroup of $\St(A)$ generated by
  $x_\alpha(\xi)$ for $\xi \in A$, $\alpha\in\Sigma_i^+ \cup \Delta_i$ (resp. $\alpha\in\Sigma_i^- \cup \Delta_i$).
 
  First, we define the subgroups $N_i^\pm$ (this definition also works for $\Phi$ such that $m_i(\widetilde{\alpha})=1$).
@@ -485,20 +513,20 @@ Then we study the general case using the Curtis-Tits presentation.
  Clearly, there exists a unique group homomorphism $\sigma_1^\pm \colon P_1^\pm \to \St(\Phi, A[t])$ acting identically on $\Stb(\Delta_1, A)$ and sending
  any generator $x_\alpha(\xi) \in \UU(\Sigma_1^\pm, A)$ (i.\,e. $\alpha\in\Sigma_1^\pm$) to $x_\alpha(t\cdot \xi)$.
 
- 
+
  Set $H=\St(A[t], tA[t])$.
  By \cref{item:st-semi} we have $\St(A[t]) = \St(A) \ltimes H$ hence $N_1^\pm \cong P_1^\pm \ltimes H.$
  Define the map $\widetilde{\sigma}^\pm_1 \colon H \to \St(A[t])$ on the generators of $\St(A[t], tA[t])$ as follows ?????.
- %TODO: Fill in the gap using another presentation for relative (!) linear Steinberg groups of rank 3 
+ %TODO: Fill in the gap using another presentation for relative (!) linear Steinberg groups of rank 3
  A routine check shows that the defining relations ?????? of $H$ are satisfied and that $\sigma_1^\pm$ preserves the action of $P_1^\pm$ on $H$.
  Thus, we obtain a well-defined map $\sigma_1^\pm:N_i^\pm \to \St(A[t])$ fitting into the above commutative diagram.
- The fact that the image of $\sigma_1^\pm$ is contained in $N_i^\mp$ is obvious. 
+ The fact that the image of $\sigma_1^\pm$ is contained in $N_i^\mp$ is obvious.
  \renewcommand{\qedsymbol}{} \end{proof}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{\texorpdfstring{$\Pro^1$}{P\textonesuperior}-gluing}
-Throughout this section $G=G(\Phi, -)$ denotes a Chevalley group scheme of type $\Phi$.
+Throughout this section $G=G(\Phi, -)$ denotes a simply connected Chevalley--Demazure group scheme of type $\Phi$.
 
 \begin{dfn} \label{def:p1g} Let $F$ be a group-valued functor from $\catname{CRings}$ to $\catname{Groups}$ and let $A$ be a commutative ring.
 Consider the following commutative diagram.
@@ -506,9 +534,9 @@ Consider the following commutative diagram.
 We say that $F$ satisfies the \emph{$\Pro^1$-glueing property for $A$} if the following sequence of \emph{pointed sets} is exact in the middle term:
 \[ \begin{tikzcd} F(A) \ar[r, hookrightarrow, "\Delta_A^F"] & F(A[t]) \times F(A[t^{-1}]) \ar[r, "\pm_A^F"] & F(A[t, t^{-1}]). \end{tikzcd} \]
 Here $\Delta^F_A$ denotes the (split injective) diagonal map and, by definition, $\pm_A^F$ maps $(g^+, g^-)$ to $F(j_+)(g^+) \cdot F(j_-)(g^-)^{-1}.$
-Notice that a priori $\pm_A^F$ is only a morphism of pointed sets but if $F$ takes values in abelian groups then $\pm_A^F$ is also a morphism of groups. 
+Notice that a priori $\pm_A^F$ is only a morphism of pointed sets but if $F$ takes values in abelian groups then $\pm_A^F$ is also a morphism of groups.
 
-An equivalent way to formulate $\Pro^1$-glueing property is as follows: 
+An equivalent way to formulate $\Pro^1$-glueing property is as follows:
 $F(j_+)$ and $F(j_-)$ are injective and the intersection of their images coincides with the image of $F(j_+ i_+) = F(j_- i_-).$ \end{dfn}
 
 The main result of this section is the following theorem which generalizes \cite[Theorem~5.1]{Tu} to Chevalley groups.
@@ -518,12 +546,12 @@ Notice that a $K_1$-analogue of the result below has been established in a much 
 Then the Steinberg group functor $\St(-)$ satisfies $\Pro^1$-glueing property for an arbitrary commutative ring $A$. \end{thm}
 \begin{proof}
  Let $(g^+, g^-)$ be an element of $\St(A[t]) \times \St(A[t^{-1}])$ such that the equality $g^+ = g^-$ holds in $\St(A[t, t^{-1}])$.
- 
+
  Let $m$ be a maximal ideal of $A$.
- By \cref{prop:p1g} below the functor $\St(-)$ satisfies $\Pro^1$-glueing property for the local ring $A_m$ hence 
+ By \cref{prop:p1g} below the functor $\St(-)$ satisfies $\Pro^1$-glueing property for the local ring $A_m$ hence
  $(\lambda_m^*(g_+), \lambda_m^*(g_-)) = \Delta_{A_m}(\lambda_m^*(g^+)(0))$ and in the groups $\St(A_m[t])$ and $\St(A_m[t^{-1}])$ we have the equalities:
  $$\lambda_m^*(g^+ \cdot g^+(0)^{-1}) = \lambda_m^*(g^+) \cdot {\lambda_m^*(g^+)(0)}^{-1} = 1; \qquad \lambda_m^*(g^-\cdot g^+(0)^{-1}) =1. $$
- Now, by the local-global principle for $\St(-)$ (see \cref{thm:lg-k2}) these equalities hold globally and $(g^+, g^-) = \Delta_A(g^+(0))$, as claimed. 
+ Now, by the local-global principle for $\St(-)$ (see \cref{thm:lg-k2}) these equalities hold globally and $(g^+, g^-) = \Delta_A(g^+(0))$, as claimed.
 \end{proof}
 
 \begin{rem} \label{rem:stk2} It is clear that if the functor $\St$ satisfies $\Pro^1$-glueing property for $A$ then so does the functor $K_2^G$.
@@ -535,54 +563,370 @@ Then the Steinberg group functor $\St(-)$ satisfies $\Pro^1$-glueing property fo
 \begin{cor} Let $A$ be any commutative ring and $f\in A[t]$ be a monic polynomial.
 Then the map $K_2^G(A[t])\to K_2^G(A[t]_f)$ is injective. \end{cor}
 \begin{proof}
-%TODO: Write proof 
+%TODO: Write proof
 \end{proof}
 
-\subsection{The case of a field}
-Throughout this section $k$ denotes arbitrary field $k$.
-\begin{thm} \label{thm:k[t]}
-Assume that $G=G(\Phi, -)$ and $\Phi$ is irreducible of rank $\geq 2$.
-\begin{thmlist} \item \label{satz1} The subgroup $K_2^G(k[t]) \trianglelefteq \St(k[t])$ is generated by elements of the form 
-  $$h_\alpha(uv) h_\alpha(u)^{-1} h_\alpha(v)^{-1},\ u,v\in k^*.$$
- \item As a consequence, the canonical injection $K_2^G(k) \hookrightarrow K_2^G(k[t])$ is an isomorphism. \end{thmlist} \end{thm}
-\begin{proof} See \cite[Satz~1]{Re75} and the corollary after it. \end{proof}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{cor}\label{cor:k[t]inj} Let $G$ be as in the above theorem. Then the functors $\St$, $K_2^G$ satisfy $\Pro^1$-glueing property for $k$. \end{cor}
+\subsection{The field case}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+Throughout this section $k$ denotes an arbitrary field.
+\begin{thm} \label{thm:k[t]}
+Assume that $G=G(\Phi, -)$ and $\Phi$ is any irreducible root system  of rank $\geq 2$.
+\begin{thmlist}
+\item \label{satz1} The subgroup $K_2(\Phi,k[t]) \trianglelefteq \St(\Phi,k[t])$
+is generated by symbols $\{u,v\}_\alpha$, $u,v\in k^*,\alpha\in\Phi$.
+\item As a consequence, the canonical injection $K_2(\Phi,k) \hookrightarrow K_2(\Phi,k[t])$ is an isomorphism,
+and $K_2(k[t])=K_2(k)$ is central in $\Stb(\Phi,k[t])$.
+\end{thmlist} \end{thm}
+\begin{proof}
+See \cite[Satz~1]{Re75} and the corollary after it.
+\end{proof}
+
+\begin{cor}\label{cor:k[t]inj}
+Let $G$ be as in Theorem~\ref{thm:k[t]}. Then the functors $\St$, $K_2^G$ satisfy $\Pro^1$-glueing property for $k$. \end{cor}
 \begin{proof} By \cref{rem:stk2} it suffices to prove the assertion only for the functor $K_2^G$.
 By the previous theorem $K_2^G(i_+)$ and $K_2^G(i_-)$ are isomorphisms hence the morphisms $K_2^G(j_+)$ and $K_2^G(j_-)$ are split injective
-and $\im(j_+i_+) = \im (j_-i_-) = \im(j_+) = \im(j_-)$. \end{proof}
+and $\im(j_+i_+) = \im (j_-i_-) = \im(j_+) = \im(j_-)$.
+\end{proof}
 
-\begin{cor} Let $G$, $k$ be as in \cref{thm:k[t]}. Then $K_2^G(k[t^{\pm 1}])=K_2^G(k)$. \end{cor}
-\begin{proof} We use \cref{thm:3t}.
- Take $g\in K_2^G(k[t^{\pm 1}])$,
- then $g=x_1yx_2$, $x_i\in \St(k[t]))$, $y\in \St(k[t^{-1}]))$.
- Since $E(k[t])\cap E(k[t^{-1}])=E(k)$,
- we have $y\in\St(k)K_2^G(k[t^{-1}])=\St(k)$ and $x_1x_2\in\St(k)$. That is, $g\in K_2^G(k)$. \end{proof}
- 
-\subsection{Suslin lemma for \texorpdfstring{$K_2$}{K\texttwoinferior}}
-For the rest of this section $A$ denotes an arbitrary commutative local ring with the maximal ideal $m$ and the residue field $k$.
+\begin{thm}\label{thm:k[t+-1]}
+Let $\Phi$ be an irreducible root system of rank $\geq 2$, $\Phi\neq G_2$.
+Then for any long root $\alpha\in\Phi$ one has
+$$
+K_2(\Phi,k[t^{\pm 1}])=K_2(\Phi,k)\oplus
+\left<\{t,u\}_\alpha,\ u\in k^*\right>.
+$$
+In particular, $K_2(\Phi,k[t^{\pm 1}])$ is central in $\Stb(\Phi,k[t^{\pm 1}])$.
+Here $K_2(\Phi,k)$ is considered as a subgroup of $K_2(\Phi,k[t^{\pm 1}])$ via the natural injection.
+\end{thm}
+\begin{proof}
+Set $H=\left<\{t,u\}_\alpha,\ u\in k^*\right>$.
+By~\cite[Korollar 4]{Hur77} the group $K_2(\Phi,k[t^{\pm 1}])$ is generated by $K_2(\Phi,k)$ and
+$H$. By~\cite[Prop. 1.1 (S1)]{Ste73} one has $\{1,u\}_\alpha=1$
+for any $\alpha\in\Phi$. Hence $H$ is in the kernel of the natural projection $K_2(\Phi,k[t^{\pm 1}])\to K_2(\Phi,k)$
+sending $t$ to 1, and $H\cap K_2(\Phi,k)=1$. By~\cite[Prop. 1.3 (a)]{Ste73} symbols are central in
+$\Stb(\Phi,k[t^{\pm 1}])$, hence $K_2(\Phi,k[t^{\pm 1}])=K_2(\Phi,k)\oplus H$.
+\end{proof}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Tulenbaev's section 3}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+For the rest of this section $A$ denotes an arbitrary commutative local ring with the maximal ideal $m$
+and the residue field $k$.
 We denote by $\pi$ the canonical projection $A \rightarrow k$.
 Throughout this section we will employ the following notation:
 \begin{itemize}
  \item $R$ denotes the Laurent polynomial ring $A[t, t^{-1}]$;
  \item $B$ denotes the subring $A[t] + m[t^{-1}]$ of $R$ consisting of Laurent polynomials $f(t,t^{-1})$ whose coefficients of terms of negative degree belong to $m$;
- \item $I$ denotes the ideal $m[t, t^{-1}]$ of $R$ (which can be also considered as an ideal of $B$). \end{itemize}
+ \item $I$ denotes the ideal $m[t, t^{-1}]$ of $R$ (which can be also considered as an ideal of $B$).
+\end{itemize}
+
+Note that since $A$ is local, then $K_2(\Phi,A)=\Stsym(\Phi,A)$
+by~\cite[Theorem 2.13]{Ste73}. In particular, $K_2(\Phi,A)$ is central in $\Stb(\Phi,A)$,
+and $W(\Phi,A)/H(\Phi,A)$ is naturally isomorphic
+to the Weyl group $W(\Phi)$.
 
 Our first result is analogous to \cite[Lemma~3.1(e)]{Tu} (cf. also with \cite[\S~2.3A]{HOM}).
-\begin{lem} \label{cor:bruhat} The Steinberg group $\St(A)$ admits the following analogue of the Bruhat decomposition:
-\[ \St(A) = \UU(\Phi^+, A) \cdot \WW(\Phi, A) \cdot \UU(\Phi^+, A) \cdot \im(\St(A, m) \rightarrow \St(A)).\] \end{lem}
-\begin{proof} First of all, notice that $\St(k)$ admits Bruhat decomposition for arbitrary field $k$:
- $$\St(k) = \UU(\Phi^+, k) \cdot \WW(\Phi, k) \cdot \UU(\Phi^+, k).$$
- Indeed, this is an immediate consequence of the classical Bruhat decomposition for the linear groups (see e.\,g. \cite[Theorem~4]{St-lect}) and the fact
- that $K_2^G(k)$ is central in $\St(k)$ and is generated by symbols $h_\alpha(u)$ lying in $\WW(\Phi, k)$ (cf. \cref{satz1}). 
- 
- As a consequence, the first three factors in the right hand side of the decomposition are mapped epimorphically onto $\St(k)$ and the last factor coincides with $\Bigker(\pi_*)$
- from which the assertion of the lemma follows. \end{proof}
+\begin{lem}\label{lem:bruhat}Let $\Phi$ be any irreducible root system.
+Let $\Phi^+$, $\Phi^{+'}$ be two systems of positive roots in $\Phi$.
+ \begin{lemlist}
+\item  The Steinberg group
+$\Stb(\Phi,A)$ admits the following analogue of the Bruhat decomposition:
+\begin{equation}\label{eq:bruhat}
+\Stb(\Phi,A) =\bigsqcup_{w\in W(\Phi)} \left(\UU(\Phi^{+'}, A)\cdot wH(\Phi,A)\cdot\UU(\Phi^+, A) \cdot
+\ker\bigl(\Stb(\Phi,A) \xrightarrow{\pi^*} \Stb(\Phi,k)\bigr)\right).
+\end{equation}
+\item Assume that $uwhvl=u'w'h'v'l'$ for some $u,u'\in \UU(\Phi^{+'}, A)$, $w,w'\in W(\Phi)$,
+$h,h'\in H(\Phi,A)$, and $l,l'\in \ker\bigl(\Stb(\Phi,A) \xrightarrow{\pi^*} \Stb(\Phi,k)\bigr)$. Then
+$w=w'$,
+$$
+h^{-1}h'\in \Stsym(\Phi,A)\cdot\ker\bigl(H(\Phi,A) \xrightarrow{\pi^*} H(\Phi,k)\bigr),
+$$
+and
+there exist $a\in \UU(\Phi^{+'},m)$ such that $w^{-1}(u^{-1}u'a)w\in \UU(\Phi^+,R)$,
+and $b\in\UU(\Phi^+,m)$ such that
+$$
+b=v^{-1}(u^{-1}u')^{wh}v'=l(l')^{-1}.
+$$
+ \end{lemlist}
+\end{lem}
+\begin{proof}
+For any field $k$, the group $G(\Phi,k)=E(\Phi,k)$ admits Bruhat decomposition, hence
+$K_2(\Phi,k)\le H(\Phi,k)$ implies
+$$
+\Stb(\Phi,k)=\bigsqcup_{w\in\WW(\Phi)} \UU(\Phi^{+'}, k) wH(\Phi,k)\UU(\Phi^+, k).
+$$
+Let $w_0\in W(\Phi)$ be such that $v_0(\Phi^{+'})=\Phi^+$. Then also
+$$
+\Stb(\Phi,k)=w_0^{-1}H(\Phi,k)\Stb(\Phi,k)=\bigsqcup_{w\in\WW(\Phi)} \UU(\Phi^{+'}, k) wH(\Phi,k)\UU(\Phi^+, k).
+$$
+As a consequence, the first three factors in the right hand side of the decomposition~\eqref{eq:bruhat} are mapped
+epimorphically onto $\Stb(\Phi,k)$ and the last factor coincides with $\Bigker(\pi^*)$
+ from which the first assertion of the lemma follows. The second assertion follows from the unicity
+of the Bruhat decomposition in $G(\Phi,k)$.
+\end{proof}
 
-\begin{lem} \label{lem:tulinj} Assume that $G$ satisfies Tulenbaev lifting property~\ref{def:tlp}. 
+\begin{lem}\label{lem:tul3.1zh}
+Denote by $\Stsymt(\Phi,A,m)$ the subgroup of $\Stsym(\Phi,A[t^{\pm 1}])$ generated by
+all symbols of the form $\{t,u\}_\alpha$, $\alpha\in\Phi$, $u\in 1+m$. Then there is an injective
+homomorphism $\phi:\Stsymt(\Phi,A,m)\to\Stb(\Phi,A[t^{\pm 1}],mA[t^{\pm 1}])$, natural in $(A,m)$,
+such that the composition of the canonical map $\Stb(\Phi,A[t^{\pm 1}],mA[t^{\pm 1}])\to
+\Stb(\Phi,A[t^{\pm 1}])$ with $\phi$ equals $\id_{\Stsymt(\Phi,A,m)}$.
+\end{lem}
+\begin{proof}
+The map $\phi$ can be defined as follows:
+\begin{multline*}
+\phi(\{t,u\}_\alpha)=y_\alpha(t(u-1))y_{-\alpha}(-t^{-1}(u^{-1}-1))^{x_\alpha(-t)}\cdot \\
+\cdot y_\alpha(t(u-1))^{w_\alpha(-t)}
+y_\alpha(u-1)y_{-\alpha}(-(u^{-1}-1))^{x_\alpha(-1)}y_\alpha(u-1)^{w_\alpha(-1)}.
+\end{multline*}
+If we assume that $\Phi$ is non-symplectic and we restrict ourselves to just one root $\alpha$,
+then it is enough to check that $\{t,u\}_\alpha\neq 1$ in $\Stb(\Phi,A[t^{\pm 1}])$ for any $u\neq 1$.
+If $A$ is an integral domain (e.g. $A$ regular), this follows from the injectivity of $A^*\to K^*$, where $K$ the
+fraction field of $A$, together with the injectivity of $K^*\to \Stb(A_2,K(t))$ (see e.g.~\cite[Remark 1
+on p. 208]{DeSte-dvr}) and the
+stability~\cite[Theorem A.2]{DeSte-dvr} applied to $A_2\to\Phi$ and the field $K(t)$.
+
+....to finish....
+\end{proof}
+
+\begin{lem}\label{lem:sigma-X}
+Let $\Phi$ be an irreducible root system of rank $l\ge 3$ and of type $A_l$ ($l\ge 3$), $C_l$ ($l\ge 3$), $D_l$ ($l\ge 4$),
+$E_6$ or $E_7$. Let $\alpha_i\in\Pi$, $1\le i\le l$, be a simple root of $\Phi$ such that the
+parabolic subgroup $P_i$ of $G(\Phi,-)$ has abelian unipotent radical. Denote by $\Stb P_i^-(\Phi,A)$
+the subgroup of $\Stb(\Phi,A)$ generated by $x_\alpha(u)$, $\alpha\in\Delta_i\cup(-\Sigma_i)$, $u\in A$,
+and by $H(\Phi,A)$ (?).
+Then there exists a group homomorphism
+$$
+\delta_i:\Stb(\Phi,A[t],tA[t])\to \Stb P_i^-(\Phi,A)\cdot \Stb(\Phi,A[t],tA[t])
+$$
+such that the following diagram commutes:
+ \[\begin{tikzcd}
+\Stb(\Phi,A[t],tA[t]) \arrow[r, "j_+"] \arrow[d, "\delta_i"] & \Stb(\Phi,A[t, t^{-1}])  \ar[d, "\chi_{\varpi_i,t}"] \\
+\Stb P_i^-(\Phi,A)\cdot \Stb(\Phi,A[t],tA[t]) \arrow[r, "j_+"] &  \Stb(\Phi,A[t, t^{-1}])
+\end{tikzcd}\]
+\end{lem}
+\begin{proof}
+The cases $A_l$ and $C_l$ are done using another presentation. Other cases are done by amalgamation
+of $A_3$-pieces....
+\end{proof}
+
+\begin{lem}\label{lem:parab-pairs}
+Let $\Phi$ be an irreducible root system of rank $l\ge 3$ and of type $A_l$ ($l\ge 3$), $C_l$ ($l\ge 3$),
+$D_l$ ($l\ge 4$), $E_6$, $E_7$ or $E_8$.
+Let $\alpha_i\in\Pi$ be the simple root adjacent to $\alpha_l$ in the Dynkin diagram of $\Phi$
+(note that $P_l$ has abelian unipotent radical if $\Phi\neq E_8$, and extraspecial if $\Phi=E_8$).
+Set $\Phi^{+'}=w_{\alpha_l}(\Phi^+)$.
+Then $\Phi^{+'}\setminus\Phi^+=-\alpha_l$, $\Phi^+\setminus \Phi^{+'}=\alpha_l$, and
+$\Sigma_i\setminus\Sigma_l\subseteq w_{\alpha_l}(\Sigma_l)$.
+\end{lem}
+\begin{proof}
+The first two claims are obvious. The last claim follows from the fact that for any root
+$\alpha\in\Sigma_i\setminus\Sigma_l$ one has $w_{\alpha_l}(\alpha)=\alpha+\alpha_l$.
+\end{proof}
+
+\begin{lem}\label{lem:tul3.3}
+ Let $\Phi$ be an irreducible root system of rank $\ge 2$, let $\Pi$ be a system of simple roots in $\Phi$,
+and let $J\subseteq\Pi$ be such that $|J|\ge 2$.
+%Set
+%$$
+%\alpha_J=\sum\limits_{\beta\in J}m_\beta(\alpha)\beta\ \mbox{for any}\ \alpha\in\Phi,
+%$$
+%and
+%$$
+%\Sigma_J=\{\alpha\in\Phi\ |\ m_\beta(\alpha)>0\ \mbox{for at least one}\ \beta\in J\}.
+%$$
+Let $S$ be any group, and $n\in\mathbb{N}$. For any $b\in B$ let $|b|\in\ZZ$ be such that $t^{|b|}$ is the
+smallest power of $t$ occuring in $b$.
+Assume that there are elements $s_\alpha(u)\in S$ for all $\alpha\in\Sigma_J\cup(-\Sigma_J)$ and
+$u\in B$ such that $|u|\ge -n$, satisfying the relations
+\begin{enumerate}
+\item $s_\alpha(u)s_\alpha(v)=s_\alpha(u+v)$ for all $\alpha\in \Sigma_J\cup(-\Sigma_J)$, $u,v\in B$,
+$|u|,|v|\ge -n$;
+\item $[s_\alpha(u),s_\beta(v)]=\prod\limits_{i,j\in\mathbb{N}}s_{i\alpha+j\beta}(N_{\alpha\beta ij}u^iv^j)$
+for all $\alpha,\beta\in \Sigma_J\cup(-\Sigma_J)$ such that $i\alpha_J\neq -j\beta_J$ for all $i,j\in\mathbb{N}$,
+and all $u,v\in B$ such that $i|u|+j|v|\ge -n$ whenever $N_{\alpha\beta ij}\neq 0$.
+\end{enumerate}
+If $n=1$, then the map $x_\alpha(u)\mapsto s_\alpha(u)$ extends to a group homomorphism $\Stb(\Phi,B)\to S$.
+\end{lem}
+\begin{proof}
+
+\end{proof}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Tulenbaev's section 4}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{thm}\label{thm:tul4.1}
+Let $\Phi$ be an irreducible root system of rank $l\ge 3$ of type $A_l$, $C_l$, $D_l$ ($l\ge 4$), $E_6$ or $E_7$.
+Then $\ker\bigl(\Stb(\Phi,A[t],m[t])\to\Stb(\Phi,A[t])\bigr)$ surjects onto
+$\ker\bigl(\Stb(\Phi,A[t^{\pm 1}],m[t^{\pm 1}])\to\Stb(\Phi,A[t^{\pm 1}])\bigr)$.
+\end{thm}
+\begin{proof}
+Set
+$$
+\tilde B=H(\Phi,A[t^{\pm 1}])\cdot\UU(\Phi^+,A[t^{\pm 1}])\le\Stb(\Phi,A[t^{\pm 1}]),
+$$
+and
+$$
+\tilde D=\phi(\Stsymt(\Phi,A,m))\le \Stb(\Phi,A[t^{\pm 1}],m[t^{\pm 1}])
+$$
+in the notation of Lemma~\ref{lem:tul3.1zh}. Consider the set ofequivalence classes
+$$
+V=\Stb(\Phi,A[t])\times \tilde B\times \Stb(\Phi,A[t^{\pm 1}],mA[t^{\pm 1}])/\sim,
+$$
+where $( a,b,\beta)\sim( a',b',\beta')$ if and only if there is $\gamma\in\Stb(\Phi,A[t],mA[t])$,
+$p\in\UU(\Phi^+,A[t])$ and $\mu\in \tilde D\cdot\UU(\Phi^+,mA[t^{\pm 1}])$ such that
+$$
+\tilde a= a\gamma_1^{-1}t^{-1},\quad \tilde b=pt\mu,\quad \tilde\beta=\mu^{-1}(\gamma_2)b\beta,
+$$
+where $\gamma_1$ and $\gamma_2$ are the images of $\gamma$ in the respective groups. The elements of $V$
+will be denoted $[ a,b,\beta]$.
+
+{\bf We will define a map $\sigma:V\to V$.} By Lemma~\ref{lem:bruhat} and the definition of $V$ every element of $V$
+can be written in the form $[ a w,b,\beta]$ for some $ a\in\Stb(\Phi,A[t],tA[t])\cdot\UU(\Phi^+,A)$,
+$w\in W(\Phi,A)\le\Stb(\Phi,A)$, $b\in\tilde B$ and $\beta\in \Stb(\Phi,A[t^{\pm 1}],mA[t^{\pm 1}])$.
+We define
+$$
+\sigma|_{\Stb(\Phi,A[t],tA[t])}=\delta_l:\Stb(\Phi,A[t],tA[t])\to\Stb(\Phi,A[t],tA[t])\Stb P_l^-(\Phi,A)\le[\Stb(\Phi,A[t]),1,1],
+$$
+where $\delta_l$ the homomorphism constructed in Lemma~\ref{lem:sigma-X}.
+For any $\alpha\in\Phi$, $u\in A[t^{\pm 1}]$ we have a homomorphism
+$$
+\chi_{\varpi_l,t}:X_\alpha(A[t^{\pm 1}])\to X_\alpha(A[t^{\pm 1}]),\quad
+x_\alpha(u)\mapsto x_\alpha(t^{m_{\alpha_l}(\alpha)}u).
+$$
+In particular, this induces a homomorphism
+$\sigma_U=\chi_{\varpi_l,t}|_{\UU(\Phi^+,A)}:\UU(\Phi^+,A)\to \UU(\Phi^+,A[t])$.
+Combining $\delta_l$ and $\sigma_U$, we obtain a homomorphism (check!!!)
+$$
+\sigma:\Stb(\Phi,A[t],tA[t])\cdot\UU(\Phi^+,A)\to \Stb(\Phi,A[t]).
+$$
+Now we define
+$$
+\sigma\cdot[ a w,b,\beta]=[\sigma( a)w,w^{-1}\chi_{\varpi_l,t}(wb),\chi_{\varpi_l,t}(\beta)].
+$$
+Note that, clearly, $w^{-1}\chi_{\varpi_l,t}(w)\in H(\Phi,A[t^{\pm 1}])$.
+
+{\bf Next we define a map $\sigma':V\to V$.} Set $\Phi^{+'}=w_{\alpha_l}(\Phi^+)$.
+By Lemma~\ref{lem:bruhat} and the definition of $V$ every element of $V$
+can be written in the form $[ a w,b,\beta]$ for some $ a\in\Stb(\Phi,A[t],tA[t])\cdot\UU(\Phi^{+'},A)$,
+$w\in W(\Phi,A)\le\Stb(\Phi,A)$, $b\in\tilde B$ and $\beta\in \Stb(\Phi,A[t^{\pm 1}],mA[t^{\pm 1}])$.
+Note that $w_{\alpha_l}(\Pi)$ is a set of simple roots of $\Phi$ contained in $\Phi^{+'}$, with
+$w_{\alpha_l}(\alpha_l)=-\alpha_l$ playing the role of $\alpha_l$. Then by Lemma~\ref{lem:sigma-X}
+there is a homomorphism
+$$
+\delta_l':\Stb(\Phi,A[t],tA[t])\to\Stb(\Phi,A[t],tA[t])\Stb {P'_l}^-(\Phi,A),
+$$
+compatible with $\chi_{w_{\alpha_l}(\varpi_l),t}$, where $\Stb {P'_l}^-(\Phi,A)$ denotes the subgroup
+of $\Stb(\Phi,A)$ corresponding to the parabolic set of roots $w_{\alpha_l}(\Delta_l\cup\Sigma_l)$.
+We define
+$$
+\sigma'|_{\Stb(\Phi,A[t],tA[t])}=\delta'_l:\Stb(\Phi,A[t],tA[t])\to\Stb(\Phi,A[t],tA[t])\Stb {P'_l}^-(\Phi,A)\le[\Stb(\Phi,A[t]),1,1].
+$$
+Similarly, for any $\alpha\in\Phi$, $u\in A[t^{\pm 1}]$ we consider a homomorphism
+$$
+\chi_{w_{\alpha_l}(\varpi_l),t}:X_\alpha(A[t^{\pm 1}])\to X_\alpha(A[t^{\pm 1}]),\quad
+x_\alpha(u)\mapsto x_\alpha(t^{m'_{-\alpha_l}(\alpha)}u),
+$$
+where $m'_{w_{\alpha_l}(\alpha_i)}(\alpha)$, $1\le i\le l$, is the coefficient of $w_{\alpha_l}(\alpha_i)$
+in the decomposition of $\alpha\in\Phi$ with respect to $w_{\alpha_l}(\Pi)$.
+We also consider a homomorphism
+$\sigma'_U=\chi_{w_{\alpha_l}(\varpi_l),t}|_{\UU(\Phi^{+'},A)}:\UU(\Phi^{+'},A)\to \UU(\Phi^{+'},A[t])$.
+Combining $\delta'_l$ and $\sigma'_U$, we obtain a homomorphism
+$$
+\sigma':\Stb(\Phi,A[t],tA[t])\cdot\UU(\Phi^{+'},A)\to \Stb(\Phi,A[t]).
+$$
+Now we define
+$$
+\sigma'\cdot[ a w,b,\beta]=[\sigma'( a)w,w^{-1}\chi_{w_{\alpha_l}(\varpi_l),t}(wb),
+\chi_{w_{\alpha_l}(\varpi_l),t}(\beta)].
+$$
+As in the case of $\sigma$, we have $w^{-1}\chi_{w_{\alpha_l}(\varpi_l),t}(w)\in H(\Phi,A[t^{\pm 1}])$.
+
+Now we show that $\sigma,\sigma':V\to V$ are correctly defined and bijective. We prove that for $\sigma'$,
+the case of $\sigma$ being analogous.....
+%Assume that
+%$[ a x,b,\beta]=[\tilde a\tilde w,\tilde b,\tilde\beta]$ for some $\tilde a\in
+
+{\bf Next we show that $\sigma$ and $\sigma'$ commute.}
+First we note that if $\sigma\cdot[a,1,1]=[x,y,1]$, then for any $b\in\tilde B$ and
+$\beta\in\Stb(\Phi,A[t^{\pm 1}],mA[t^{\pm 1}])$ one has
+$$
+\sigma\cdot[a,b,\beta]=[x,y\chi_{\varpi_l,t}(b),\chi_{\varpi_l,t}(\beta)],
+$$
+and a similar equality holds for $\sigma'$. Since
+$\chi_{\varpi_l,t}$ and $\chi_{w_{\alpha_l}(\varpi_l),t}$ commute on $\Stb(\Phi,A[t^{\pm 1}])$
+and on $\Stb(\Phi,A[t^{\pm 1}],mA[t^{\pm 1}])$, it is enough to check that $\sigma$ and $\sigma'$
+commute on any element of the form $[a w,1,1]\in V$, where $a\in\Stb(\Phi,A[t],tA[t])\cdot\UU(\Phi^+,A)$,
+$w\in W(\Phi,A)$. We can write $a=a_0\cdot x_{\alpha_l}(u)$, where
+$a_0\in \Stb(\Phi,A[t],tA[t])\cdot\UU(\Phi^+\cap\Phi^{+'},A)$.....
+
+%Consider two cases.
+%First, if $u\in m$ or $w^{-1}(\alpha_l)\in\Phi^+$, we can transfer
+%the factor $x_{\alpha_l}(u)$ into $\beta$ or $b$ respectively, and thus assume that $u=0$. In this
+%case one readily sees that $\sigma$ and $\sigma'$ commute on $[a_0,b,\beta]$, since
+%$\chi_{\varpi_l,t}$ and $\chi_{w_{\alpha_l}(\varpi_l),t}$ commute (check!!!).
+%Second, assume that $u\in A\setminus m=A^*$ and $w^{-1}(\alpha_l)\in \Phi^-$. One has
+%\begin{multline}
+%\sigma'\sigma\cdot[a_0x_{\alpha_l}(u)w,1,1]=\\
+%=\sigma'\cdot
+%[\sigma(a_0)x_{\alpha_l}(tu)w,w^{-1}\chi_{\varpi_l,t}(w),1]=\\
+%=[\sigma'\bigl(\sigma(a_0)\cdot \sigma(a_0)(0)^{-1}x_{\alpha_l}(tu)^{\sigma(a_0)(0)^{-1}}\bigr)\cdot \sigma'\bigl(\sigma(a_0)(0)\bigr)
+%\end{multline}
+%On the other hand, one has
+%\begin{multline}
+%\sigma\sigma'\cdot[a_0x_{\alpha_l}(u)w,1,1]=\\
+%\sigma\sigma'\cdot[a_0x_{-\alpha_l}(u^{-1})w_{-\alpha_l}(-u^{-1})w,x_{-\alpha_l}(u^{-1})^w ,1]=\\
+%=\sigma\cdot[\sigma'(a_0)x_{-\alpha_l}(tu^{-1})w_{-\alpha_l}(-u^{-1})w,w^{-1}w_{-\alpha_l}(-u^{-1})^{-1}
+%\chi_{w_{\alpha_l}(\varpi_l),t}\bigl(w_{-\alpha_l}(-u^{-1})w\bigr),1]
+%\end{multline}
+
+{\bf Now we define the action of $\Stb(\Phi,A[t^{\pm 1}]))$ on $V$.} For any $\alpha\in\Phi$ and
+$u\in A[t]\subseteq A[t^{\pm 1}]$
+we set
+$$
+x_\alpha(u)\cdot [a,b,\beta]=[x_\alpha(u)a,b,\beta].
+$$
+Next we want to use Lemma~\ref{lem:tul3.3} applied to the set $J=\{\alpha_i,\alpha_l\}$, where $\alpha_i$
+is the simple root adjacent to $\alpha_l$. For any $\alpha\in\pm\Sigma_l$ and any $u\in A$ we set
+$$
+x_\alpha(t^{-1}u)\cdot [a,b,\beta]=\sigma^{\mp 1}\cdot x_\alpha(u)\cdot\sigma^{\pm 1} [a,b,\beta].
+$$
+For any $\alpha\in\pm\Sigma_i$ and any $u\in A$ we set
+$$
+x_\alpha(t^{-1}u)\cdot [a,b,\beta]={\sigma'}^{\mp 1}\cdot x_\alpha(u)\cdot{\sigma'}^{\pm 1} [a,b,\beta]
+$$
+(cf. Lemma~\ref{lem:parab-pairs}). Then we check that this action satisfies the properties required
+in Lemma~\ref{lem:tul3.3}. This defines an action of $\Stb(\Phi,A[t^{\pm 1}]))$ on $V$.
+
+The last step is to check that for any $\beta\in \Stb(\Phi,A[t^{\pm 1}],mA[t^{\pm 1}])$ the action of
+its image in $\Stb(\Phi,A[t^{\pm 1}])$ on $[1,1,1]$ gives $[1,1,\beta]$.
+
+\end{proof}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Suslin's lemma}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{lem} \label{lem:tulinj}
+Assume that $G$ satisfies Tulenbaev lifting property~\ref{def:tlp}.
 Then the map $i$ in the following commutative diagram of groups is injective.
-\begin{equation} \label{diag:cs} \begin{tikzcd} 
-C_{B} \ar[r, hookrightarrow] \ar[d, "k", twoheadrightarrow] & \St(B, I) \ar[r, "\mu_B" near start] \ar[d, "j"] & \ar[d, "i"] \St(B) \ar[r, "\pi_B", twoheadrightarrow] & \St(k[t]) \ar[d, hookrightarrow] \\     
+\begin{equation} \label{diag:cs} \begin{tikzcd}
+C_{B} \ar[r, hookrightarrow] \ar[d, "k", twoheadrightarrow] & \St(B, I) \ar[r, "\mu_B" near start] \ar[d, "j"] & \ar[d, "i"] \St(B) \ar[r, "\pi_B", twoheadrightarrow] & \St(k[t]) \ar[d, hookrightarrow] \\
 C_{R} \ar[r, hookrightarrow]                                & \St(R, I) \ar[ur, dashrightarrow, "\varphi"] \ar[r, "\mu_R"' near start] & \St(R) \ar[r, "\pi_R"', twoheadrightarrow] & \St(k[t, t^{-1}]) \\ \end{tikzcd} \end{equation} \end{lem}
 \begin{proof} First of all, notice that by \cref{cor:k[t]inj} the vertical map in the right-hand side of the diagram is injective.
  Invoking Tulenbaev's property~\ref{def:tlp} we also find a lifting map $\varphi$ in the central square of the diagram.
@@ -597,22 +941,22 @@ The following result is analogous to \cite[Proposition~4.1]{Tu}.
 \begin{lem} The map $j$ in the diagram \eqref{diag:cs} is surjective for any commutative ring $A$. \end{lem}
 %The argument below is taken from A. Stavrova's 08/11/15 letter
 \begin{proof}
- Let $\alpha_i$ be arbitrary simple root from $\Pi$ and let $\Sigma_i$ (resp. $\Sigma_i^-$) denote the special subsets of roots 
+ Let $\alpha_i$ be arbitrary simple root from $\Pi$ and let $\Sigma_i$ (resp. $\Sigma_i^-$) denote the special subsets of roots
  consisting of $\alpha \in \Phi$ such that $m_i(\alpha) > 0$ (resp. $m_i(\alpha) < 0$).
- 
+
  By \cref{lem:Zgen} the sets $\mathcal{Z}(\Sigma_i, R, I)$ and $\mathcal{Z}(\Sigma_i^-, R, I)$ both generate $\St(R, I)$.
  Similarly, the subsets $\mathcal{Z}(\Sigma_i, B, I) \subseteq \mathcal{Z}(\Sigma_i, R, I)$,
-                        $\mathcal{Z}(\Sigma_i^-, B, I) \subseteq \mathcal{Z}(\Sigma_I, R, I)$ both generate 
+                        $\mathcal{Z}(\Sigma_i^-, B, I) \subseteq \mathcal{Z}(\Sigma_I, R, I)$ both generate
                         the image of $j\colon \St(B, I) \to \St(R, I)$.
 
  %TODO: Define this action in a more explicit way.
  Using formula~\eqref{eq:sigma_act} we can calculate how the powers of the automorphism $\sigma_i$ act on these generating sets.
  Indeed, for $z_\alpha(s, \xi) \in \mathcal{Z}(\Sigma_i^-, R, I)$ we have
- \[ \sigma_i^N (z_\alpha(s, \xi)) = \sigma_i^N (x_\alpha(0, s)^{x_{-\alpha}(\Delta(\xi))}) = 
+ \[ \sigma_i^N (z_\alpha(s, \xi)) = \sigma_i^N (x_\alpha(0, s)^{x_{-\alpha}(\Delta(\xi))}) =
      z_\alpha(t^{N m_i(\alpha)} \cdot s, t^{-N m_i(\alpha)} \cdot \xi). \]
  It is clear that for sufficiently large $N$ the element $t^{-N m_i(\alpha)} \cdot \xi$ belongs to $A[t] \subseteq B$.
  Consequently, for arbitrary $g \in \St(R, I)$ there exists $N > 0$ such that $\sigma^N(g)$ lies in the image of $j$.
- On the other hand, by a similar calculation we get for $z=z_{\alpha}(s, \xi) \in \mathcal{Z}(\Sigma_i, B, I)$ 
+ On the other hand, by a similar calculation we get for $z=z_{\alpha}(s, \xi) \in \mathcal{Z}(\Sigma_i, B, I)$
  that the element $\sigma^{-N}(z)$ ($N > 0$) still lies in $\mathcal{Z}(\Sigma_i, B, I)$.
  Clearly, this implies that the image of $j$ is preserved by $\sigma_i^{-1}$.
  The assertion of the lemma now follows from these two statements:
@@ -643,7 +987,7 @@ It plays the same role in our proof of $\Pro^1$-glueing for $K_2$ as generalized
 \begin{prop} \label{prop:p1g} The functors $\St$, $K_2^G$ satisfy $\Pro^1$-glueing property for arbitrary local ring $A$.
 \end{prop}
 \begin{proof}
-%TODO: Write proof 
+%TODO: Write proof
 \end{proof}
 
 \DeclareRobustCommand{\VAN}[2]{#2}
