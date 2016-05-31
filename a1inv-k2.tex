@@ -649,7 +649,7 @@ of the Bruhat decomposition in $G(\Phi,k)$.
 \end{proof}
 
 \begin{lem}\label{lem:tul3.1zh}
-Assume that $A$ is regular and the rank of $\Phi$ is at least $2$.
+Assume that $A$ is regular and $\Phi$ has rank at least $2$.
 Then there is an injective map $\phi\colon (1+m)^*\to\Stb(\Phi, R, I)$, natural in $(A,m)$,
 such that $j \phi = \{t, -\}_\alpha$, where $j\colon\Stb(\Phi,R,I)\to \Stb(\Phi,R)$ is the canonical map and $\alpha$ is a long root of $\Phi$.
 Moreover, if $\Phi$ is nonsymplectic then $\phi$ is a homomorphism of groups.
@@ -665,9 +665,10 @@ It is easy to check that $j \phi = \{t, -\}_\alpha$.
 If $A$ is regular then it is integral and, therefore, can be embedded into its field of fractions $K$.
 Now the injectivity of $\phi$ follows from \cref{thm:k[t+-1]} and the commutativity of the following diagram.
 \[\begin{tikzcd}
- 1+m \ar[hookrightarrow, r] \ar[d, "\phi"] & K^* \ar[hookrightarrow, d] \\
-  \Stb(\Phi ,R, I) \ar[r, "j"]             & \Stb(\Phi, K[t, t^{-1}])
-\end{tikzcd} \qedhere\]
+ (1+m)^* \ar[hookrightarrow, r] \ar[d, "\phi"] & K^* \ar[hookrightarrow, d] \\
+  \Stb(\Phi ,R, I) \ar[r]             & \Stb(\Phi, K[t^{\pm 1}])
+\end{tikzcd}\]
+Here the bottom arrow is the composition of $j$ and the map of Steinberg groups induced by the embedding $R \hookrightarrow K[t^{\pm1}]$.
 \end{proof}
 
 \begin{lem}\label{lem:sigma-X}
