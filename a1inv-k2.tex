@@ -652,7 +652,10 @@ of the Bruhat decomposition in $G(\Phi,k)$.
 Assume that $A$ is regular and $\Phi$ has rank at least $2$.
 Then there is an injective map $\phi\colon (1+m)^*\to\Stb(\Phi, R, I)$, natural in $(A,m)$,
 such that $j \phi = \{t, -\}_\alpha$, where $j\colon\Stb(\Phi,R,I)\to \Stb(\Phi,R)$ is the canonical map and $\alpha$ is a long root of $\Phi$.
-Moreover, if $\Phi$ is nonsymplectic then $\phi$ is a homomorphism of groups.
+
+Denote by $\Stsymt(\Phi, A, m)$ the image of the map $\phi$.
+The map $j$ injects $\Stsymt(\Phi, A, m)$ into $\Stb(\Phi, R).$
+If $\Phi$ is nonsymplectic then the map $\phi$ is a morphism of groups.
 \end{lem}
 \begin{proof}
 The map $\phi$ can be defined as follows:
@@ -663,12 +666,11 @@ y_\alpha(u-1)y_{-\alpha}(-(u^{-1}-1))^{x_\alpha(-1)}y_\alpha(u-1)^{w_\alpha(-1)}
 \end{multline*}
 It is easy to check that $j \phi = \{t, -\}_\alpha$.
 If $A$ is regular then it is integral and, therefore, can be embedded into its field of fractions $K$.
-Now the injectivity of $\phi$ follows from \cref{thm:k[t+-1]} and the commutativity of the following diagram.
+Now the remaining assertions of the lemma follow from \cref{thm:k[t+-1]} and the commutativity of the following diagram.
 \[\begin{tikzcd}
- (1+m)^* \ar[hookrightarrow, r] \ar[d, "\phi"] & K^* \ar[hookrightarrow, d] \\
-  \Stb(\Phi ,R, I) \ar[r]             & \Stb(\Phi, K[t^{\pm 1}])
-\end{tikzcd}\]
-Here the bottom arrow is the composition of $j$ and the map of Steinberg groups induced by the embedding $R \hookrightarrow K[t^{\pm1}]$.
+ (1+m)^* \ar[hookrightarrow, rr] \ar[d, "\phi"] &  & K^* \ar[hookrightarrow, d] \\
+  \Stb(\Phi ,R, I) \ar[r, "j"]                      & \Stb(\Phi, R) \ar[r] & \Stb(\Phi, K[t^{\pm 1}])
+\end{tikzcd} \qedhere\]
 \end{proof}
 
 \begin{lem}\label{lem:sigma-X}
